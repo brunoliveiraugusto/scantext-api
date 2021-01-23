@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{9CDAB1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Engine.Tesseract", "ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj", "{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Infra", "ScanText.Infra\ScanText.Infra.csproj", "{EEDDA097-9F50-4732-9886-0E1856D52F61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{AC777FA1-1AF8-4A3F-8FDD-96CE5AB87089} = {394C6DFF-D049-4A43-BA88-EEC233CAFAA4}
 		{5C8915AE-91CE-4414-B9DB-01844EDED594} = {E4448364-92C2-408C-B09E-7FDF84755906}
 		{EA6E065B-0477-4CFF-A0FB-D57BA607CD72} = {9CDAB13C-5BF6-42DD-A8F7-FDB723226CD4}
+		{EEDDA097-9F50-4732-9886-0E1856D52F61} = {E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA919EC8-0E84-4D84-90D7-6AD0D8AEB44F}

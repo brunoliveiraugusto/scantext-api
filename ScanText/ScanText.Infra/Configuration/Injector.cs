@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ScanText.Application.Interfaces;
 using ScanText.Application.Services;
+using ScanText.Engine.Tesseract.Entities;
+using ScanText.Engine.Tesseract.Interfaces;
 
 namespace ScanText.Api.Configurations
 {
@@ -12,7 +14,7 @@ namespace ScanText.Api.Configurations
             services.AddScoped<IScanAppService, ScanAppService>();
 
             //Engine
-            services.AddScoped<IScanAppService, ScanAppService>();
+            services.AddScoped<ITesseractEngineOCR, TesseractEngineOCR>();
         }
     }
 }
