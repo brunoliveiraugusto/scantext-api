@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
 {
@@ -11,7 +12,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Indica que a leitura da imagem foi realizada com sucesso.</response>
         [HttpGet("{base64}")]
-        public IActionResult LerTextoImagem(string base64)
+        public async Task<IActionResult> LerTextoImagem(string base64)
         {
             return Ok("Texto qualquer.");
         }
