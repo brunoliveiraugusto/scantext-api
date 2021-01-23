@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ScanText.Application.Interfaces;
 using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
@@ -7,6 +8,13 @@ namespace ScanText.Api.Controllers
     [Route("api/[controller]")]
     public class ScanController : ControllerBase
     {
+        private readonly IScanAppService _scanAppService;
+
+        public ScanController(IScanAppService scanAppService)
+        {
+            _scanAppService = scanAppService;
+        }
+
         /// <summary>
         /// API responsável por ler uma imagem e retornar o texto contido na mesma.
         /// </summary>
@@ -14,7 +22,8 @@ namespace ScanText.Api.Controllers
         [HttpGet("{base64}")]
         public async Task<IActionResult> LerTextoImagem(string base64)
         {
-            return Ok("Texto qualquer.");
+            var response = await _scanAppService.LerTextoImagemAsync(base64);
+            return Ok(response);
         }
     }
 }
