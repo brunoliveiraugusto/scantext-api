@@ -1,16 +1,20 @@
 ﻿using ScanText.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using ScanText.Engine.Tesseract.Interfaces;
 
 namespace ScanText.Application.Services
 {
     public class ScanAppService : IScanAppService
     {
-        public async Task<string> LerTextoImagemAsync(string base64)
+        private readonly ITesseractEngineOCR _tesseractEngineOCR;
+
+        public ScanAppService(ITesseractEngineOCR tesseractEngineOCR)
         {
-            throw new NotImplementedException();
+            _tesseractEngineOCR = tesseractEngineOCR;
+        }
+
+        public string LerTextoImagem(string urlImg)
+        {
+            return _tesseractEngineOCR.ReadImage(urlImg);
         }
     }
 }

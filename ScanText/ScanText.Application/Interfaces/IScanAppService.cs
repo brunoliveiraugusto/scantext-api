@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace ScanText.Application.Interfaces
+﻿namespace ScanText.Application.Interfaces
 {
     public interface IScanAppService
     {
-        Task<string> LerTextoImagemAsync(string base64);
+        string LerTextoImagem(string urlImg);
     }
 }

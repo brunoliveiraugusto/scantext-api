@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj" />
+  </ItemGroup>
+
 </Project>
