@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScanText.Application.Interfaces;
-using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
 {
