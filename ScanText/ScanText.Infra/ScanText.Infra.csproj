@@ -7,16 +7,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ScanText.Application\ScanText.Application.csproj" />
+    <ProjectReference Include="..\ScanText.Data\ScanText.Data.csproj" />
+    <ProjectReference Include="..\ScanText.Domain\ScanText.Domain.csproj" />
     <ProjectReference Include="..\ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\Database\Context\" />
   </ItemGroup>
 
 </Project>
