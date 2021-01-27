@@ -13,11 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{394C6DFF-D04
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{9CDAB13C-5BF6-42DD-A8F7-FDB723226CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Engine.Tesseract", "ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj", "{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Engine.Tesseract", "ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj", "{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Infra", "ScanText.Infra\ScanText.Infra.csproj", "{EEDDA097-9F50-4732-9886-0E1856D52F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Infra", "ScanText.Infra\ScanText.Infra.csproj", "{EEDDA097-9F50-4732-9886-0E1856D52F61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{94389219-D06F-4462-B15B-38B09132F0E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Domain", "ScanText.Domain\ScanText.Domain.csproj", "{2FD956C3-744D-46B2-8A5B-B1D52129DBEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEDDA097-9F50-4732-9886-0E1856D52F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD956C3-744D-46B2-8A5B-B1D52129DBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD956C3-744D-46B2-8A5B-B1D52129DBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD956C3-744D-46B2-8A5B-B1D52129DBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD956C3-744D-46B2-8A5B-B1D52129DBEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{5C8915AE-91CE-4414-B9DB-01844EDED594} = {E4448364-92C2-408C-B09E-7FDF84755906}
 		{EA6E065B-0477-4CFF-A0FB-D57BA607CD72} = {9CDAB13C-5BF6-42DD-A8F7-FDB723226CD4}
 		{EEDDA097-9F50-4732-9886-0E1856D52F61} = {E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}
+		{2FD956C3-744D-46B2-8A5B-B1D52129DBEC} = {94389219-D06F-4462-B15B-38B09132F0E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA919EC8-0E84-4D84-90D7-6AD0D8AEB44F}
