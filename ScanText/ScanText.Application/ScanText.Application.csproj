@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ScanText.Data\ScanText.Data.csproj" />
+    <ProjectReference Include="..\ScanText.Domain\ScanText.Domain.csproj" />
     <ProjectReference Include="..\ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj" />
   </ItemGroup>
 
