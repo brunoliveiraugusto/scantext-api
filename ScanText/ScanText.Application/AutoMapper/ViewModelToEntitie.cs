@@ -10,8 +10,7 @@ namespace ScanText.Application.AutoMapper
         {
             CreateMap<LinguagemViewModel, Linguagem>()
                 .ForMember(dest => dest.Idioma, opt => opt.MapFrom(x => x.Idioma))
-                .ForMember(dest => dest.Sigla, opt => opt.MapFrom(x => x.Sigla))
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+                .ForMember(dest => dest.Sigla, opt => opt.MapFrom(x => x.Sigla));
         }
     }
 }
