@@ -9,6 +9,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using AutoMapper;
+using ScanText.Application.AutoMapper;
 
 namespace ScanText.Api
 {
@@ -39,6 +41,16 @@ namespace ScanText.Api
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 s.IncludeXmlComments(xmlPath);
             });
+            #endregion
+
+            #region Auto Mapper
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new ViewModelToEntitie());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
             #endregion
 
             services.AddDIConfiguration();
