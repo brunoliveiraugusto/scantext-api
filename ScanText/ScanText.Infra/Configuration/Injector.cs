@@ -4,6 +4,7 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.Services;
 using ScanText.Engine.Tesseract.Entities;
 using ScanText.Engine.Tesseract.Interfaces;
+using ScanText.Infra.Configuration.Database.Context;
 using ScanText.Infra.Configuration.DataBase;
 using ScanText.Infra.Configuration.DataBase.Interface;
 
@@ -22,6 +23,8 @@ namespace ScanText.Api.Configurations
             //Database
             services.AddSingleton<IScanTextDatabaseSettings>(st =>
                 st.GetRequiredService<IOptions<ScanTextDatabaseSettings>>().Value);
+
+            services.AddSingleton<ScanTextMongoContext>();
         }
     }
 }
