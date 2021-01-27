@@ -4,17 +4,31 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ScanText.Api.Configurations;
+using ScanText.Infra.Configuration.DataBase;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace ScanText.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            #region MongoDB
+            services.Configure<ScanTextDatabaseSettings>(
+                Configuration.GetSection(nameof(ScanTextDatabaseSettings)));
+            #endregion
 
             #region Swagger
             services.AddSwaggerGen(s =>
