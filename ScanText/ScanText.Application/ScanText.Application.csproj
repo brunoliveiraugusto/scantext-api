@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ScanText.Data\ScanText.Data.csproj" />
     <ProjectReference Include="..\ScanText.Domain\ScanText.Domain.csproj" />
     <ProjectReference Include="..\ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj" />
