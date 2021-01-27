@@ -1,14 +1,14 @@
-﻿using ScanText.Infra.Configuration.Database.Context;
+﻿using ScanText.Data.Database.Repositories.Interfaces;
+using ScanText.Domain.Linguagem.Entities;
+using ScanText.Infra.Configuration.Database.Context;
 
-namespace ScanText.Domain.Linguagem.Repository
+namespace ScanText.Data.Database.Repositories
 {
-    public class LinguagemRepository
+    public class LinguagemRepository : Repository<Linguagem>, ILinguagemRepository
     {
-        private readonly ScanTextMongoContext _context;
-
-        public LinguagemRepository(ScanTextMongoContext context)
+        public LinguagemRepository(ScanTextMongoContext context) : base(context)
         {
-            _context = context;
+
         }
     }
 }
