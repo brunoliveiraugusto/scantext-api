@@ -1,10 +1,10 @@
-﻿using ScanText.Domain.Linguagem.Entities;
+﻿using ScanText.Application.ViewModels;
 using System.Threading.Tasks;
 
 namespace ScanText.Application.Interfaces
 {
     public interface ILinguagemAppService
     {
-        Task InserirLinguagemAsync(Linguagem linguagem);
+        Task InserirLinguagemAsync(LinguagemViewModel linguagem);
     }
 }
