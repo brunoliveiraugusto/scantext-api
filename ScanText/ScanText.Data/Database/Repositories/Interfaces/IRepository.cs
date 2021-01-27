@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ScanText.Data.Database.Repositories
@@ -6,8 +7,9 @@ namespace ScanText.Data.Database.Repositories
     public interface IRepository<TEntity>
     {
         Task<TEntity> InserirAsync(TEntity entity);
-        void Remover(Guid id);
+        Task RemoverAsync(Guid id);
         Task<TEntity> ObterPorIdAsync(Guid id);
-        TEntity Atualizar(TEntity entity);
+        Task<TEntity> AtualizarAsync(TEntity entity);
+        Task<IEnumerable<TEntity>> ObterTodosAsync();
     }
 }
