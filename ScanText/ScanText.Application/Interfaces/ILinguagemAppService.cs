@@ -12,5 +12,6 @@ namespace ScanText.Application.Interfaces
         Task<IEnumerable<LinguagemViewModel>> ObterTodasLinguagensAsync();
         Task<LinguagemViewModel> ObterLinguagemPorIdAsync(Guid id);
         Task AtualizarLinguagemAsync(LinguagemViewModel linguagemViewModel);
+        void ValidarCamposObrigatoriosLinguagem(LinguagemViewModel linguagem);
     }
 }
