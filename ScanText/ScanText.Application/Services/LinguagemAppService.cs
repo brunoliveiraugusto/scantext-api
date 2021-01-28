@@ -3,6 +3,8 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.Linguagem.Entities;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ScanText.Application.Services
@@ -18,10 +20,33 @@ namespace ScanText.Application.Services
             _mapper = mapper;
         }
 
+        public async Task AtualizarLinguagemAsync(LinguagemViewModel linguagemViewModel)
+        {
+            var linguagem = _mapper.Map<Linguagem>(linguagemViewModel);
+            await _linguagemRepository.AtualizarAsync(linguagem);
+        }
+
         public async Task InserirLinguagemAsync(LinguagemViewModel linguagemViewModel)
         {
             var linguagem = _mapper.Map<Linguagem>(linguagemViewModel);
             await _linguagemRepository.InserirAsync(linguagem);
+        }
+
+        public async Task<LinguagemViewModel> ObterLinguagemPorIdAsync(Guid id)
+        {
+            var linguagem = await _linguagemRepository.ObterPorIdAsync(id);
+            return _mapper.Map<LinguagemViewModel>(linguagem);
+        }
+
+        public async Task<IEnumerable<LinguagemViewModel>> ObterTodasLinguagensAsync()
+        {
+            var linguagens = await _linguagemRepository.ObterTodosAsync();
+            return _mapper.Map<IEnumerable<LinguagemViewModel>>(linguagens);
+        }
+
+        public async Task RemoverLinguagemAsync(Guid id)
+        {
+            await _linguagemRepository.RemoverAsync(id);
         }
     }
 }

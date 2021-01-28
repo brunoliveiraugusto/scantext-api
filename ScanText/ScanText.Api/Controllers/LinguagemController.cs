@@ -24,9 +24,54 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
-        public async Task Criar([FromBody] LinguagemViewModel linguagemViewModel)
+        public async Task<IActionResult> Criar([FromBody] LinguagemViewModel linguagemViewModel)
         {
             await _linguagemAppService.InserirLinguagemAsync(linguagemViewModel);
+            return Ok();
+        }
+
+        /// <summary>
+        /// API responsável por buscar uma linguagem por id.
+        /// </summary>
+        /// <response code="200">Sucesso.</response>
+        [HttpGet("{id}")]
+        public async Task<LinguagemViewModel> ObterPorId(Guid id)
+        {
+            var linguagem = await _linguagemAppService.ObterLinguagemPorIdAsync(id);
+            return linguagem;
+        }
+
+        /// <summary>
+        /// API responsável por buscar uma lista de linguagens.
+        /// </summary>
+        /// <response code="200">Sucesso.</response>
+        [HttpGet()]
+        public async Task<IEnumerable<LinguagemViewModel>> ObterTodos()
+        {
+            var linguagens = await _linguagemAppService.ObterTodasLinguagensAsync();
+            return linguagens;
+        }
+
+        /// <summary>
+        /// API responsável por atualizar uma linguagem.
+        /// </summary>
+        /// <response code="200">Sucesso.</response>
+        [HttpPut()]
+        public async Task<IActionResult> Atualizar([FromBody] LinguagemViewModel linguagem)
+        {
+            await _linguagemAppService.AtualizarLinguagemAsync(linguagem);
+            return Ok();
+        }
+
+        /// <summary>
+        /// API responsável por deletar uma linguagem.
+        /// </summary>
+        /// <response code="200">Sucesso.</response>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remover(Guid id)
+        {
+            await _linguagemAppService.RemoverLinguagemAsync(id);
+            return Ok();
         }
     }
 }
