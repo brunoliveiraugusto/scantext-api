@@ -2,6 +2,6 @@
 {
     public interface IScanAppService
     {
-        string LerTextoImagem(string urlImg);
+        string LerTextoImagem(string base64);
     }
 }

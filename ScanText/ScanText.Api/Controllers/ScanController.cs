@@ -19,9 +19,9 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpGet("{urlImg}")]
-        public IActionResult LerTextoImagem(string urlImg)
+        public IActionResult LerTextoImagem(string base64)
         {
-            var response = _scanAppService.LerTextoImagem(urlImg);
+            var response = _scanAppService.LerTextoImagem(base64);
             return Ok(response);
         }
     }

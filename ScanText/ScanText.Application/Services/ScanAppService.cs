@@ -12,9 +12,9 @@ namespace ScanText.Application.Services
             _tesseractEngineOCR = tesseractEngineOCR;
         }
 
-        public string LerTextoImagem(string urlImg)
+        public string LerTextoImagem(string base64)
         {
-            return _tesseractEngineOCR.ReadImage(urlImg);
+            return _tesseractEngineOCR.ReadImage(base64);
         }
     }
 }
