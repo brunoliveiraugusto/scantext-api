@@ -2,6 +2,7 @@
 {
     public interface ITesseractEngineOCR
     {
-        string ReadImage(string urlImg);
+        string ReadImage(string base64);
+        byte[] ConvertBase64(string base64);
     }
 }
