@@ -1,4 +1,5 @@
 ﻿using ScanText.Application.Interfaces;
+using ScanText.Application.ViewModels;
 using ScanText.Engine.Tesseract.Interfaces;
 
 namespace ScanText.Application.Services
@@ -12,9 +13,10 @@ namespace ScanText.Application.Services
             _tesseractEngineOCR = tesseractEngineOCR;
         }
 
-        public string LerTextoImagem(string base64)
+        public ImagemViewModel LerTextoImagem(ImagemViewModel imagem)
         {
-            return _tesseractEngineOCR.ReadImage(base64);
+            imagem.Texto = _tesseractEngineOCR.ReadImage(imagem.Base64);
+            return imagem;
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace ScanText.Application.Interfaces
+﻿using ScanText.Application.ViewModels;
+
+namespace ScanText.Application.Interfaces
 {
     public interface IScanAppService
     {
-        string LerTextoImagem(string base64);
+        ImagemViewModel LerTextoImagem(ImagemViewModel imagem);
     }
 }
