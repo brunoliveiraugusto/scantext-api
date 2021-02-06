@@ -13,8 +13,8 @@ namespace ScanText.Engine.Tesseract.Entities
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
             path = Path.Combine(path, "tessdata").Replace("file:\\", "");
 
-            var texto = string.Empty;
-            var bytesImg = ConvertBase64(base64);
+            var text = string.Empty;
+            var bytesImg = ConvertBase64ToByteArray(base64);
 
             try
             {
@@ -24,7 +24,7 @@ namespace ScanText.Engine.Tesseract.Entities
                     {
                         using(var dataImg = engine.Process(img))
                         {
-                            texto = dataImg.GetText();
+                            text = dataImg.GetText();
                         }
                     }
                 }
@@ -34,12 +34,18 @@ namespace ScanText.Engine.Tesseract.Entities
                 throw new Exception(ex.Message);
             }
 
-            return texto;
+            return RemoveLineBreak(text);
         }
 
-        public byte[] ConvertBase64(string base64)
+        public string RemoveLineBreak(string texto)
         {
-            return Convert.FromBase64String(base64);
+            return texto.Replace("\n", "");
+        }
+
+        public byte[] ConvertBase64ToByteArray(string base64)
+        {
+            var newBase64 = base64.Split(",")[1];
+            return Convert.FromBase64String(newBase64);
         }
     }
 }
