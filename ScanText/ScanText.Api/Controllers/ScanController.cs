@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ScanText.Application.Interfaces;
+using ScanText.Application.ViewModels;
 
 namespace ScanText.Api.Controllers
 {
@@ -18,10 +20,11 @@ namespace ScanText.Api.Controllers
         /// API responsável por ler uma imagem e retornar o texto contido na mesma.
         /// </summary>
         /// <response code="200">Sucesso.</response>
-        [HttpGet("{urlImg}")]
-        public IActionResult LerTextoImagem(string base64)
+        [HttpPost()]
+        [AllowAnonymous]
+        public IActionResult LerTextoImagem([FromBody] ImagemViewModel imagem)
         {
-            var response = _scanAppService.LerTextoImagem(base64);
+            var response = _scanAppService.LerTextoImagem(imagem);
             return Ok(response);
         }
     }

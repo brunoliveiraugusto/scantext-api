@@ -3,8 +3,8 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ScanText.Api.Controllers
 {
@@ -46,6 +46,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpGet()]
+        [AllowAnonymous]
         public async Task<IEnumerable<LinguagemViewModel>> ObterTodos()
         {
             var linguagens = await _linguagemAppService.ObterTodasLinguagensAsync();
