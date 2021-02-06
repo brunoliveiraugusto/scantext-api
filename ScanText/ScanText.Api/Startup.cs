@@ -17,6 +17,7 @@ namespace ScanText.Api
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -53,6 +54,17 @@ namespace ScanText.Api
             services.AddSingleton(mapper);
             #endregion
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             services.AddDIConfiguration();
         }
 
@@ -64,6 +76,8 @@ namespace ScanText.Api
             }
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {
