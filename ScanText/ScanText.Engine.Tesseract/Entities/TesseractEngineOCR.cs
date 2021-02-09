@@ -8,17 +8,17 @@ namespace ScanText.Engine.Tesseract.Entities
 {
     public class TesseractEngineOCR : ITesseractEngineOCR
     {
-        public string ReadImage(string base64)
+        public ImagemOCR ReadImage(ImagemOCR imagem)
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
             path = Path.Combine(path, "tessdata").Replace("file:\\", "");
 
-            var text = string.Empty;
-            var bytesImg = ConvertBase64ToByteArray(base64);
+            string text = string.Empty;
+            var bytesImg = ConvertBase64ToByteArray(imagem.Base64);
 
             try
             {
-                using(var engine = new TesseractEngine(path, "por", EngineMode.Default))
+                using(var engine = new TesseractEngine(path, imagem.SiglaLinguagem, EngineMode.Default))
                 {
                     using(var img = Pix.LoadFromMemory(bytesImg))
                     {
@@ -34,7 +34,8 @@ namespace ScanText.Engine.Tesseract.Entities
                 throw new Exception(ex.Message);
             }
 
-            return RemoveLineBreak(text);
+            imagem.Texto = RemoveLineBreak(text);
+            return imagem;
         }
 
         public string RemoveLineBreak(string texto)

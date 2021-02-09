@@ -1,8 +1,10 @@
-﻿namespace ScanText.Engine.Tesseract.Interfaces
+﻿using ScanText.Engine.Tesseract.Entities;
+
+namespace ScanText.Engine.Tesseract.Interfaces
 {
     public interface ITesseractEngineOCR
     {
-        string ReadImage(string base64);
+        ImagemOCR ReadImage(ImagemOCR imagem);
         byte[] ConvertBase64ToByteArray(string base64);
         string RemoveLineBreak(string texto);
     }
