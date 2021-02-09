@@ -27,6 +27,7 @@ namespace ScanText.Data.Database.Repositories
 
         public virtual async Task<TEntity> InserirAsync(TEntity entity)
         {
+            entity.Id = new Guid();
             await DbSet.InsertOneAsync(entity);
             return entity;
         }
