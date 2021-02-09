@@ -22,9 +22,9 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
         [AllowAnonymous]
-        public IActionResult LerTextoImagem([FromBody] ImagemViewModel imagem)
+        public IActionResult LerTextoImagem([FromBody] ImagemViewModel imagemVM)
         {
-            var response = _scanAppService.LerTextoImagem(imagem);
+            var response = _scanAppService.LerTextoImagem(imagemVM);
             return Ok(response);
         }
     }
