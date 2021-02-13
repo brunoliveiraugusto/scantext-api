@@ -5,13 +5,8 @@ using System.Threading.Tasks;
 
 namespace ScanText.Application.Interfaces
 {
-    public interface ILinguagemAppService
+    public interface ILinguagemAppService : IServiceApp<LinguagemViewModel>
     {
-        Task InserirLinguagemAsync(LinguagemViewModel linguagemViewModel);
-        Task RemoverLinguagemAsync(Guid id);
-        Task<IEnumerable<LinguagemViewModel>> ObterTodasLinguagensAsync();
-        Task<LinguagemViewModel> ObterLinguagemPorIdAsync(Guid id);
-        Task AtualizarLinguagemAsync(LinguagemViewModel linguagemViewModel);
         void ValidarCamposObrigatoriosLinguagem(LinguagemViewModel linguagem);
     }
 }

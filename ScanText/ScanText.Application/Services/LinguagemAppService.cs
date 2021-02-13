@@ -20,33 +20,33 @@ namespace ScanText.Application.Services
             _mapper = mapper;
         }
 
-        public async Task AtualizarLinguagemAsync(LinguagemViewModel linguagemViewModel)
+        public async Task AtualizarAsync(LinguagemViewModel linguagemViewModel)
         {
             ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = _mapper.Map<Linguagem>(linguagemViewModel);
             await _linguagemRepository.AtualizarAsync(linguagem);
         }
 
-        public async Task InserirLinguagemAsync(LinguagemViewModel linguagemViewModel)
+        public async Task InserirAsync(LinguagemViewModel linguagemViewModel)
         {
             ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = _mapper.Map<Linguagem>(linguagemViewModel);
             await _linguagemRepository.InserirAsync(linguagem);
         }
 
-        public async Task<LinguagemViewModel> ObterLinguagemPorIdAsync(Guid id)
+        public async Task<LinguagemViewModel> ObterPorIdAsync(Guid id)
         {
             var linguagem = await _linguagemRepository.ObterPorIdAsync(id);
             return _mapper.Map<LinguagemViewModel>(linguagem);
         }
 
-        public async Task<IEnumerable<LinguagemViewModel>> ObterTodasLinguagensAsync()
+        public async Task<IEnumerable<LinguagemViewModel>> ObterTodosAsync()
         {
             var linguagens = await _linguagemRepository.ObterTodosAsync();
             return _mapper.Map<IEnumerable<LinguagemViewModel>>(linguagens);
         }
 
-        public async Task RemoverLinguagemAsync(Guid id)
+        public async Task RemoverAsync(Guid id)
         {
             await _linguagemRepository.RemoverAsync(id);
         }

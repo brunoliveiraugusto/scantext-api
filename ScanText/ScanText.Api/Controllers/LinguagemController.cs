@@ -26,7 +26,7 @@ namespace ScanText.Api.Controllers
         [HttpPost()]
         public async Task<IActionResult> Criar([FromBody] LinguagemViewModel linguagemViewModel)
         {
-            await _linguagemAppService.InserirLinguagemAsync(linguagemViewModel);
+            await _linguagemAppService.InserirAsync(linguagemViewModel);
             return Ok();
         }
 
@@ -37,7 +37,7 @@ namespace ScanText.Api.Controllers
         [HttpGet("{id}")]
         public async Task<LinguagemViewModel> ObterPorId(Guid id)
         {
-            var linguagem = await _linguagemAppService.ObterLinguagemPorIdAsync(id);
+            var linguagem = await _linguagemAppService.ObterPorIdAsync(id);
             return linguagem;
         }
 
@@ -49,7 +49,7 @@ namespace ScanText.Api.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<LinguagemViewModel>> ObterTodos()
         {
-            var linguagens = await _linguagemAppService.ObterTodasLinguagensAsync();
+            var linguagens = await _linguagemAppService.ObterTodosAsync();
             return linguagens;
         }
 
@@ -60,7 +60,7 @@ namespace ScanText.Api.Controllers
         [HttpPut()]
         public async Task<IActionResult> Atualizar([FromBody] LinguagemViewModel linguagem)
         {
-            await _linguagemAppService.AtualizarLinguagemAsync(linguagem);
+            await _linguagemAppService.AtualizarAsync(linguagem);
             return Ok();
         }
 
@@ -71,7 +71,7 @@ namespace ScanText.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remover(Guid id)
         {
-            await _linguagemAppService.RemoverLinguagemAsync(id);
+            await _linguagemAppService.RemoverAsync(id);
             return Ok();
         }
     }
