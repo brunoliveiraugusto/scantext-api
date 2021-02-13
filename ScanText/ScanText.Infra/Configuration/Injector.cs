@@ -19,12 +19,14 @@ namespace ScanText.Api.Configurations
             //Service
             services.AddScoped<IScanAppService, ScanAppService>();
             services.AddScoped<ILinguagemAppService, LinguagemAppService>();
+            services.AddScoped<IImagemAppService, ImagemAppService>();
 
             //Engine
             services.AddScoped<ITesseractEngineOCR, TesseractEngineOCR>();
 
             //Repositories
             services.AddScoped<ILinguagemRepository, LinguagemRepository>();
+            services.AddScoped<IImagemRepository, ImagemRepository>();
 
             //Database
             services.AddSingleton<IScanTextDatabaseSettings>(st =>
