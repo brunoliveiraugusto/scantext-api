@@ -25,6 +25,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Base64, opt => opt.MapFrom(x => x.Base64))
                 .ForMember(dest => dest.SiglaLinguagem, opt => opt.MapFrom(x => x.Linguagem.Sigla))
                 .ForMember(dest => dest.Texto, opt => opt.MapFrom(x => x.Texto))
+                .ForMember(dest => dest.MeanConfidence, opt => opt.MapFrom(x => x.MeanConfidence))
                 .ReverseMap();
         }
     }

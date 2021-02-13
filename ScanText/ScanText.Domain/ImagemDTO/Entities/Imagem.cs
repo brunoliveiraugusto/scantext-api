@@ -9,6 +9,7 @@ namespace ScanText.Domain.Linguagem.Entities
         public string Formato { get; set; }
         public string Base64 { get; set; }
         public string Texto { get; set; }
+        public float MeanConfidence { get; set; }
         public Linguagem Linguagem { get; set; }
     }
 }

@@ -25,7 +25,8 @@ namespace ScanText.Engine.Tesseract.Entities
                     {
                         using(var dataImg = engine.Process(img))
                         {
-                            text = dataImg.GetText();
+                            imagem.Texto = dataImg.GetText();
+                            imagem.MeanConfidence = dataImg.GetMeanConfidence();
                         }
                     }
                 }
@@ -35,7 +36,6 @@ namespace ScanText.Engine.Tesseract.Entities
                 throw new Exception(ex.Message);
             }
 
-            imagem.Texto = RemoveLineBreak(text);
             return imagem;
         }
 
