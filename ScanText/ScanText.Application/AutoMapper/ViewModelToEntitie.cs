@@ -25,7 +25,9 @@ namespace ScanText.Application.AutoMapper
             CreateMap<LinguagemViewModel, Linguagem>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
                 .ForMember(dest => dest.Idioma, opt => opt.MapFrom(x => x.Idioma))
-                .ForMember(dest => dest.Sigla, opt => opt.MapFrom(x => x.Sigla));
+                .ForMember(dest => dest.Sigla, opt => opt.MapFrom(x => x.Sigla))
+                .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
+                .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(x => x.DataCadastro));
 
             CreateMap<ImagemViewModel, ImagemOCR>()
                 .ForMember(dest => dest.Base64, opt => opt.MapFrom(x => x.Base64))
