@@ -1,4 +1,5 @@
 ﻿using ScanText.Engine.Tesseract.Interfaces;
+using ScanText.Engine.Tesseract.Models;
 using System;
 using System.IO;
 using System.Reflection;

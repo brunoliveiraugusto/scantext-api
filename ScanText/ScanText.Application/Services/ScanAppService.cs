@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
-using ScanText.Domain.Linguagem.Entities;
-using ScanText.Engine.Tesseract.Entities;
+using ScanText.Engine.Tesseract.Models;
 using ScanText.Engine.Tesseract.Interfaces;
 
 namespace ScanText.Application.Services

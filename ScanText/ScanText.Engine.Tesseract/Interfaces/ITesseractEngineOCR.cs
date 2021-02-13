@@ -1,4 +1,4 @@
-﻿using ScanText.Engine.Tesseract.Entities;
+﻿using ScanText.Engine.Tesseract.Models;
 
 namespace ScanText.Engine.Tesseract.Interfaces
 {
