@@ -1,4 +1,5 @@
 ﻿using ScanText.Domain.DomainObjects;
+using System;
 
 namespace ScanText.Domain.Linguagem.Entities
 {
@@ -10,6 +11,8 @@ namespace ScanText.Domain.Linguagem.Entities
         public string Base64 { get; set; }
         public string Texto { get; set; }
         public float MeanConfidence { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public DateTime? DataAtualizacao { get; set; }
         public Linguagem Linguagem { get; set; }
     }
 }

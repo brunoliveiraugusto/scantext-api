@@ -23,12 +23,14 @@ namespace ScanText.Application.Services
         public async Task AtualizarAsync(ImagemViewModel imagemViewModel)
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
+            imagem.DataAtualizacao = DateTime.Now;
             await _imagemRepository.AtualizarAsync(imagem);
         }
 
         public async Task InserirAsync(ImagemViewModel imagemViewModel)
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
+            imagem.DataCadastro = DateTime.Now;
             await _imagemRepository.InserirAsync(imagem);
         }
 

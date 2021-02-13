@@ -11,6 +11,8 @@ namespace ScanText.Application.ViewModels
         public string Base64 { get; set; }
         public string Texto { get; set; }
         public float MeanConfidence { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public DateTime? DataAtualizacao { get; set; }
         public LinguagemViewModel Linguagem { get; set; }
     }
 }

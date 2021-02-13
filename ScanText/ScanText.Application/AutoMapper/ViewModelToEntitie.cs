@@ -17,6 +17,8 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.MeanConfidence, opt => opt.MapFrom(x => x.MeanConfidence))
                 .ForMember(dest => dest.Nome, opt => opt.MapFrom(x => x.Nome))
                 .ForMember(dest => dest.Size, opt => opt.MapFrom(x => x.Size))
+                .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(x => x.DataCadastro))
+                .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
                 .ForMember(dest => dest.Linguagem, opt => opt.MapFrom(x => x.Linguagem));
 
 
