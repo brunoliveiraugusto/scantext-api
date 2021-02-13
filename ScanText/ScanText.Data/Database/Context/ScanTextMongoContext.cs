@@ -17,6 +17,7 @@ namespace ScanText.Infra.Configuration.Database.Context
         }
 
         public IMongoCollection<Linguagem> Linguagem => GetCollection<Linguagem>();
+        public IMongoCollection<Imagem> Imagem => GetCollection<Imagem>();
 
         public void ConfigureMongo(IScanTextDatabaseSettings settings)
         {

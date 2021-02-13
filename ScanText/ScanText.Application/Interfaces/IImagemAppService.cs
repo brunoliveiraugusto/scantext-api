@@ -6,5 +6,6 @@ namespace ScanText.Application.Interfaces
     public interface IImagemAppService : IServiceApp<ImagemViewModel>
     {
         Imagem ImagemViewModelToImagem(ImagemViewModel imagemViewModel);
+        PaginationFilterViewModel<ImagemViewModel> ObterImagensPaginadas(PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel);
     }
 }

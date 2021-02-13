@@ -2,6 +2,7 @@
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
+using ScanText.Data.Utils;
 using ScanText.Domain.Linguagem.Entities;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,13 @@ namespace ScanText.Application.Services
         public Imagem ImagemViewModelToImagem(ImagemViewModel imagemViewModel)
         {
             return _mapper.Map<Imagem>(imagemViewModel);
+        }
+
+        public PaginationFilterViewModel<ImagemViewModel> ObterImagensPaginadas(PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
+        {
+            var pagination = _mapper.Map<PaginationFilter<Imagem>>(paginationFilterViewModel);
+            var resultPagination = _imagemRepository.ObterImagensPaginadas(pagination);
+            return _mapper.Map<PaginationFilterViewModel<ImagemViewModel>>(resultPagination);
         }
     }
 }

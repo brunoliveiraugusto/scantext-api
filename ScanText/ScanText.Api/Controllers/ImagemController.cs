@@ -74,5 +74,16 @@ namespace ScanText.Api.Controllers
             await _imagemAppService.RemoverAsync(id);
             return Ok();
         }
+
+        /// <summary>
+        /// API responsável por obter imagens paginadas.
+        /// </summary>
+        /// <response code="200">Sucesso.</response>
+        [HttpPost("obter-imagens-paginacao")]
+        public IActionResult ObterImagensPaginacao([FromBody] PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
+        {
+            var response = _imagemAppService.ObterImagensPaginadas(paginationFilterViewModel);
+            return Ok(response);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ScanText.Application.ViewModels;
+using ScanText.Data.Utils;
 using ScanText.Domain.Linguagem.Entities;
 using ScanText.Engine.Tesseract.Models;
 
@@ -34,6 +35,15 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.SiglaLinguagem, opt => opt.MapFrom(x => x.Linguagem.Sigla))
                 .ForMember(dest => dest.Texto, opt => opt.MapFrom(x => x.Texto))
                 .ForMember(dest => dest.MeanConfidence, opt => opt.MapFrom(x => x.MeanConfidence))
+                .ReverseMap();
+
+            CreateMap<PaginationFilterViewModel<ImagemViewModel>, PaginationFilter<Imagem>>()
+                .ForMember(dest => dest.Limit, opt => opt.MapFrom(x => x.Limit))
+                .ForMember(dest => dest.Page, opt => opt.MapFrom(x => x.Page))
+                .ForMember(dest => dest.Skip, opt => opt.MapFrom(x => x.Skip))
+                .ForMember(dest => dest.Take, opt => opt.MapFrom(x => x.Take))
+                .ForMember(dest => dest.Total, opt => opt.MapFrom(x => x.Total))
+                .ForMember(dest => dest.Pages, opt => opt.MapFrom(x => x.Pages))
                 .ReverseMap();
         }
     }
