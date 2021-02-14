@@ -20,7 +20,7 @@ namespace ScanText.Data.Database.Repositories
         public PaginationFilter<Imagem> ObterImagensPaginadas(PaginationFilter<Imagem> pagination)
         {
             var query = DbSet.AsQueryable();
-            pagination.Page = query.Count();
+            pagination.Total = query.Count();
             pagination.Pages = query.Skip(pagination.Skip).Take(pagination.Take);
             return pagination;
         }
