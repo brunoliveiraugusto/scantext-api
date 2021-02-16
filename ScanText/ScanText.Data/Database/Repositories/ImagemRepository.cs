@@ -21,7 +21,7 @@ namespace ScanText.Data.Database.Repositories
         {
             var query = DbSet.AsQueryable();
             pagination.Total = query.Count();
-            pagination.Pages = query.Skip(pagination.Skip).Take(pagination.Take);
+            pagination.Pages = query.Skip((pagination.Page - 1) * pagination.Limit).Take(pagination.Limit);
             return pagination;
         }
     }
