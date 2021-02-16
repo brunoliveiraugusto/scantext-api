@@ -21,11 +21,11 @@ namespace ScanText.Application.Services
             _mapper = mapper;
         }
 
-        public async Task AtualizarAsync(ImagemViewModel imagemViewModel)
+        public async Task AtualizarAsync(ImagemViewModel imagemViewModel, Guid id)
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataAtualizacao = DateTime.Now;
-            await _imagemRepository.AtualizarAsync(imagem);
+            await _imagemRepository.AtualizarAsync(imagem, id);
         }
 
         public async Task InserirAsync(ImagemViewModel imagemViewModel)

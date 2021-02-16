@@ -9,7 +9,7 @@ namespace ScanText.Data.Database.Repositories
         Task<TEntity> InserirAsync(TEntity entity);
         Task RemoverAsync(Guid id);
         Task<TEntity> ObterPorIdAsync(Guid id);
-        Task<TEntity> AtualizarAsync(TEntity entity);
+        Task<TEntity> AtualizarAsync(TEntity entity, Guid id);
         Task<IEnumerable<TEntity>> ObterTodosAsync();
     }
 }

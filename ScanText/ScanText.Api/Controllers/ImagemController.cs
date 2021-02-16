@@ -58,9 +58,11 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPut()]
-        public async Task<IActionResult> Atualizar([FromBody] ImagemViewModel imagemViewModel)
+        [Route("{id:guid}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Atualizar([FromBody] ImagemViewModel imagemViewModel, Guid id)
         {
-            await _imagemAppService.AtualizarAsync(imagemViewModel);
+            await _imagemAppService.AtualizarAsync(imagemViewModel, id);
             return Ok();
         }
 

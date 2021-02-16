@@ -20,11 +20,11 @@ namespace ScanText.Application.Services
             _mapper = mapper;
         }
 
-        public async Task AtualizarAsync(LinguagemViewModel linguagemViewModel)
+        public async Task AtualizarAsync(LinguagemViewModel linguagemViewModel, Guid id)
         {
             ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
-            await _linguagemRepository.AtualizarAsync(linguagem);
+            await _linguagemRepository.AtualizarAsync(linguagem, id);
         }
 
         public async Task InserirAsync(LinguagemViewModel linguagemViewModel)

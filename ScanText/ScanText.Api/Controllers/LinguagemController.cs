@@ -58,9 +58,9 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPut()]
-        public async Task<IActionResult> Atualizar([FromBody] LinguagemViewModel linguagem)
+        public async Task<IActionResult> Atualizar([FromBody] LinguagemViewModel linguagem, Guid id)
         {
-            await _linguagemAppService.AtualizarAsync(linguagem);
+            await _linguagemAppService.AtualizarAsync(linguagem, id);
             return Ok();
         }
 

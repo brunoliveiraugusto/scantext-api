@@ -19,9 +19,9 @@ namespace ScanText.Data.Database.Repositories
             DbSet = _context.GetCollection<TEntity>();
         }
 
-        public virtual async Task<TEntity> AtualizarAsync(TEntity entity)
+        public virtual async Task<TEntity> AtualizarAsync(TEntity entity, Guid id)
         {
-            await DbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", entity.Id), entity);
+            await DbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", id), entity);
             return entity;
         }
 
