@@ -44,6 +44,8 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Take, opt => opt.MapFrom(x => x.Take))
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(x => x.Total))
                 .ForMember(dest => dest.Pages, opt => opt.MapFrom(x => x.Pages))
+                .ForMember(dest => dest.Ascendant, opt => opt.MapFrom(x => x.Ascendant))
+                .ForMember(dest => dest.Sort, opt => opt.MapFrom(x => x.Sort))
                 .ReverseMap();
         }
     }

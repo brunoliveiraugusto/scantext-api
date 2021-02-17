@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ScanText.Application.ViewModels
 {
-    public class PaginationFilterViewModel<T> where T : class
+    public class PaginationFilterViewModel<T> : SortingViewModel where T : class
     {
         public int Take { get; set; }
         public int Skip { get; set; }

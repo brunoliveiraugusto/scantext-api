@@ -1,9 +1,8 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ScanText.Data.Utils
 {
-    public class PaginationFilter<T> where T : class
+    public class PaginationFilter<T> : Sorting where T : class
     {
         public int Take { get; set; }
         public int Skip { get; set; }
@@ -11,6 +10,5 @@ namespace ScanText.Data.Utils
         public int Page { get; set; }
         public int Total { get; set; }
         public IEnumerable<T> Pages { get; set; }
-
     }
 }
