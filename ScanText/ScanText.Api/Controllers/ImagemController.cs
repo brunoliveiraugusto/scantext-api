@@ -70,7 +70,9 @@ namespace ScanText.Api.Controllers
         /// API responsável por deletar uma imagem.
         /// </summary>
         /// <response code="200">Sucesso.</response>
-        [HttpDelete("{id}")]
+        [HttpDelete()]
+        [Route("{id:guid}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Remover(Guid id)
         {
             await _imagemAppService.RemoverAsync(id);
