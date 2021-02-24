@@ -9,6 +9,8 @@ using ScanText.Engine.Tesseract.Interfaces;
 using ScanText.Infra.Configuration.Database.Context;
 using ScanText.Infra.Configuration.DataBase;
 using ScanText.Infra.Configuration.DataBase.Interface;
+using ScanText.Security.Encrypt;
+using ScanText.Security.Encrypt.Interfaces;
 
 namespace ScanText.Api.Configurations
 {
@@ -33,6 +35,9 @@ namespace ScanText.Api.Configurations
             //Database
             services.AddSingleton<IScanTextDatabaseSettings>(st =>
                 st.GetRequiredService<IOptions<ScanTextDatabaseSettings>>().Value);
+
+            //Security
+            services.AddSingleton<IEncryptData, EncryptData>();
 
             services.AddSingleton<ScanTextMongoContext>();
         }
