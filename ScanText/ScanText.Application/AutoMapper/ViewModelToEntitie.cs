@@ -2,6 +2,7 @@
 using ScanText.Application.ViewModels;
 using ScanText.Data.Utils;
 using ScanText.Domain.Linguagem.Entities;
+using ScanText.Domain.UsuarioDTO.Entities;
 using ScanText.Engine.Tesseract.Models;
 
 namespace ScanText.Application.AutoMapper
@@ -47,6 +48,12 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Ascendant, opt => opt.MapFrom(x => x.Ascendant))
                 .ForMember(dest => dest.Sort, opt => opt.MapFrom(x => x.Sort))
                 .ReverseMap();
+
+            CreateMap<UsuarioViewModel, Usuario>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.Username))
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(x => x.Password))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(x => x.Email))
+                .ForMember(dest => dest.DataNascimento, opt => opt.MapFrom(x => x.DataNascimento));
         }
     }
 }
