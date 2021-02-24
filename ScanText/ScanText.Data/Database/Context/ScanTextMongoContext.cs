@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using ScanText.Domain.Linguagem.Entities;
+using ScanText.Domain.UsuarioDTO.Entities;
 using ScanText.Infra.Configuration.DataBase.Interface;
 
 namespace ScanText.Infra.Configuration.Database.Context
@@ -18,6 +19,7 @@ namespace ScanText.Infra.Configuration.Database.Context
 
         public IMongoCollection<Linguagem> Linguagem => GetCollection<Linguagem>();
         public IMongoCollection<Imagem> Imagem => GetCollection<Imagem>();
+        public IMongoCollection<Usuario> Usuario => GetCollection<Usuario>();
 
         public void ConfigureMongo(IScanTextDatabaseSettings settings)
         {
