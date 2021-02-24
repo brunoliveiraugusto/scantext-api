@@ -1,6 +1,9 @@
-﻿using ScanText.Application.Interfaces;
+﻿using AutoMapper;
+using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
+using ScanText.Domain.UsuarioDTO.Entities;
+using ScanText.Security.Encrypt.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,20 +13,27 @@ namespace ScanText.Application.Services
     public class UsuarioAppService : IUsuarioAppService
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IEncryptData _encryptData;
+        private readonly IMapper _mapper;
 
-        public UsuarioAppService(IUsuarioRepository usuarioRepository)
+        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper)
         {
             _usuarioRepository = usuarioRepository;
+            _encryptData = encryptData;
+            _mapper = mapper;
         }
 
-        public Task AtualizarAsync(UsuarioViewModel model, Guid id)
+        public Task AtualizarAsync(UsuarioViewModel usuarioViewModel, Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task InserirAsync(UsuarioViewModel model)
+        public async Task InserirAsync(UsuarioViewModel usuarioViewModel)
         {
-            throw new NotImplementedException();
+            var passwordEncripty = _encryptData.Encrypt(usuarioViewModel.Password);
+            usuarioViewModel.Password = passwordEncripty;
+            var usuario = UsuarioViewModelToUsuario(usuarioViewModel);
+            await _usuarioRepository.InserirAsync(usuario);
         }
 
         public Task<UsuarioViewModel> ObterPorIdAsync(Guid id)
@@ -39,6 +49,11 @@ namespace ScanText.Application.Services
         public Task RemoverAsync(Guid id)
         {
             throw new NotImplementedException();
+        }
+
+        public Usuario UsuarioViewModelToUsuario(UsuarioViewModel usuarioViewModel)
+        {
+            return _mapper.Map<Usuario>(usuarioViewModel);
         }
     }
 }
