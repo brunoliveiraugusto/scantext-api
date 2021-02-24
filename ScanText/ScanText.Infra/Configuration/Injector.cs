@@ -20,6 +20,7 @@ namespace ScanText.Api.Configurations
             services.AddScoped<IScanAppService, ScanAppService>();
             services.AddScoped<ILinguagemAppService, LinguagemAppService>();
             services.AddScoped<IImagemAppService, ImagemAppService>();
+            services.AddScoped<IUsuarioAppService, UsuarioAppService>();
 
             //Engine
             services.AddScoped<ITesseractEngineOCR, TesseractEngineOCR>();
@@ -27,6 +28,7 @@ namespace ScanText.Api.Configurations
             //Repositories
             services.AddScoped<ILinguagemRepository, LinguagemRepository>();
             services.AddScoped<IImagemRepository, ImagemRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             //Database
             services.AddSingleton<IScanTextDatabaseSettings>(st =>
