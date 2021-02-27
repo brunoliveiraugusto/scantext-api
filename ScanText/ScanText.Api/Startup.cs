@@ -11,6 +11,11 @@ using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using ScanText.Application.AutoMapper;
+using ScanText.Security.Authentication.Settings;
+using Microsoft.Extensions.Options;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ScanText.Api
 {
@@ -18,6 +23,7 @@ namespace ScanText.Api
     {
         public IConfiguration Configuration { get; set; }
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly IOptions<TokenSettings> tokenSettings;
 
         public Startup(IConfiguration configuration)
         {
@@ -54,6 +60,32 @@ namespace ScanText.Api
             services.AddSingleton(mapper);
             #endregion
 
+            #region Secret 
+            services.Configure<TokenSettings>(
+                Configuration.GetSection(nameof(TokenSettings)));
+            #endregion
+
+            #region Authentication
+            var key = Encoding.ASCII.GetBytes(tokenSettings.Value.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+            #endregion
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -78,6 +110,10 @@ namespace ScanText.Api
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
