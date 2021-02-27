@@ -4,6 +4,7 @@ using ScanText.Data.Utils;
 using ScanText.Domain.Linguagem.Entities;
 using ScanText.Domain.UsuarioDTO.Entities;
 using ScanText.Engine.Tesseract.Models;
+using ScanText.Security.Authentication.Entities;
 
 namespace ScanText.Application.AutoMapper
 {
@@ -54,6 +55,16 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(x => x.Password))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(x => x.Email))
                 .ForMember(dest => dest.DataNascimento, opt => opt.MapFrom(x => x.DataNascimento));
+
+            CreateMap<LoginViewModel, UsuarioAuthentication>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.Username))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(x => x.Role));
+
+            CreateMap<LoginViewModel, Login>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.Username))
+                .ForMember(dest => dest.Token, opt => opt.MapFrom(x => x.Token))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(x => x.Role))
+                .ReverseMap();
         }
     }
 }

@@ -11,5 +11,7 @@ namespace ScanText.Application.Interfaces
     {
         Usuario UsuarioViewModelToUsuario(UsuarioViewModel usuarioViewModel);
         Task<bool> IndicaUsuarioExistenteAsync(string username);
+        Task<LoginViewModel> LoginAsync(LoginViewModel userLogin);
+        void ValidarUsuarioSenhaPreenchido(LoginViewModel login);
     }
 }
