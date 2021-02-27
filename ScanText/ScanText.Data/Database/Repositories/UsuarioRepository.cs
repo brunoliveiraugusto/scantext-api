@@ -26,7 +26,8 @@ namespace ScanText.Data.Database.Repositories
                                             {
                                                 Id = usuario.Id,
                                                 Username = usuario.Username,
-                                                Role = usuario.Role
+                                                Role = usuario.Role,
+                                                NomeCompleto = usuario.NomeCompleto
                                             })
                                             .FirstOrDefaultAsync();
         }
