@@ -23,7 +23,6 @@ namespace ScanText.Api
     {
         public IConfiguration Configuration { get; set; }
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-        readonly IOptions<TokenSettings> tokenSettings;
 
         public Startup(IConfiguration configuration)
         {
@@ -66,7 +65,7 @@ namespace ScanText.Api
             #endregion
 
             #region Authentication
-            var key = Encoding.ASCII.GetBytes(tokenSettings.Value.Secret);
+            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("TokenSettings:Secret").Value);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

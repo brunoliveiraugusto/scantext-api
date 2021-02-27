@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ScanText.Security.Authentication.Interfaces;
 
 namespace ScanText.Security.Authentication.Settings
 {
-    public class TokenSettings
+    public class TokenSettings : ITokenSettings
     {
-        public string Secret;
+        public string Secret { get; set; }
     }
 }

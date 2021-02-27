@@ -12,17 +12,17 @@ namespace ScanText.Security.Authentication
 {
     public class Token : IToken
     {
-        private readonly string secret;
+        private readonly ITokenSettings _token;
 
-        public Token(IOptions<TokenSettings> token)
+        public Token(ITokenSettings token)
         {
-            secret = token.Value.Secret;
+            _token = token;
         }
 
         public string GenerateToken(UsuarioAuthentication usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(secret);
+            var key = Encoding.ASCII.GetBytes(_token.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
