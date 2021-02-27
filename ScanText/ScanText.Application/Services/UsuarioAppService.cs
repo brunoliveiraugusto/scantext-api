@@ -28,12 +28,26 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
+        public async Task<bool> IndicaUsuarioExistenteAsync(string username)
+        {
+            return await _usuarioRepository.IndicaUsuarioExistenteAsync(username);
+        }
+
         public async Task InserirAsync(UsuarioViewModel usuarioViewModel)
         {
-            var passwordEncripty = _encryptData.Encrypt(usuarioViewModel.Password);
-            usuarioViewModel.Password = passwordEncripty;
-            var usuario = UsuarioViewModelToUsuario(usuarioViewModel);
-            await _usuarioRepository.InserirAsync(usuario);
+            var indicaUsuarioCadastrado = await IndicaUsuarioExistenteAsync(usuarioViewModel.Username);
+            
+            if (!indicaUsuarioCadastrado)
+            {
+                var passwordEncripty = _encryptData.Encrypt(usuarioViewModel.Password);
+                usuarioViewModel.Password = passwordEncripty;
+                var usuario = UsuarioViewModelToUsuario(usuarioViewModel);
+                await _usuarioRepository.InserirAsync(usuario);
+            } 
+            else
+            {
+                throw new Exception("Usuário já cadastrado.");
+            }
         }
 
         public Task<UsuarioViewModel> ObterPorIdAsync(Guid id)
