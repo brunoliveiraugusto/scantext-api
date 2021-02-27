@@ -26,6 +26,7 @@ namespace ScanText.Api.Configurations
             services.AddScoped<ILinguagemAppService, LinguagemAppService>();
             services.AddScoped<IImagemAppService, ImagemAppService>();
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
+            services.AddScoped<ILoginAppService, LoginAppService>();
 
             //Engine
             services.AddScoped<ITesseractEngineOCR, TesseractEngineOCR>();
