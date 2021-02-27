@@ -29,19 +29,6 @@ namespace ScanText.Api.Controllers
         }
 
         /// <summary>
-        /// API responsável por criar um novo usuário
-        /// </summary>
-        /// <response code="200">Login realizado com sucesso.</response>
-        [HttpPost()]
-        [Route("login")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
-        {
-            var result = await _usuarioAppService.LoginAsync(loginViewModel);
-            return Ok(result);
-        }
-
-        /// <summary>
         /// API responsável por verificar se o usuário informado já existe cadastrado
         /// </summary>
         /// <response code="200">Usuário existente.</response>
