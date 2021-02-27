@@ -61,6 +61,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(x => x.Role));
 
             CreateMap<LoginViewModel, Login>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.Username))
                 .ForMember(dest => dest.Token, opt => opt.MapFrom(x => x.Token))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(x => x.Role))
