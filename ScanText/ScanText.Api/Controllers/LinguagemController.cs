@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using ScanText.Api.Configuration;
 
 namespace ScanText.Api.Controllers
 {
@@ -24,6 +25,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Criar([FromBody] LinguagemViewModel linguagemViewModel)
         {
             await _linguagemAppService.InserirAsync(linguagemViewModel);
@@ -35,6 +37,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpGet("{id}")]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<LinguagemViewModel> ObterPorId(Guid id)
         {
             var linguagem = await _linguagemAppService.ObterPorIdAsync(id);
@@ -46,7 +49,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpGet()]
-        [AllowAnonymous]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IEnumerable<LinguagemViewModel>> ObterTodos()
         {
             var linguagens = await _linguagemAppService.ObterTodosAsync();
@@ -58,6 +61,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPut()]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Atualizar([FromBody] LinguagemViewModel linguagem, Guid id)
         {
             await _linguagemAppService.AtualizarAsync(linguagem, id);
@@ -69,6 +73,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Remover(Guid id)
         {
             await _linguagemAppService.RemoverAsync(id);

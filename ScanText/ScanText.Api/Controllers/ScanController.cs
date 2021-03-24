@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 
@@ -21,7 +22,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
-        [AllowAnonymous]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public IActionResult LerTextoImagem([FromBody] ImagemViewModel imagemVM)
         {
             var response = _scanAppService.LerTextoImagem(imagemVM);

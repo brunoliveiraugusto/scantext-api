@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using System;
@@ -24,6 +25,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Criar([FromBody] ImagemViewModel imagemViewModel)
         {
             await _imagemAppService.InserirAsync(imagemViewModel);
@@ -35,6 +37,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpGet("{id}")]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<ImagemViewModel> ObterPorId(Guid id)
         {
             var imagem = await _imagemAppService.ObterPorIdAsync(id);
@@ -46,7 +49,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpGet()]
-        [AllowAnonymous]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IEnumerable<ImagemViewModel>> ObterTodos()
         {
             var imagens = await _imagemAppService.ObterTodosAsync();
@@ -59,7 +62,7 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Sucesso.</response>
         [HttpPut()]
         [Route("{id:guid}")]
-        [AllowAnonymous]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Atualizar([FromBody] ImagemViewModel imagemViewModel, Guid id)
         {
             await _imagemAppService.AtualizarAsync(imagemViewModel, id);
@@ -72,7 +75,7 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Sucesso.</response>
         [HttpDelete()]
         [Route("{id:guid}")]
-        [AllowAnonymous]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Remover(Guid id)
         {
             await _imagemAppService.RemoverAsync(id);
@@ -84,6 +87,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPost("obter-imagens-paginacao")]
+        [Authorize(Roles = AuthorizationService.Todos)]
         public IActionResult ObterImagensPaginacao([FromBody] PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
         {
             var response = _imagemAppService.ObterImagensPaginadas(paginationFilterViewModel);

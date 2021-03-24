@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using System.Threading.Tasks;
