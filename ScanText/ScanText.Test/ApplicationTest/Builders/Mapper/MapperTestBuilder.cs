@@ -7,10 +7,8 @@ using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.Mapper
 {
-    public class MapperTestBuilder
+    public class MapperTestBuilder : BaseTestBuilder<IMapper>
     {
-        protected IMapper Model;
-
         public MapperTestBuilder()
         {
             var configuration = new MapperConfiguration(x =>
@@ -21,11 +19,6 @@ namespace ScanText.Test.ApplicationTest.Builders.Mapper
             });
 
             Model = configuration.CreateMapper();
-        }
-
-        public IMapper Build()
-        {
-            return Model;
         }
     }
 }

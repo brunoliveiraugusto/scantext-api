@@ -6,18 +6,11 @@ using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.Repository
 {
-    public class ImagemRepositoryTestBuilder
+    public class ImagemRepositoryTestBuilder : BaseTestBuilder<Mock<IImagemRepository>>
     {
-        protected Mock<IImagemRepository> Model;
-
         public ImagemRepositoryTestBuilder()
         {
             Model = new Mock<IImagemRepository>();
-        }
-
-        public Mock<IImagemRepository> Build()
-        {
-            return Model;
         }
     }
 }

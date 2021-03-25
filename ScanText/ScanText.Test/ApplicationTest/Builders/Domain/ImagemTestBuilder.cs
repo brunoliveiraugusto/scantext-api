@@ -5,10 +5,8 @@ using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.Domain
 {
-    public class ImagemTestBuilder
+    public class ImagemTestBuilder : BaseTestBuilder<Imagem>
     {
-        protected Imagem Model;
-
         public ImagemTestBuilder()
         {
             Model = new Imagem();
@@ -27,11 +25,6 @@ namespace ScanText.Test.ApplicationTest.Builders.Domain
             Model.Texto = "Texto da imagem de teste";
 
             return this;
-        }
-
-        public Imagem Build()
-        {
-            return Model;
         }
     }
 }

@@ -5,10 +5,8 @@ using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.ViewModel
 {
-    public class ImagemViewModelTestBuilder
+    public class ImagemViewModelTestBuilder : BaseTestBuilder<ImagemViewModel>
     {
-        protected ImagemViewModel Model;
-
         public ImagemViewModelTestBuilder()
         {
             Model = new ImagemViewModel();
@@ -27,11 +25,6 @@ namespace ScanText.Test.ApplicationTest.Builders.ViewModel
             Model.Texto = "Texto da imagem de teste";
 
             return this;
-        }
-
-        public ImagemViewModel Build()
-        {
-            return Model;
         }
     }
 }
