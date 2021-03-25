@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.16.1" />
@@ -22,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApplicationTest\Builders\" />
+    <ProjectReference Include="..\ScanText.Application\ScanText.Application.csproj" />
+    <ProjectReference Include="..\ScanText.Data\ScanText.Data.csproj" />
+    <ProjectReference Include="..\ScanText.Domain\ScanText.Domain.csproj" />
   </ItemGroup>
 
 </Project>
