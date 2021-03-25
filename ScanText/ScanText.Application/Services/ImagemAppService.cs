@@ -28,11 +28,12 @@ namespace ScanText.Application.Services
             await _imagemRepository.AtualizarAsync(imagem, id);
         }
 
-        public async Task InserirAsync(ImagemViewModel imagemViewModel)
+        public async Task<bool> InserirAsync(ImagemViewModel imagemViewModel)
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataCadastro = DateTime.Now;
             await _imagemRepository.InserirAsync(imagem);
+            return true;
         }
 
         public async Task<ImagemViewModel> ObterPorIdAsync(Guid id)

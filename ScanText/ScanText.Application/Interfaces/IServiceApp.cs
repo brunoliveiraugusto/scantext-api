@@ -8,7 +8,7 @@ namespace ScanText.Application.Interfaces
     public interface IServiceApp<TEntity>
     {
         Task AtualizarAsync(TEntity model, Guid id);
-        Task InserirAsync(TEntity model);
+        Task<bool> InserirAsync(TEntity model);
         Task<TEntity> ObterPorIdAsync(Guid id);
         Task<IEnumerable<TEntity>> ObterTodosAsync();
         Task RemoverAsync(Guid id);

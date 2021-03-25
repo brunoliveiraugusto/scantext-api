@@ -27,11 +27,12 @@ namespace ScanText.Application.Services
             await _linguagemRepository.AtualizarAsync(linguagem, id);
         }
 
-        public async Task InserirAsync(LinguagemViewModel linguagemViewModel)
+        public async Task<bool> InserirAsync(LinguagemViewModel linguagemViewModel)
         {
             ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
             await _linguagemRepository.InserirAsync(linguagem);
+            return true;
         }
 
         public async Task<LinguagemViewModel> ObterPorIdAsync(Guid id)

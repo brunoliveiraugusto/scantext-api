@@ -35,7 +35,7 @@ namespace ScanText.Application.Services
             return await _usuarioRepository.IndicaUsuarioExistenteAsync(username);
         }
 
-        public async Task InserirAsync(UsuarioViewModel usuarioViewModel)
+        public async Task<bool> InserirAsync(UsuarioViewModel usuarioViewModel)
         {
             var indicaUsuarioCadastrado = await IndicaUsuarioExistenteAsync(usuarioViewModel.Username);
             
@@ -50,6 +50,8 @@ namespace ScanText.Application.Services
             {
                 throw new Exception("Usuário já cadastrado.");
             }
+
+            return true;
         }
 
         public Task<UsuarioViewModel> ObterPorIdAsync(Guid id)

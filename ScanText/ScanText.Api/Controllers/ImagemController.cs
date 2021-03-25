@@ -26,10 +26,9 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public async Task<IActionResult> Criar([FromBody] ImagemViewModel imagemViewModel)
+        public async Task<bool> Criar([FromBody] ImagemViewModel imagemViewModel)
         {
-            await _imagemAppService.InserirAsync(imagemViewModel);
-            return Ok();
+            return await _imagemAppService.InserirAsync(imagemViewModel);
         }
 
         /// <summary>

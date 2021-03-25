@@ -26,10 +26,9 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public async Task<IActionResult> Criar([FromBody] LinguagemViewModel linguagemViewModel)
+        public async Task<bool> Criar([FromBody] LinguagemViewModel linguagemViewModel)
         {
-            await _linguagemAppService.InserirAsync(linguagemViewModel);
-            return Ok();
+            return await _linguagemAppService.InserirAsync(linguagemViewModel);
         }
 
         /// <summary>
