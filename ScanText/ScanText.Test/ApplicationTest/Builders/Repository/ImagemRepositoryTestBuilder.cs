@@ -1,8 +1,5 @@
 ﻿using Moq;
 using ScanText.Data.Database.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.Repository
 {

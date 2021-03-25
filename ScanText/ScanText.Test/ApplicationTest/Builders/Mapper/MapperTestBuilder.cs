@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using Moq;
 using ScanText.Application.AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.Mapper
 {

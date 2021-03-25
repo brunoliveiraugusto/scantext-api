@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScanText.Test.ApplicationTest.Builders
+﻿namespace ScanText.Test.ApplicationTest.Builders
 {
     public abstract class BaseTestBuilder<M>
     {

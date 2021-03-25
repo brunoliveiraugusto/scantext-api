@@ -1,7 +1,5 @@
 ﻿using ScanText.Domain.Linguagem.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScanText.Test.ApplicationTest.Builders.Domain
 {
