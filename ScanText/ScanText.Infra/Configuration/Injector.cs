@@ -35,6 +35,7 @@ namespace ScanText.Api.Configurations
             services.AddScoped<ILinguagemRepository, LinguagemRepository>();
             services.AddScoped<IImagemRepository, ImagemRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IEmailRepository, EmailRepository>();
 
             //Database
             services.AddSingleton<IScanTextDatabaseSettings>(st =>
