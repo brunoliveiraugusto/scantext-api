@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ScanText.Data.Settings;
 
 namespace ScanText.Api
 {
@@ -62,6 +63,15 @@ namespace ScanText.Api
             #region Secret 
             services.Configure<TokenSettings>(
                 Configuration.GetSection(nameof(TokenSettings)));
+            #endregion
+
+            #region SendGrid
+            services.Configure<SendGridSettings>(options =>
+            {
+                options.Key = Configuration.GetSection("SendGrid:Key").Value;
+                options.To = Configuration.GetSection("SendGrid:To").Value;
+                options.Name = Configuration.GetSection("SendGrid:Name").Value;
+            });
             #endregion
 
             #region Authentication
