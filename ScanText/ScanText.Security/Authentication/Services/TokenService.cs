@@ -8,13 +8,13 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using ScanText.Security.Authentication.Settings;
 
-namespace ScanText.Security.Authentication
+namespace ScanText.Security.Authentication.Services
 {
-    public class Token : IToken
+    public class TokenService : ITokenService
     {
         private readonly ITokenSettings _token;
 
-        public Token(ITokenSettings token)
+        public TokenService(ITokenSettings token)
         {
             _token = token;
         }

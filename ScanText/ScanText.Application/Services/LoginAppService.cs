@@ -13,11 +13,11 @@ namespace ScanText.Application.Services
     public class LoginAppService : ILoginAppService
     {
         private readonly IEncryptData _encryptData;
-        private readonly IToken _token;
+        private readonly ITokenService _token;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMapper _mapper;
 
-        public LoginAppService(IToken token, IEncryptData encryptData, IUsuarioRepository usuarioRepository, IMapper mapper)
+        public LoginAppService(ITokenService token, IEncryptData encryptData, IUsuarioRepository usuarioRepository, IMapper mapper)
         {
             _token = token;
             _encryptData = encryptData;

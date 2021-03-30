@@ -2,7 +2,7 @@
 
 namespace ScanText.Security.Authentication.Interfaces
 {
-    public interface IToken
+    public interface ITokenService
     {
         string GenerateToken(UsuarioAuthentication usuario);
     }
