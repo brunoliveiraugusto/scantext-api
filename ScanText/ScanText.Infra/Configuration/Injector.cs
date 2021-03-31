@@ -14,6 +14,7 @@ using ScanText.Security.Authentication.Interfaces;
 using ScanText.Security.Authentication.Settings;
 using ScanText.Security.Encrypt;
 using ScanText.Security.Encrypt.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace ScanText.Api.Configurations
 {
@@ -27,6 +28,7 @@ namespace ScanText.Api.Configurations
             services.AddScoped<IImagemAppService, ImagemAppService>();
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<ILoginAppService, LoginAppService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
 
             //Engine
             services.AddScoped<ITesseractEngineOCR, TesseractEngineOCR>();
@@ -46,6 +48,7 @@ namespace ScanText.Api.Configurations
             services.AddSingleton<ITokenService, TokenService>();
             services.AddSingleton<ITokenSettings>(st =>
                 st.GetRequiredService<IOptions<TokenSettings>>().Value);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSingleton<ScanTextMongoContext>();
         }
