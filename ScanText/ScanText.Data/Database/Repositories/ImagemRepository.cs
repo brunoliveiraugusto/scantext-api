@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Linq;
+using System;
 
 namespace ScanText.Data.Database.Repositories
 {
@@ -17,9 +18,9 @@ namespace ScanText.Data.Database.Repositories
 
         }
 
-        public PaginationFilter<Imagem> ObterImagensPaginadas(PaginationFilter<Imagem> pagination)
+        public PaginationFilter<Imagem> ObterImagensPaginadasPorIdUsuario(PaginationFilter<Imagem> pagination, Guid idUsuario)
         {
-            var query = DbSet.AsQueryable();
+            var query = DbSet.AsQueryable().Where(imagem => imagem.IdUsuario == idUsuario);
             query = OrdenarImagem(pagination, query);
             pagination.Total = query.Count();
             pagination.Pages = query.Skip((pagination.Page - 1) * pagination.Limit).Take(pagination.Limit);

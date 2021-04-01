@@ -82,14 +82,14 @@ namespace ScanText.Api.Controllers
         }
 
         /// <summary>
-        /// API responsável por obter imagens paginadas.
+        /// API responsável por obter imagens paginadas por usuário.
         /// </summary>
         /// <response code="200">Sucesso.</response>
-        [HttpPost("obter-imagens-paginacao")]
+        [HttpPost("obter-imagens-paginacao-por-usuario")]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public IActionResult ObterImagensPaginacao([FromBody] PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
+        public IActionResult ObterImagensPaginacaoPorUsuario([FromBody] PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
         {
-            var response = _imagemAppService.ObterImagensPaginadas(paginationFilterViewModel);
+            var response = _imagemAppService.ObterImagensPaginadasPorUsuario(paginationFilterViewModel);
             return Ok(response);
         }
     }

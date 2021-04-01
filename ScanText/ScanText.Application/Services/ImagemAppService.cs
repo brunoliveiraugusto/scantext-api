@@ -4,6 +4,7 @@ using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Data.Utils;
 using ScanText.Domain.Linguagem.Entities;
+using ScanText.Security.Authentication.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,11 +15,15 @@ namespace ScanText.Application.Services
     {
         private readonly IImagemRepository _imagemRepository;
         private readonly IMapper _mapper;
+        private readonly IUsuarioService _user;
+        protected Guid IdUsuario { get; private set; }
 
-        public ImagemAppService(IImagemRepository imagemRepository, IMapper mapper)
+        public ImagemAppService(IImagemRepository imagemRepository, IMapper mapper, IUsuarioService user)
         {
             _imagemRepository = imagemRepository;
             _mapper = mapper;
+            _user = user;
+            IdUsuario = _user.GetUserId();
         }
 
         public async Task AtualizarAsync(ImagemViewModel imagemViewModel, Guid id)
@@ -32,6 +37,7 @@ namespace ScanText.Application.Services
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataCadastro = DateTime.Now;
+            imagem.IdUsuario = IdUsuario;
             await _imagemRepository.InserirAsync(imagem);
             return true;
         }
@@ -58,10 +64,10 @@ namespace ScanText.Application.Services
             return _mapper.Map<Imagem>(imagemViewModel);
         }
 
-        public PaginationFilterViewModel<ImagemViewModel> ObterImagensPaginadas(PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
+        public PaginationFilterViewModel<ImagemViewModel> ObterImagensPaginadasPorUsuario(PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
         {
             var pagination = _mapper.Map<PaginationFilter<Imagem>>(paginationFilterViewModel);
-            var resultPagination = _imagemRepository.ObterImagensPaginadas(pagination);
+            var resultPagination = _imagemRepository.ObterImagensPaginadasPorIdUsuario(pagination, IdUsuario);
             return _mapper.Map<PaginationFilterViewModel<ImagemViewModel>>(resultPagination);
         }
     }

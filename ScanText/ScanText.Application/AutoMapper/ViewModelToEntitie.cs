@@ -22,7 +22,8 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Size, opt => opt.MapFrom(x => x.Size))
                 .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(x => x.DataCadastro))
                 .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
-                .ForMember(dest => dest.Linguagem, opt => opt.MapFrom(x => x.Linguagem));
+                .ForMember(dest => dest.Linguagem, opt => opt.MapFrom(x => x.Linguagem))
+                .ForMember(dest => dest.IdUsuario, opt => opt.Ignore());
 
 
             CreateMap<LinguagemViewModel, Linguagem>()
