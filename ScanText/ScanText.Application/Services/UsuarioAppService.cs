@@ -17,12 +17,14 @@ namespace ScanText.Application.Services
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IEncryptData _encryptData;
         private readonly IMapper _mapper;
+        private readonly IUsuarioService _user;
 
-        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper)
+        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper, IUsuarioService user)
         {
             _usuarioRepository = usuarioRepository;
             _encryptData = encryptData;
             _mapper = mapper;
+            _user = user;
         }
 
         public Task AtualizarAsync(UsuarioViewModel usuarioViewModel, Guid id)
@@ -52,6 +54,12 @@ namespace ScanText.Application.Services
             }
 
             return true;
+        }
+
+        public async Task<string> ObterEmailUsuarioLogado()
+        {
+            var idUsuario = _user.GetUserId();
+            return await _usuarioRepository.ObterEmailUsuarioLogado(idUsuario);
         }
 
         public Task<UsuarioViewModel> ObterPorIdAsync(Guid id)
