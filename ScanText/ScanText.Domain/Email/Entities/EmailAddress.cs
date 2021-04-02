@@ -1,6 +1,8 @@
-﻿namespace ScanText.Domain.Email.Entities
+﻿using ScanText.Domain.Email.Entities.Interfaces;
+
+namespace ScanText.Domain.Email.Entities
 {
-    public class EmailAddress
+    public class EmailAddress : IEmailAddress
     {
         public EmailAddress()
         {
@@ -21,5 +23,17 @@
         public string Subject { get; set; }
         public string PlainTextContent { get; set; }
         public string HtmlContent { get; set; }
+
+        public EmailAddress GetEmailAddress(string name, string email, string subject, string plainTextContent, string htmlContent)
+        {
+            return new EmailAddress
+            {
+                Name = name,
+                Email = email,
+                Subject = subject,
+                PlainTextContent = plainTextContent,
+                HtmlContent = htmlContent
+            };
+        }
     }
 }
