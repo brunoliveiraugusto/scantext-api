@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using System.Threading.Tasks;
@@ -35,6 +37,19 @@ namespace ScanText.Api.Controllers
         public async Task<IActionResult> VerificarUsuarioExistente(string username)
         {
             var result = await _usuarioAppService.IndicaUsuarioExistenteAsync(username);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// API responsável buscar o e-mail do usuário logado.
+        /// </summary>
+        /// <response code="200">E-mail obtido.</response>
+        [HttpGet()]
+        [Route("obter-email-usuario-logado")]
+        [Authorize(Roles = AuthorizationService.Todos)]
+        public async Task<IActionResult> ObterEmailUsuarioLogado()
+        {
+            var result = await _usuarioAppService.ObterEmailUsuarioLogado();
             return Ok(result);
         }
     }
