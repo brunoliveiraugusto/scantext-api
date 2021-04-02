@@ -92,5 +92,18 @@ namespace ScanText.Api.Controllers
             var response = _imagemAppService.ObterImagensPaginadasPorUsuario(paginationFilterViewModel);
             return Ok(response);
         }
+
+        /// <summary>
+        /// API responsável por enviar e-mail com dados da imagem processada.
+        /// </summary>
+        /// <response code="200">Imagem enviada.</response>
+        [HttpPost()]
+        [Route("enviar-email-imagem-processada")]
+        [Authorize(Roles = AuthorizationService.Todos)]
+        public IActionResult EnviarEmailImagemProcessada([FromBody] Guid idImagem)
+        {
+            _imagemAppService.EnviarEmailImagemProcessada(idImagem);
+            return Ok();
+        }
     }
 }
