@@ -1,4 +1,5 @@
 ﻿using ScanText.Domain.UsuarioDTO.Entities;
+using System;
 using System.Threading.Tasks;
 
 namespace ScanText.Data.Database.Repositories.Interfaces
@@ -7,5 +8,7 @@ namespace ScanText.Data.Database.Repositories.Interfaces
     {
         Task<bool> IndicaUsuarioExistenteAsync(string username);
         Task<Login> Login(string username, string password);
+        Task<string> ObterEmailUsuarioLogado(Guid idUsuario);
+        Task<string> ObterNomeUsuarioLogado(Guid idUsuario);
     }
 }

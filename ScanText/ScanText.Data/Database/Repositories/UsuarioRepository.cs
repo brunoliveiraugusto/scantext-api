@@ -3,6 +3,7 @@ using MongoDB.Driver.Linq;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.UsuarioDTO.Entities;
 using ScanText.Infra.Configuration.Database.Context;
+using System;
 using System.Threading.Tasks;
 
 namespace ScanText.Data.Database.Repositories
@@ -30,6 +31,16 @@ namespace ScanText.Data.Database.Repositories
                                                 NomeCompleto = usuario.NomeCompleto
                                             })
                                             .FirstOrDefaultAsync();
+        }
+
+        public async Task<string> ObterEmailUsuarioLogado(Guid idUsuario)
+        {
+            return await DbSet.AsQueryable().Where(usuario => usuario.Id == idUsuario).Select(usuario => usuario.Email).FirstOrDefaultAsync();
+        }
+
+        public async Task<string> ObterNomeUsuarioLogado(Guid idUsuario)
+        {
+            return await DbSet.AsQueryable().Where(usuario => usuario.Id == idUsuario).Select(usuario => usuario.NomeCompleto).FirstOrDefaultAsync();
         }
     }
 }
