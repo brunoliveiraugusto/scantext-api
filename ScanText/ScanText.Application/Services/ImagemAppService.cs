@@ -3,6 +3,7 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Data.Utils;
+using ScanText.Domain.Email.Entities.Interfaces;
 using ScanText.Domain.Linguagem.Entities;
 using ScanText.Security.Authentication.Interfaces;
 using System;
@@ -16,13 +17,21 @@ namespace ScanText.Application.Services
         private readonly IImagemRepository _imagemRepository;
         private readonly IMapper _mapper;
         private readonly IUsuarioService _user;
+        private readonly IEmailRepository _emailRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IEmailAddress _emailAddress;
         protected Guid IdUsuario { get; private set; }
 
-        public ImagemAppService(IImagemRepository imagemRepository, IMapper mapper, IUsuarioService user)
+        public ImagemAppService(IImagemRepository imagemRepository, IMapper mapper, 
+            IUsuarioService user, IEmailRepository emailRepository, IUsuarioRepository usuarioRepository,
+            IEmailAddress emailAddress)
         {
             _imagemRepository = imagemRepository;
             _mapper = mapper;
             _user = user;
+            _emailRepository = emailRepository;
+            _usuarioRepository = usuarioRepository;
+            _emailAddress = emailAddress;
             IdUsuario = _user.GetUserId();
         }
 
@@ -69,6 +78,33 @@ namespace ScanText.Application.Services
             var pagination = _mapper.Map<PaginationFilter<Imagem>>(paginationFilterViewModel);
             var resultPagination = _imagemRepository.ObterImagensPaginadasPorIdUsuario(pagination, IdUsuario);
             return _mapper.Map<PaginationFilterViewModel<ImagemViewModel>>(resultPagination);
+        }
+
+        public async Task EnviarEmailImagemProcessada(Guid idImagem)
+        {
+            var nomeUsuarioTask = _usuarioRepository.ObterNomeUsuarioLogado(IdUsuario);
+            var emailUsuarioTask = _usuarioRepository.ObterEmailUsuarioLogado(IdUsuario);
+            var imagemTask = _imagemRepository.ObterPorIdAsync(idImagem);
+
+            var imagem = await imagemTask;
+            var emailUsuario = await emailUsuarioTask;
+            var nomeUsuario = await nomeUsuarioTask;
+            
+            var email = MontarEstruturaEmail(imagem);
+            var emailSend = _emailAddress.GetEmailAddress(nomeUsuario, emailUsuario, email.subject, string.Empty, email.htmlContent);
+
+            await _emailRepository.EnviarEmailAsync(emailSend);
+        }
+
+        private (string htmlContent, string subject) MontarEstruturaEmail(Imagem imagem)
+        {
+            return ($"<p><b>Nome:</b> {imagem.Nome}</p>" +
+                    $"<p><b>Assertividade Leitura:</b> {imagem.MeanConfidence * 100}%</p>" +
+                    $"<p><b>Formato:</b> {imagem.Formato}</p>" +
+                    $"<p><b>Texto:</b> {imagem.Texto}</p>" +
+                    $"<p><b>Idioma:</b> {imagem.Linguagem.Idioma}</p>" +
+                    $"<p><b>Data Digitalização:</b> {imagem.DataAtualizacao ?? imagem.DataCadastro}</p>", 
+                    "Imagem Digitalizada: " + imagem.Nome);
         }
     }
 }

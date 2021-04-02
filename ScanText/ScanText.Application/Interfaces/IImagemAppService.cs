@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ScanText.Application.ViewModels;
 using ScanText.Domain.Linguagem.Entities;
 
@@ -8,5 +9,6 @@ namespace ScanText.Application.Interfaces
     {
         Imagem ImagemViewModelToImagem(ImagemViewModel imagemViewModel);
         PaginationFilterViewModel<ImagemViewModel> ObterImagensPaginadasPorUsuario(PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel);
+        Task EnviarEmailImagemProcessada(Guid imagemViewModel);
     }
 }
