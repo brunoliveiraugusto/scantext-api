@@ -15,6 +15,8 @@ using ScanText.Security.Authentication.Settings;
 using ScanText.Security.Encrypt;
 using ScanText.Security.Encrypt.Interfaces;
 using Microsoft.AspNetCore.Http;
+using ScanText.Domain.Email.Entities;
+using ScanText.Domain.Email.Entities.Interfaces;
 
 namespace ScanText.Api.Configurations
 {
@@ -49,6 +51,9 @@ namespace ScanText.Api.Configurations
             services.AddSingleton<ITokenSettings>(st =>
                 st.GetRequiredService<IOptions<TokenSettings>>().Value);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Domain
+            services.AddSingleton<IEmailAddress, EmailAddress>();
 
             services.AddSingleton<ScanTextMongoContext>();
         }
