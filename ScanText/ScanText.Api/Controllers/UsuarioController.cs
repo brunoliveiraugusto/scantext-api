@@ -52,5 +52,18 @@ namespace ScanText.Api.Controllers
             var result = await _usuarioAppService.ObterEmailUsuarioLogado();
             return Ok(result);
         }
+
+        /// <summary>
+        /// API responsável por buscar dados de cadastro do usuário.
+        /// </summary>
+        /// <response code="200">Dados de cadastro obtido.</response>
+        [HttpGet()]
+        [Route("obter-dados-cadastro-usuario")]
+        [Authorize(Roles = AuthorizationService.Todos)]
+        public async Task<IActionResult> ObterDadosCadastroUsuario()
+        {
+            var result = await _usuarioAppService.CarregarDadosCadastroUsuario();
+            return Ok(result);
+        }
     }
 }

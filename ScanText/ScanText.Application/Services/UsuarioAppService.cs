@@ -80,6 +80,11 @@ namespace ScanText.Application.Services
         public Usuario UsuarioViewModelToUsuario(UsuarioViewModel usuarioViewModel)
         {
             return _mapper.Map<Usuario>(usuarioViewModel);
-        } 
+        }
+
+        public async Task<UsuarioViewModel> CarregarDadosCadastroUsuario()
+        {
+            return _mapper.Map<UsuarioViewModel>(await _usuarioRepository.CarregarDadosCadastro(_user.GetUserId()));
+        }
     }
 }
