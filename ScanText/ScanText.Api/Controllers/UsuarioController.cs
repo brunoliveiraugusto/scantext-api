@@ -65,5 +65,18 @@ namespace ScanText.Api.Controllers
             var result = await _usuarioAppService.CarregarDadosCadastroUsuario();
             return Ok(result);
         }
+
+        /// <summary>
+        /// API responsável por atualizar dados de cadastro do usuário.
+        /// </summary>
+        /// <response code="200">Dados atualizado.</response>
+        [HttpPut()]
+        [Route("atualizar-dados-cadastro-usuario")]
+        [Authorize(Roles = AuthorizationService.Todos)]
+        public async Task<IActionResult> AtualizarDadosCadastroUsuario([FromBody] UsuarioViewModel usuarioViewModel)
+        {
+            var result = await _usuarioAppService.AtualizarDadosCadastroUsuario(usuarioViewModel);
+            return Ok(result);
+        }
     }
 }

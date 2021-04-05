@@ -3,7 +3,6 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.UsuarioDTO.Entities;
-using ScanText.Security.Authentication.Entities;
 using ScanText.Security.Authentication.Interfaces;
 using ScanText.Security.Encrypt.Interfaces;
 using System;
@@ -32,14 +31,14 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> IndicaUsuarioExistenteAsync(string username)
+        public async Task<bool> IndicaUsuarioExistente(string username)
         {
             return await _usuarioRepository.IndicaUsuarioExistenteAsync(username);
         }
 
         public async Task<bool> InserirAsync(UsuarioViewModel usuarioViewModel)
         {
-            var indicaUsuarioCadastrado = await IndicaUsuarioExistenteAsync(usuarioViewModel.Username);
+            var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuarioViewModel.Username);
             
             if (!indicaUsuarioCadastrado)
             {
@@ -85,6 +84,11 @@ namespace ScanText.Application.Services
         public async Task<UsuarioViewModel> CarregarDadosCadastroUsuario()
         {
             return _mapper.Map<UsuarioViewModel>(await _usuarioRepository.CarregarDadosCadastro(_user.GetUserId()));
+        }
+
+        public async Task<bool> AtualizarDadosCadastroUsuario(UsuarioViewModel usuario)
+        {
+            return await _usuarioRepository.AtualizarDadosCadastro(_mapper.Map<Usuario>(usuario));
         }
     }
 }

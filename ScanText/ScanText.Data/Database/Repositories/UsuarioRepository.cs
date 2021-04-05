@@ -48,12 +48,34 @@ namespace ScanText.Data.Database.Repositories
             return await DbSet.AsQueryable().Where(usuario => usuario.Id == idUsuario)
                     .Select(usuario => new Usuario
                     {
+                        Id = usuario.Id,
                         Username = usuario.Username,
                         DataNascimento = usuario.DataNascimento,
                         Email = usuario.Email,
                         NomeCompleto = usuario.NomeCompleto
                     })
                     .FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> AtualizarDadosCadastro(Usuario usuario)
+        {
+            try
+            {
+                var user = await ObterPorIdAsync(usuario.Id);
+
+                user.Username = usuario.Username;
+                user.NomeCompleto = usuario.NomeCompleto;
+                user.DataNascimento = usuario.DataNascimento;
+                user.Email = usuario.Email;
+
+                await DbSet.ReplaceOneAsync(Builders<Usuario>.Filter.Eq("_id", user.Id), user);
+
+                return true;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
     }
 }
