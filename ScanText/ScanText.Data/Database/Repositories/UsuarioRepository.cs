@@ -4,6 +4,7 @@ using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.UsuarioDTO.Entities;
 using ScanText.Infra.Configuration.Database.Context;
 using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ScanText.Data.Database.Repositories
@@ -15,9 +16,9 @@ namespace ScanText.Data.Database.Repositories
 
         }
 
-        public async Task<bool> IndicaUsuarioExistenteAsync(string username)
+        public async Task<bool> IndicaUsuarioExistenteAsync(Expression<Func<Usuario, bool>> expression)
         {
-            return await DbSet.AsQueryable().AnyAsync(usuario => usuario.Username.ToLower() == username.ToLower());
+            return await DbSet.AsQueryable().AnyAsync(expression);
         }
 
         public async Task<Login> Login(string username, string password)
