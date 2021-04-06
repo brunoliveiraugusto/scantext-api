@@ -33,14 +33,21 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> IndicaUsuarioExistente(Expression<Func<Usuario, bool>> expression)
+        public async Task<bool> IndicaUsuarioExistente(string username, Guid? idUsuario = null)
         {
+            Expression<Func<Usuario, bool>> expression = null;
+
+            if(idUsuario != null)
+                expression = usuario => usuario.Username == username && usuario.Id != idUsuario;
+            else
+                expression = usuario => usuario.Username == username;
+
             return await _usuarioRepository.IndicaUsuarioExistenteAsync(expression);
         }
 
         public async Task<bool> InserirAsync(UsuarioViewModel usuarioViewModel)
         {
-            var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuario => usuario.Username == usuarioViewModel.Username);
+            var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuarioViewModel.Username);
             
             if (!indicaUsuarioCadastrado)
             {
@@ -88,12 +95,12 @@ namespace ScanText.Application.Services
             return _mapper.Map<UsuarioViewModel>(await _usuarioRepository.CarregarDadosCadastro(_user.GetUserId()));
         }
 
-        public async Task<bool> AtualizarDadosCadastroUsuario(UsuarioViewModel usuarioViewModel)
+        public async Task<bool> AtualizarDadosCadastroUsuario(UsuarioViewModel usuarioViewModel, Guid idUsuario)
         {
-            var indicaUsuarioExistente = await IndicaUsuarioExistente(usuario => usuario.Username == usuarioViewModel.Username &&  usuario.Id != _user.GetUserId());
+            var indicaUsuarioExistente = await IndicaUsuarioExistente(usuarioViewModel.Username, idUsuario);
 
             if (!indicaUsuarioExistente)
-                return await _usuarioRepository.AtualizarDadosCadastro(_mapper.Map<Usuario>(usuarioViewModel));
+                return await _usuarioRepository.AtualizarDadosCadastro(_mapper.Map<Usuario>(usuarioViewModel), idUsuario);
             else
                 throw new UserAlreadyExistsException();
         }

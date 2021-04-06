@@ -9,9 +9,9 @@ namespace ScanText.Application.Interfaces
     public interface IUsuarioAppService : IServiceApp<UsuarioViewModel>
     {
         Usuario UsuarioViewModelToUsuario(UsuarioViewModel usuarioViewModel);
-        Task<bool> IndicaUsuarioExistente(Expression<Func<Usuario, bool>> expression);
+        Task<bool> IndicaUsuarioExistente(string username, Guid? idUsuario = null);
         Task<string> ObterEmailUsuarioLogado();
         Task<UsuarioViewModel> CarregarDadosCadastroUsuario();
-        Task<bool> AtualizarDadosCadastroUsuario(UsuarioViewModel usuarioViewModel);
+        Task<bool> AtualizarDadosCadastroUsuario(UsuarioViewModel usuarioViewModel, Guid idUsuario);
     }
 }
