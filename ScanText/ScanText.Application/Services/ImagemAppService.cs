@@ -103,7 +103,7 @@ namespace ScanText.Application.Services
                     $"<p><b>Formato:</b> {imagem.Formato}</p>" +
                     $"<p><b>Texto:</b> {imagem.Texto}</p>" +
                     $"<p><b>Idioma:</b> {imagem.Linguagem.Idioma}</p>" +
-                    $"<p><b>Data Digitalização:</b> {imagem.DataAtualizacao ?? imagem.DataCadastro}</p>", 
+                    $"<p><b>Data Digitalização:</b> {imagem.DataAtualizacao?.ToString("dd/MM/yyyy HH:mm:ss") ?? imagem.DataCadastro.ToString("dd/MM/yyyy HH:mm:ss")}</p>", 
                     "Imagem Digitalizada: " + imagem.Nome);
         }
     }
