@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
@@ -34,9 +35,9 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Usuário existente.</response>
         [HttpGet()]
         [Route("verificar-usuario-existente")]
-        public async Task<IActionResult> VerificarUsuarioExistente(string username)
+        public async Task<IActionResult> VerificarUsuarioExistente(string username, Guid? idUsuario = null)
         {
-            var result = await _usuarioAppService.IndicaUsuarioExistenteAsync(username);
+            var result = await _usuarioAppService.IndicaUsuarioExistente(username, idUsuario);
             return Ok(result);
         }
 
@@ -71,11 +72,11 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Dados atualizado.</response>
         [HttpPut()]
-        [Route("atualizar-dados-cadastro-usuario")]
+        [Route("atualizar-dados-cadastro-usuario/{idUsuario:guid}")]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public async Task<IActionResult> AtualizarDadosCadastroUsuario([FromBody] UsuarioViewModel usuarioViewModel)
+        public async Task<IActionResult> AtualizarDadosCadastroUsuario([FromBody] UsuarioViewModel usuarioViewModel, Guid idUsuario)
         {
-            var result = await _usuarioAppService.AtualizarDadosCadastroUsuario(usuarioViewModel);
+            var result = await _usuarioAppService.AtualizarDadosCadastroUsuario(usuarioViewModel, idUsuario);
             return Ok(result);
         }
     }

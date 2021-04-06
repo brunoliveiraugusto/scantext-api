@@ -58,18 +58,18 @@ namespace ScanText.Data.Database.Repositories
                     .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> AtualizarDadosCadastro(Usuario usuario)
+        public async Task<bool> AtualizarDadosCadastro(Usuario usuario, Guid idUsuario)
         {
             try
             {
-                var user = await ObterPorIdAsync(usuario.Id);
+                var user = await ObterPorIdAsync(idUsuario);
 
                 user.Username = usuario.Username;
                 user.NomeCompleto = usuario.NomeCompleto;
                 user.DataNascimento = usuario.DataNascimento;
                 user.Email = usuario.Email;
 
-                await DbSet.ReplaceOneAsync(Builders<Usuario>.Filter.Eq("_id", user.Id), user);
+                await DbSet.ReplaceOneAsync(Builders<Usuario>.Filter.Eq("_id", idUsuario), user);
 
                 return true;
             }
