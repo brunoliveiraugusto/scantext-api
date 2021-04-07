@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ScanText.Application.Helper.Exceptions;
+using ScanText.Application.Utils.Exceptions;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;

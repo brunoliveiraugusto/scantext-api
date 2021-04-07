@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ScanText.Application.Helper.Exceptions
+namespace ScanText.Application.Utils.Exceptions
 {
     public class UserAlreadyExistsException : Exception
     {
