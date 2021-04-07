@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using ScanText.Data.Database.Repositories.Interfaces;
-using ScanText.Domain.UsuarioDTO.Entities;
+using ScanText.Domain.Usuario.Entities;
 using ScanText.Infra.Configuration.Database.Context;
 using System;
 using System.Linq.Expressions;

@@ -1,7 +1,7 @@
 ﻿using ScanText.Domain.DomainObjects;
 using System;
 
-namespace ScanText.Domain.UsuarioDTO.Entities
+namespace ScanText.Domain.Usuario.Entities
 {
     public class Usuario : Entity<Usuario>
     {

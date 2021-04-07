@@ -3,7 +3,7 @@ using ScanText.Application.Helper.Exceptions;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
-using ScanText.Domain.UsuarioDTO.Entities;
+using ScanText.Domain.Usuario.Entities;
 using ScanText.Security.Authentication.Interfaces;
 using ScanText.Security.Encrypt.Interfaces;
 using System;

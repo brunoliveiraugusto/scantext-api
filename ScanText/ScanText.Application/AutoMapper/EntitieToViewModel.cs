@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ScanText.Application.ViewModels;
-using ScanText.Domain.UsuarioDTO.Entities;
+using ScanText.Domain.Usuario.Entities;
 
 namespace ScanText.Application.AutoMapper
 {

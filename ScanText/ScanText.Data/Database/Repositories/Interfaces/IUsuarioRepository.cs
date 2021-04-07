@@ -1,4 +1,4 @@
-﻿using ScanText.Domain.UsuarioDTO.Entities;
+﻿using ScanText.Domain.Usuario.Entities;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;

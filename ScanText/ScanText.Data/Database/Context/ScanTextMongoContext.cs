@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using ScanText.Domain.Linguagem.Entities;
-using ScanText.Domain.UsuarioDTO.Entities;
+using ScanText.Domain.Usuario.Entities;
 using ScanText.Infra.Configuration.DataBase.Interface;
 
 namespace ScanText.Infra.Configuration.Database.Context
