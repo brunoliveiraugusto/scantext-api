@@ -2,6 +2,6 @@
 {
     public class QrCode
     {
-        public byte[] Code { get; set; }
+        public string Code { get; set; }
     }
 }
