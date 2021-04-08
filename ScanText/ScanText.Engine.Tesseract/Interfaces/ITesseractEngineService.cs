@@ -2,7 +2,7 @@
 
 namespace ScanText.Engine.Tesseract.Interfaces
 {
-    public interface ITesseractEngineOCR
+    public interface ITesseractEngineService
     {
         ImagemOCR ReadImage(ImagemOCR imagem);
         byte[] ConvertBase64ToByteArray(string base64);

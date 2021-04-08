@@ -7,7 +7,7 @@ using Tesseract;
 
 namespace ScanText.Engine.Tesseract.Services
 {
-    public class TesseractEngineOCR : ITesseractEngineOCR
+    public class TesseractEngineService : ITesseractEngineService
     {
         public ImagemOCR ReadImage(ImagemOCR imagem)
         {

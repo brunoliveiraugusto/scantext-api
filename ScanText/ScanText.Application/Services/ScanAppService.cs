@@ -8,10 +8,10 @@ namespace ScanText.Application.Services
 {
     public class ScanAppService : IScanAppService
     {
-        private readonly ITesseractEngineOCR _tesseractEngineOCR;
+        private readonly ITesseractEngineService _tesseractEngineOCR;
         private readonly IMapper _mapper;
 
-        public ScanAppService(ITesseractEngineOCR tesseractEngineOCR, IMapper mapper)
+        public ScanAppService(ITesseractEngineService tesseractEngineOCR, IMapper mapper)
         {
             _tesseractEngineOCR = tesseractEngineOCR;
             _mapper = mapper;

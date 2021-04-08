@@ -34,7 +34,7 @@ namespace ScanText.Api.Configurations
             services.AddScoped<IPerfilAppService, PerfilAppService>();
 
             //Engine
-            services.AddScoped<ITesseractEngineOCR, TesseractEngineOCR>();
+            services.AddScoped<ITesseractEngineService, TesseractEngineService>();
 
             //Repositories
             services.AddScoped<ILinguagemRepository, LinguagemRepository>();
