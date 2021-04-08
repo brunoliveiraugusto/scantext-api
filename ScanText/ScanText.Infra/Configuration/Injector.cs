@@ -4,7 +4,7 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.Services;
 using ScanText.Data.Database.Repositories;
 using ScanText.Data.Database.Repositories.Interfaces;
-using ScanText.Engine.Tesseract.Entities;
+using ScanText.Engine.Tesseract.Services;
 using ScanText.Engine.Tesseract.Interfaces;
 using ScanText.Infra.Configuration.Database.Context;
 using ScanText.Infra.Configuration.DataBase;

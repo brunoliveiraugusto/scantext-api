@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using Tesseract;
 
-namespace ScanText.Engine.Tesseract.Entities
+namespace ScanText.Engine.Tesseract.Services
 {
     public class TesseractEngineOCR : ITesseractEngineOCR
     {
