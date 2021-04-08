@@ -1,6 +1,7 @@
 ﻿using QRCoder;
 using ScanText.Engine.Interfaces;
 using ScanText.Engine.Models;
+using ScanText.Engine.Utils.Helper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,7 +21,7 @@ namespace ScanText.Engine.Services
 
         private Bitmap GenerateImage(string text)
         {
-            var qrCodeData = new QRCodeGenerator().CreateQrCode(text, QRCodeGenerator.ECCLevel.Q);
+            var qrCodeData = new QRCodeGenerator().CreateQrCode(text, QRCodeGenerator.ECCLevel.H);
             var qrCodeImage = new QRCode(qrCodeData).GetGraphic(10);
             return qrCodeImage;
         }
@@ -30,7 +31,7 @@ namespace ScanText.Engine.Services
             using(var stream = new MemoryStream())
             {
                 img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                return new QrCode { Code = stream.ToArray() };
+                return new QrCode { Code = stream.ToArray().ToBase64() };
             }
         }
     }
