@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{394C6DFF-D04
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{9CDAB13C-5BF6-42DD-A8F7-FDB723226CD4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Engine.Tesseract", "ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj", "{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Engine", "ScanText.Engine.Tesseract\ScanText.Engine.csproj", "{EA6E065B-0477-4CFF-A0FB-D57BA607CD72}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}"
 EndProject
@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Security", "ScanTe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8948B085-C35D-47A7-A322-2C10D75294F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Test", "ScanText.Test\ScanText.Test.csproj", "{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Test", "ScanText.Test\ScanText.Test.csproj", "{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

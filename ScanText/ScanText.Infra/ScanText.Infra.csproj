@@ -13,7 +13,7 @@
     <ProjectReference Include="..\ScanText.Application\ScanText.Application.csproj" />
     <ProjectReference Include="..\ScanText.Data\ScanText.Data.csproj" />
     <ProjectReference Include="..\ScanText.Domain\ScanText.Domain.csproj" />
-    <ProjectReference Include="..\ScanText.Engine.Tesseract\ScanText.Engine.Tesseract.csproj" />
+    <ProjectReference Include="..\ScanText.Engine.Tesseract\ScanText.Engine.csproj" />
     <ProjectReference Include="..\ScanText.Security\ScanText.Security.csproj" />
   </ItemGroup>
 
