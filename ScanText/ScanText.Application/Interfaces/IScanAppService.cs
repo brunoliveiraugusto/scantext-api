@@ -5,6 +5,6 @@ namespace ScanText.Application.Interfaces
     public interface IScanAppService
     {
         ImagemViewModel LerTextoImagem(ImagemViewModel imagemVM);
-        QrCodeViewModel ObterQrCodeImagem(string text);
+        QrCodeResponseViewModel ObterQrCodeImagem(string text);
     }
 }

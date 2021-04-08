@@ -2,6 +2,7 @@
 using ScanText.Application.ViewModels;
 using ScanText.Domain.Usuario.Entities;
 using ScanText.Engine.Models;
+using ScanText.Engine.Utils.Helper;
 
 namespace ScanText.Application.AutoMapper
 {
@@ -17,7 +18,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Role, opt => opt.Ignore())
                 .ForMember(dest => dest.Password, opt => opt.Ignore());
 
-            CreateMap<QrCode, QrCodeViewModel>()
+            CreateMap<QrCode, QrCodeResponseViewModel>()
                 .ForMember(dest => dest.Code, opt => opt.MapFrom(x => x.Code));
         }
     }

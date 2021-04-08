@@ -28,10 +28,10 @@ namespace ScanText.Application.Services
             return imagemVM;
         }
 
-        public QrCodeViewModel ObterQrCodeImagem(string text)
+        public QrCodeResponseViewModel ObterQrCodeImagem(string text)
         {
             var qrCode = _qrCodeGeneratorService.GenerateQrCode(text);
-            return _mapper.Map<QrCodeViewModel>(qrCode);
+            return _mapper.Map<QrCodeResponseViewModel>(qrCode);
         }
     }
 }
