@@ -33,12 +33,12 @@ namespace ScanText.Api.Controllers
         /// API responsável por gerar um QrCode.
         /// </summary>
         /// <response code="200">QrCode gerado.</response>
-        [HttpGet()]
-        [Route("obter-qr-code/{text}")]
+        [HttpPost()]
+        [Route("obter-qr-code")]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public IActionResult ObterQrCodeImagem([FromQuery] string text)
+        public IActionResult ObterQrCodeImagem([FromBody] QrCodeViewModel qrCode)
         {
-            var response = _scanAppService.ObterQrCodeImagem(text);
+            var response = _scanAppService.ObterQrCodeImagem(qrCode.Text);
             return Ok(response);
         }
     }
