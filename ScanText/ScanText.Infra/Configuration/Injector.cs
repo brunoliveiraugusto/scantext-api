@@ -17,6 +17,8 @@ using ScanText.Security.Encrypt.Interfaces;
 using Microsoft.AspNetCore.Http;
 using ScanText.Domain.Email.Entities;
 using ScanText.Domain.Email.Entities.Interfaces;
+using ScanText.Engine.Interfaces;
+using ScanText.Engine.Services;
 
 namespace ScanText.Api.Configurations
 {
@@ -32,9 +34,6 @@ namespace ScanText.Api.Configurations
             services.AddScoped<ILoginAppService, LoginAppService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IPerfilAppService, PerfilAppService>();
-
-            //Engine
-            services.AddScoped<ITesseractEngineService, TesseractEngineService>();
 
             //Repositories
             services.AddScoped<ILinguagemRepository, LinguagemRepository>();
@@ -58,6 +57,10 @@ namespace ScanText.Api.Configurations
             services.AddSingleton<IEmailAddress, EmailAddress>();
 
             services.AddSingleton<ScanTextMongoContext>();
+
+            //Engine
+            services.AddScoped<ITesseractEngineService, TesseractEngineService>();
+            services.AddScoped<IQrCodeGeneratorService, QrCodeGeneratorService>();
         }
     }
 }
