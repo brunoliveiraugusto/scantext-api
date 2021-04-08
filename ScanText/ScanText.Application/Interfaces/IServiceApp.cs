@@ -7,10 +7,10 @@ namespace ScanText.Application.Interfaces
 {
     public interface IServiceApp<TEntity>
     {
-        Task AtualizarAsync(TEntity model, Guid id);
-        Task<bool> InserirAsync(TEntity model);
-        Task<TEntity> ObterPorIdAsync(Guid id);
-        Task<IEnumerable<TEntity>> ObterTodosAsync();
-        Task RemoverAsync(Guid id);
+        Task Atualizar(TEntity model, Guid id);
+        Task<bool> Inserir(TEntity model);
+        Task<TEntity> ObterPorId(Guid id);
+        Task<IEnumerable<TEntity>> ObterTodos();
+        Task Remover(Guid id);
     }
 }
