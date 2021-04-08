@@ -1,4 +1,4 @@
-﻿namespace ScanText.Engine.Tesseract.Models
+﻿namespace ScanText.Engine.Tesseract.Services
 {
     public class ImagemOCR
     {
