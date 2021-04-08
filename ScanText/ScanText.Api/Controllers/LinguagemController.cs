@@ -28,7 +28,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<bool> Criar([FromBody] LinguagemViewModel linguagemViewModel)
         {
-            return await _linguagemAppService.InserirAsync(linguagemViewModel);
+            return await _linguagemAppService.Inserir(linguagemViewModel);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<LinguagemViewModel> ObterPorId(Guid id)
         {
-            var linguagem = await _linguagemAppService.ObterPorIdAsync(id);
+            var linguagem = await _linguagemAppService.ObterPorId(id);
             return linguagem;
         }
 
@@ -51,7 +51,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IEnumerable<LinguagemViewModel>> ObterTodos()
         {
-            var linguagens = await _linguagemAppService.ObterTodosAsync();
+            var linguagens = await _linguagemAppService.ObterTodos();
             return linguagens;
         }
 
@@ -63,7 +63,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Atualizar([FromBody] LinguagemViewModel linguagem, Guid id)
         {
-            await _linguagemAppService.AtualizarAsync(linguagem, id);
+            await _linguagemAppService.Atualizar(linguagem, id);
             return Ok();
         }
 
@@ -75,7 +75,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Remover(Guid id)
         {
-            await _linguagemAppService.RemoverAsync(id);
+            await _linguagemAppService.Remover(id);
             return Ok();
         }
     }

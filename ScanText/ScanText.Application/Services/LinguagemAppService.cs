@@ -20,14 +20,14 @@ namespace ScanText.Application.Services
             _mapper = mapper;
         }
 
-        public async Task AtualizarAsync(LinguagemViewModel linguagemViewModel, Guid id)
+        public async Task Atualizar(LinguagemViewModel linguagemViewModel, Guid id)
         {
             ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
             await _linguagemRepository.AtualizarAsync(linguagem, id);
         }
 
-        public async Task<bool> InserirAsync(LinguagemViewModel linguagemViewModel)
+        public async Task<bool> Inserir(LinguagemViewModel linguagemViewModel)
         {
             ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
@@ -35,19 +35,19 @@ namespace ScanText.Application.Services
             return true;
         }
 
-        public async Task<LinguagemViewModel> ObterPorIdAsync(Guid id)
+        public async Task<LinguagemViewModel> ObterPorId(Guid id)
         {
             var linguagem = await _linguagemRepository.ObterPorIdAsync(id);
             return _mapper.Map<LinguagemViewModel>(linguagem);
         }
 
-        public async Task<IEnumerable<LinguagemViewModel>> ObterTodosAsync()
+        public async Task<IEnumerable<LinguagemViewModel>> ObterTodos()
         {
             var linguagens = await _linguagemRepository.ObterTodosAsync();
             return _mapper.Map<IEnumerable<LinguagemViewModel>>(linguagens);
         }
 
-        public async Task RemoverAsync(Guid id)
+        public async Task Remover(Guid id)
         {
             await _linguagemRepository.RemoverAsync(id);
         }

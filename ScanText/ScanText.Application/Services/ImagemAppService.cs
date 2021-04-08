@@ -35,14 +35,14 @@ namespace ScanText.Application.Services
             IdUsuario = _user.GetUserId();
         }
 
-        public async Task AtualizarAsync(ImagemViewModel imagemViewModel, Guid id)
+        public async Task Atualizar(ImagemViewModel imagemViewModel, Guid id)
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataAtualizacao = DateTime.Now;
             await _imagemRepository.AtualizarAsync(imagem, id);
         }
 
-        public async Task<bool> InserirAsync(ImagemViewModel imagemViewModel)
+        public async Task<bool> Inserir(ImagemViewModel imagemViewModel)
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataCadastro = DateTime.Now;
@@ -51,19 +51,19 @@ namespace ScanText.Application.Services
             return true;
         }
 
-        public async Task<ImagemViewModel> ObterPorIdAsync(Guid id)
+        public async Task<ImagemViewModel> ObterPorId(Guid id)
         {
             var imagem = await _imagemRepository.ObterPorIdAsync(id);
             return _mapper.Map<ImagemViewModel>(imagem);
         }
 
-        public async Task<IEnumerable<ImagemViewModel>> ObterTodosAsync()
+        public async Task<IEnumerable<ImagemViewModel>> ObterTodos()
         {
             var imagens = await _imagemRepository.ObterTodosAsync();
             return _mapper.Map<IEnumerable<ImagemViewModel>>(imagens);
         }
 
-        public async Task RemoverAsync(Guid id)
+        public async Task Remover(Guid id)
         {
             await _imagemRepository.RemoverAsync(id);
         }

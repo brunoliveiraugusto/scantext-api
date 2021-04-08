@@ -28,7 +28,7 @@ namespace ScanText.Application.Services
             _user = user;
         }
 
-        public Task AtualizarAsync(UsuarioViewModel usuarioViewModel, Guid id)
+        public Task Atualizar(UsuarioViewModel usuarioViewModel, Guid id)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +45,7 @@ namespace ScanText.Application.Services
             return await _usuarioRepository.IndicaUsuarioExistenteAsync(expression);
         }
 
-        public async Task<bool> InserirAsync(UsuarioViewModel usuarioViewModel)
+        public async Task<bool> Inserir(UsuarioViewModel usuarioViewModel)
         {
             var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuarioViewModel.Username);
             
@@ -70,17 +70,17 @@ namespace ScanText.Application.Services
             return await _usuarioRepository.ObterEmailUsuarioLogado(idUsuario);
         }
 
-        public Task<UsuarioViewModel> ObterPorIdAsync(Guid id)
+        public Task<UsuarioViewModel> ObterPorId(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<UsuarioViewModel>> ObterTodosAsync()
+        public Task<IEnumerable<UsuarioViewModel>> ObterTodos()
         {
             throw new NotImplementedException();
         }
 
-        public Task RemoverAsync(Guid id)
+        public Task Remover(Guid id)
         {
             throw new NotImplementedException();
         }

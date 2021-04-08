@@ -26,7 +26,7 @@ namespace ScanText.Api.Controllers
         [HttpPost()]
         public async Task<bool> Criar([FromBody] UsuarioViewModel usuarioViewModel)
         {
-            return await _usuarioAppService.InserirAsync(usuarioViewModel);
+            return await _usuarioAppService.Inserir(usuarioViewModel);
         }
 
         /// <summary>

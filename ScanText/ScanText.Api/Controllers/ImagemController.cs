@@ -28,7 +28,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<bool> Criar([FromBody] ImagemViewModel imagemViewModel)
         {
-            return await _imagemAppService.InserirAsync(imagemViewModel);
+            return await _imagemAppService.Inserir(imagemViewModel);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<ImagemViewModel> ObterPorId(Guid id)
         {
-            var imagem = await _imagemAppService.ObterPorIdAsync(id);
+            var imagem = await _imagemAppService.ObterPorId(id);
             return imagem;
         }
 
@@ -51,7 +51,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IEnumerable<ImagemViewModel>> ObterTodos()
         {
-            var imagens = await _imagemAppService.ObterTodosAsync();
+            var imagens = await _imagemAppService.ObterTodos();
             return imagens;
         }
 
@@ -64,7 +64,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Atualizar([FromBody] ImagemViewModel imagemViewModel, Guid id)
         {
-            await _imagemAppService.AtualizarAsync(imagemViewModel, id);
+            await _imagemAppService.Atualizar(imagemViewModel, id);
             return Ok();
         }
 
@@ -77,7 +77,7 @@ namespace ScanText.Api.Controllers
         [Authorize(Roles = AuthorizationService.Todos)]
         public async Task<IActionResult> Remover(Guid id)
         {
-            await _imagemAppService.RemoverAsync(id);
+            await _imagemAppService.Remover(id);
             return Ok();
         }
 
