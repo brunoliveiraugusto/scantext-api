@@ -2,6 +2,6 @@
 {
     public class QrCodeViewModel
     {
-        public byte[] Code { get; set; }
+        public string Text { get; set; }
     }
 }
