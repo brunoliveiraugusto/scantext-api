@@ -33,7 +33,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
                 .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(x => x.DataCadastro));
 
-            CreateMap<ImagemViewModel, ImagemOCR>()
+            CreateMap<ImagemViewModel, TesseractImage>()
                 .ForMember(dest => dest.Base64, opt => opt.MapFrom(x => x.Base64))
                 .ForMember(dest => dest.SiglaLinguagem, opt => opt.MapFrom(x => x.Linguagem.Sigla))
                 .ForMember(dest => dest.Texto, opt => opt.MapFrom(x => x.Texto))

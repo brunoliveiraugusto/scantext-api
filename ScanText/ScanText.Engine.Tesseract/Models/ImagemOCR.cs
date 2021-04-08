@@ -1,6 +1,6 @@
 ﻿namespace ScanText.Engine.Tesseract.Models
 {
-    public class ImagemOCR
+    public class TesseractImage
     {
         public string Base64 { get; set; }
         public string SiglaLinguagem { get; set; }

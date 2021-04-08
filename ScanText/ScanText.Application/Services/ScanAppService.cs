@@ -19,9 +19,9 @@ namespace ScanText.Application.Services
 
         public ImagemViewModel LerTextoImagem(ImagemViewModel imagemVM)
         {
-            var imagemOCR = _mapper.Map<ImagemOCR>(imagemVM);
+            var imagemOCR = _mapper.Map<TesseractImage>(imagemVM);
             imagemOCR = _tesseractEngineOCR.ReadImage(imagemOCR);
-            imagemVM = _mapper.Map<ImagemOCR, ImagemViewModel>(imagemOCR, imagemVM);
+            imagemVM = _mapper.Map<TesseractImage, ImagemViewModel>(imagemOCR, imagemVM);
             return imagemVM;
         }
     }

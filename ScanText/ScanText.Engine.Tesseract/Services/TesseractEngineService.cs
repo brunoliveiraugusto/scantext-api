@@ -9,7 +9,7 @@ namespace ScanText.Engine.Tesseract.Services
 {
     public class TesseractEngineService : ITesseractEngineService
     {
-        public ImagemOCR ReadImage(ImagemOCR imagem)
+        public TesseractImage ReadImage(TesseractImage imagem)
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
             path = Path.Combine(path, "tessdata").Replace("file:\\", "");
