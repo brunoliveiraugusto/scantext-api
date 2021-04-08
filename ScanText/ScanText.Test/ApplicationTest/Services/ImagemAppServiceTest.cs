@@ -4,6 +4,7 @@ using Moq;
 using ScanText.Application.Services;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.Linguagem.Entities;
+using ScanText.Security.Authentication.Interfaces;
 using ScanText.Test.ApplicationTest.Builders.Domain;
 using ScanText.Test.ApplicationTest.Builders.Mapper;
 using ScanText.Test.ApplicationTest.Builders.Repository;
@@ -18,10 +19,11 @@ namespace ScanText.Test.ApplicationTest.Services
         private Mock<IImagemRepository> _imagemRepositoryMock = new ImagemRepositoryTestBuilder().Build();
         private IMapper _mapper = new MapperTestBuilder().Build();
         private Imagem _imagemMock = new ImagemTestBuilder().Default().Build();
+        private Mock<IUsuarioService> _userMock = new UsuarioServiceTestBuilder().Build();
 
         private ImagemAppService BuildConstructor()
         {
-            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper);
+            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null);
         }
 
         [Fact(DisplayName = "Teste de inserção de uma imagem")]
@@ -38,7 +40,7 @@ namespace ScanText.Test.ApplicationTest.Services
             #region When
             var imagemVM = new ImagemViewModelTestBuilder().Default().Build();
 
-            var resp = await imagemAppService.InserirAsync(imagemVM);
+            var resp = await imagemAppService.Inserir(imagemVM);
             #endregion
 
             #region Then
