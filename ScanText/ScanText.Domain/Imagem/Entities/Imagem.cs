@@ -1,7 +1,7 @@
 ﻿using ScanText.Domain.DomainObjects;
 using System;
 
-namespace ScanText.Domain.Linguagem.Entities
+namespace ScanText.Domain.Imagem.Entities
 {
     public class Imagem : Entity<Imagem>
     {

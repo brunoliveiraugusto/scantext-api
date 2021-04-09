@@ -2,7 +2,7 @@
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
-using ScanText.Domain.Linguagem.Entities;
+using ScanText.Domain.Imagem.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

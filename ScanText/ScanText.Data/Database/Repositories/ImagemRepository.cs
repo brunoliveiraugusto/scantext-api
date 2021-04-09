@@ -1,6 +1,6 @@
 ﻿using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Data.Utils;
-using ScanText.Domain.Linguagem.Entities;
+using ScanText.Domain.Imagem.Entities;
 using ScanText.Infra.Configuration.Database.Context;
 using System.Collections.Generic;
 using System.Threading.Tasks;

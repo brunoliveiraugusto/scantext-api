@@ -1,4 +1,4 @@
-﻿using ScanText.Domain.Linguagem.Entities;
+﻿using ScanText.Domain.Imagem.Entities;
 
 namespace ScanText.Data.Database.Repositories.Interfaces
 {
