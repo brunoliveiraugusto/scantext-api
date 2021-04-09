@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using ScanText.Domain.DomainObjects;
+using ScanText.Domain.EntityDomain;
 using ScanText.Infra.Configuration.Database.Context;
 using System;
 using System.Collections;

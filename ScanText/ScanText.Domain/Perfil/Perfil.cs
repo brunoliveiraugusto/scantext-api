@@ -1,5 +1,5 @@
 ﻿using System;
-using ScanText.Domain.DomainObjects;
+using ScanText.Domain.EntityDomain;
 
 namespace ScanText.Domain.Perfil
 {

@@ -1,4 +1,4 @@
-﻿using ScanText.Domain.DomainObjects;
+﻿using ScanText.Domain.EntityDomain;
 using System;
 
 namespace ScanText.Domain.Usuario.Entities
