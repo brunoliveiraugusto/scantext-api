@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Linguagem.Entities;
 using ScanText.Domain.Perfil;
 using ScanText.Domain.Usuario.Entities;
 using ScanText.Infra.Configuration.DataBase.Interface;

@@ -1,5 +1,5 @@
 ﻿using ScanText.Application.ViewModels;
-using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Linguagem.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

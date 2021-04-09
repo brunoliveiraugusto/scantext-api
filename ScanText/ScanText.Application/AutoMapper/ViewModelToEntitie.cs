@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Utils;
-using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Linguagem.Entities;
 using ScanText.Domain.Usuario.Entities;
 using ScanText.Engine.Tesseract.Models;
 using ScanText.Security.Authentication.Entities;

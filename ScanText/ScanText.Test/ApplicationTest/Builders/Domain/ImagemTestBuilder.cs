@@ -1,4 +1,4 @@
-﻿using ScanText.Domain.Imagem.Entities;
+﻿using ScanText.Domain.Linguagem.Entities;
 using System;
 
 namespace ScanText.Test.ApplicationTest.Builders.Domain

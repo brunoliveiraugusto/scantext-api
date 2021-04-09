@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver.Linq;
 using ScanText.Data.Utils;
-using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Linguagem.Entities;
 using System;
 using System.Collections.Generic;
 

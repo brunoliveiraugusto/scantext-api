@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ScanText.Application.ViewModels;
-using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Linguagem.Entities;
 
 namespace ScanText.Application.Interfaces
 {

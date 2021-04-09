@@ -1,7 +1,7 @@
 ﻿using ScanText.Domain.EntityDomain;
 using System;
 
-namespace ScanText.Domain.Imagem.Entities
+namespace ScanText.Domain.Linguagem.Entities
 {
     public class Linguagem : Entity<Linguagem>
     {
