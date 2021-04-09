@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using ScanText.Security.Authentication.Extensions;
+using ScanText.Security.Authentication.Utils.Extensions;
 using ScanText.Security.Authentication.Interfaces;
 using System;
 

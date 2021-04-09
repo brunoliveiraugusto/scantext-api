@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 
-namespace ScanText.Security.Authentication.Extensions
+namespace ScanText.Security.Authentication.Utils.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {
