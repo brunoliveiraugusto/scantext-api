@@ -1,7 +1,7 @@
 ﻿using System;
 using ScanText.Domain.EntityDomain;
 
-namespace ScanText.Domain.Perfil
+namespace ScanText.Domain.Perfil.Entities
 {
     public class Perfil : Entity<Perfil>
     {

@@ -1,4 +1,4 @@
-﻿using ScanText.Domain.Perfil;
+﻿using ScanText.Domain.Perfil.Entities;
 
 namespace ScanText.Data.Database.Repositories.Interfaces
 {
