@@ -8,7 +8,6 @@ using ScanText.Engine.Tesseract.Services;
 using ScanText.Engine.Tesseract.Interfaces;
 using ScanText.Infra.Configuration.Database.Context;
 using ScanText.Infra.Configuration.DataBase;
-using ScanText.Infra.Configuration.DataBase.Interface;
 using ScanText.Security.Authentication.Services;
 using ScanText.Security.Authentication.Interfaces;
 using ScanText.Security.Authentication.Settings;
@@ -19,6 +18,7 @@ using ScanText.Domain.Email.Entities;
 using ScanText.Domain.Email.Entities.Interfaces;
 using ScanText.Engine.Interfaces;
 using ScanText.Engine.Services;
+using ScanText.Infra.Configuration.DataBase.Settings.Interfaces;
 
 namespace ScanText.Api.Configurations
 {
