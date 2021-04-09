@@ -1,4 +1,4 @@
-﻿namespace ScanText.Infra.Configuration.DataBase.Interface
+﻿namespace ScanText.Infra.Configuration.DataBase.Settings.Interfaces
 {
     public interface IScanTextDatabaseSettings
     {

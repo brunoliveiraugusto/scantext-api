@@ -2,7 +2,8 @@
 using ScanText.Domain.Linguagem.Entities;
 using ScanText.Domain.Perfil.Entities;
 using ScanText.Domain.Usuario.Entities;
-using ScanText.Infra.Configuration.DataBase.Interface;
+using ScanText.Infra.Configuration.DataBase.Settings.Interfaces;
+using ScanText.Infra.Configuration.Database.Context.Interfaces;
 
 namespace ScanText.Infra.Configuration.Database.Context
 {

@@ -1,4 +1,4 @@
-﻿using ScanText.Infra.Configuration.DataBase.Interface;
+﻿using ScanText.Infra.Configuration.DataBase.Settings.Interfaces;
 
 namespace ScanText.Infra.Configuration.DataBase
 {
