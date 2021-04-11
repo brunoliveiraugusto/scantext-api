@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ScanText.Api.Configurations
+namespace ScanText.Infra.Configurations.DependencyInjection
 {
     public static class DependencyInjectionConfiguration
     {
