@@ -38,7 +38,7 @@ namespace ScanText.Test.ApplicationTest.Services
             #endregion
 
             #region When
-            var imagemVM = new ImagemViewModelTestBuilder().Default().Build();
+            var imagemVM = new ImagemViewModelTestBuilder().DefaultIdiomaPortugues().Build();
 
             var resp = await imagemAppService.Inserir(imagemVM);
             #endregion
