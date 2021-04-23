@@ -5,16 +5,15 @@ using System.IO;
 using System.Reflection;
 using Tesseract;
 
-namespace ScanText.Engine.Tesseract.Services
+namespace ScanText.Engine.Tesseract.Repositories
 {
-    public class TesseractEngineService : ITesseractEngineService
+    public class TesseractEngineRepository : ITesseractEngineRepository
     {
         public TesseractImage ReadImage(TesseractImage imagem)
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
             path = Path.Combine(path, "tessdata").Replace("file:\\", "");
 
-            string text = string.Empty;
             var bytesImg = ConvertBase64ToByteArray(imagem.Base64);
 
             try
@@ -30,13 +29,13 @@ namespace ScanText.Engine.Tesseract.Services
                         }
                     }
                 }
+
+                return imagem;
             }
             catch(Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-
-            return imagem;
         }
 
         public string RemoveLineBreak(string texto)

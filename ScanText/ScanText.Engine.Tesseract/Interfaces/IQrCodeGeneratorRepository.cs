@@ -2,7 +2,7 @@
 
 namespace ScanText.Engine.Interfaces
 {
-    public interface IQrCodeGeneratorService
+    public interface IQrCodeGeneratorRepository
     {
         QrCode GenerateQrCode(string text);
     }

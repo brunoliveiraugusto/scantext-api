@@ -9,11 +9,11 @@ namespace ScanText.Application.Services
 {
     public class ScanAppService : IScanAppService
     {
-        private readonly ITesseractEngineService _tesseractEngineService;
-        private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
+        private readonly ITesseractEngineRepository _tesseractEngineService;
+        private readonly IQrCodeGeneratorRepository _qrCodeGeneratorService;
         private readonly IMapper _mapper;
 
-        public ScanAppService(ITesseractEngineService tesseractEngineService, IQrCodeGeneratorService qrCodeGeneratorService, IMapper mapper)
+        public ScanAppService(ITesseractEngineRepository tesseractEngineService, IQrCodeGeneratorRepository qrCodeGeneratorService, IMapper mapper)
         {
             _tesseractEngineService = tesseractEngineService;
             _qrCodeGeneratorService = qrCodeGeneratorService;

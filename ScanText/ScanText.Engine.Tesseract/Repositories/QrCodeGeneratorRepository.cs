@@ -9,9 +9,9 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScanText.Engine.Services
+namespace ScanText.Engine.Repositories
 {
-    public class QrCodeGeneratorService : IQrCodeGeneratorService
+    public class QrCodeGeneratorRepository : IQrCodeGeneratorRepository
     {
         public QrCode GenerateQrCode(string text)
         {
