@@ -9,28 +9,28 @@ namespace ScanText.Application.Services
 {
     public class ScanAppService : IScanAppService
     {
-        private readonly ITesseractEngineRepository _tesseractEngineService;
-        private readonly IQrCodeGeneratorRepository _qrCodeGeneratorService;
+        private readonly ITesseractEngineRepository _tesseractEngineRepository;
+        private readonly IQrCodeGeneratorRepository _qrCodeGeneratorRepository;
         private readonly IMapper _mapper;
 
-        public ScanAppService(ITesseractEngineRepository tesseractEngineService, IQrCodeGeneratorRepository qrCodeGeneratorService, IMapper mapper)
+        public ScanAppService(ITesseractEngineRepository tesseractEngineRepository, IQrCodeGeneratorRepository qrCodeGeneratorRepository, IMapper mapper)
         {
-            _tesseractEngineService = tesseractEngineService;
-            _qrCodeGeneratorService = qrCodeGeneratorService;
+            _tesseractEngineRepository = tesseractEngineRepository;
+            _qrCodeGeneratorRepository = qrCodeGeneratorRepository;
             _mapper = mapper;
         }
 
         public ImagemViewModel LerTextoImagem(ImagemViewModel imagemVM)
         {
             var imagemOCR = _mapper.Map<TesseractImage>(imagemVM);
-            imagemOCR = _tesseractEngineService.ReadImage(imagemOCR);
+            imagemOCR = _tesseractEngineRepository.ReadImage(imagemOCR);
             imagemVM = _mapper.Map<TesseractImage, ImagemViewModel>(imagemOCR, imagemVM);
             return imagemVM;
         }
 
         public QrCodeResponseViewModel ObterQrCodeImagem(string text)
         {
-            var qrCode = _qrCodeGeneratorService.GenerateQrCode(text);
+            var qrCode = _qrCodeGeneratorRepository.GenerateQrCode(text);
             return _mapper.Map<QrCodeResponseViewModel>(qrCode);
         }
     }
