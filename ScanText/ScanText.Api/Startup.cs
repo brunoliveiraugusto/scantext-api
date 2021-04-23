@@ -67,9 +67,9 @@ namespace ScanText.Api
             #region SendGrid
             services.Configure<SendGridSettings>(options =>
             {
-                options.Key = Configuration.GetSection("SendGrid:Key").Value;
-                options.To = Configuration.GetSection("SendGrid:To").Value;
-                options.Name = Configuration.GetSection("SendGrid:Name").Value;
+                options.Key = Configuration.GetSection("SendGridSettings:Key").Value;
+                options.To = Configuration.GetSection("SendGridSettings:To").Value;
+                options.Name = Configuration.GetSection("SendGridSettings:Name").Value;
             });
             #endregion
 
