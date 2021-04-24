@@ -1,4 +1,5 @@
 ﻿using ScanText.Domain.EntityDomain;
+using ScanText.Domain.Linguagem.Validators;
 using System;
 
 namespace ScanText.Domain.Linguagem.Entities
@@ -9,5 +10,10 @@ namespace ScanText.Domain.Linguagem.Entities
         public string Idioma { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
+
+        public override void IsValid()
+        {
+            Validator.Include(new LinguagemValidator());
+        }
     }
 }

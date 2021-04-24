@@ -1,4 +1,5 @@
 ﻿using ScanText.Domain.EntityDomain;
+using ScanText.Domain.Usuario.Validators;
 using System;
 
 namespace ScanText.Domain.Usuario.Entities
@@ -11,5 +12,10 @@ namespace ScanText.Domain.Usuario.Entities
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Role { get; set; }
+
+        public override void IsValid()
+        {
+            Validator.Include(new UsuarioValidator());
+        }
     }
 }

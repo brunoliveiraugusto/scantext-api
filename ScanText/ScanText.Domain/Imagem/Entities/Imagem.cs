@@ -1,7 +1,9 @@
 ﻿using ScanText.Domain.EntityDomain;
+using Entitie = ScanText.Domain.Linguagem.Entities;
 using System;
+using ScanText.Domain.Imagem.Validators;
 
-namespace ScanText.Domain.Linguagem.Entities
+namespace ScanText.Domain.Imagem.Entities
 {
     public class Imagem : Entity<Imagem>
     {
@@ -13,7 +15,12 @@ namespace ScanText.Domain.Linguagem.Entities
         public float MeanConfidence { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
-        public Linguagem Linguagem { get; set; }
+        public Entitie.Linguagem Linguagem { get; set; }
         public Guid IdUsuario { get; set; }
+
+        public override void IsValid()
+        {
+            Validator.Include(new ImagemValidator());
+        }
     }
 }
