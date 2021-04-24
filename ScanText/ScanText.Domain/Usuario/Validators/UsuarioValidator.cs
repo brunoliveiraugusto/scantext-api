@@ -11,27 +11,28 @@ namespace ScanText.Domain.Usuario.Validators
             RuleFor(u => u.Username)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage(ValidationMessages.CampoObrigatorio(""));
-
-            RuleFor(x => x.NomeCompleto)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage(ValidationMessages.CampoObrigatorio(""));
+                .WithMessage(ValidationMessages.CampoObrigatorio("Usuário"));
 
             RuleFor(x => x.Password)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage(ValidationMessages.CampoObrigatorio(""));
+                .WithMessage(ValidationMessages.CampoObrigatorio("Senha"));
 
-            RuleFor(x => x.DataNascimento)
+            RuleFor(x => x.NomeCompleto)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage(ValidationMessages.CampoObrigatorio(""));
+                .WithMessage(ValidationMessages.CampoObrigatorio("Nome Completo"));
 
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage(ValidationMessages.CampoObrigatorio(""));
+                .EmailAddress()
+                .WithMessage(ValidationMessages.CampoObrigatorio("E-mail"));
+
+            RuleFor(x => x.DataNascimento)
+                .NotEmpty()
+                .NotNull()
+                .WithMessage(ValidationMessages.CampoObrigatorio("Data de Nascimento"));
         }
     }
 }
