@@ -11,7 +11,7 @@ namespace ScanText.Domain.Perfil.Entities
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
 
-        public override void IsValid()
+        public override void Validate()
         {
             Validator.Include(new PerfilValidator());
         }

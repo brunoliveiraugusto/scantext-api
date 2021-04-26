@@ -22,15 +22,15 @@ namespace ScanText.Application.Services
 
         public async Task Atualizar(LinguagemViewModel linguagemViewModel, Guid id)
         {
-            ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
+            linguagem.Validate();
             await _linguagemRepository.AtualizarAsync(linguagem, id);
         }
 
         public async Task<bool> Inserir(LinguagemViewModel linguagemViewModel)
         {
-            ValidarCamposObrigatoriosLinguagem(linguagemViewModel);
             var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
+            linguagem.Validate();
             await _linguagemRepository.InserirAsync(linguagem);
             return true;
         }
@@ -50,19 +50,6 @@ namespace ScanText.Application.Services
         public async Task Remover(Guid id)
         {
             await _linguagemRepository.RemoverAsync(id);
-        }
-
-        public void ValidarCamposObrigatoriosLinguagem(LinguagemViewModel linguagem)
-        {
-            if(string.IsNullOrEmpty(linguagem.Idioma))
-            {
-                throw new Exception("Informe o Idioma.");
-            }
-
-            if (string.IsNullOrEmpty(linguagem.Sigla))
-            {
-                throw new Exception("Informe a Sigla.");
-            }
         }
 
         public Linguagem LinguagemViewModelToLinguagem(LinguagemViewModel linguagemViewModel)

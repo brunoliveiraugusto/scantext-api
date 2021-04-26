@@ -8,7 +8,6 @@ namespace ScanText.Application.Interfaces
 {
     public interface ILinguagemAppService : IServiceApp<LinguagemViewModel>
     {
-        void ValidarCamposObrigatoriosLinguagem(LinguagemViewModel linguagemViewModel);
         Linguagem LinguagemViewModelToLinguagem(LinguagemViewModel linguagemViewModel);
     }
 }

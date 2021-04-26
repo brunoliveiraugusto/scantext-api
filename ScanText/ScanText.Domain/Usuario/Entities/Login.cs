@@ -10,7 +10,7 @@ namespace ScanText.Domain.Usuario.Entities
         public string Token { get; set; }
         public string Role { get; set; }
 
-        public override void IsValid()
+        public override void Validate()
         {
             throw new NotImplementedException();
         }

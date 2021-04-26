@@ -15,6 +15,6 @@ namespace ScanText.Domain.EntityDomain
         [NotMapped]
         public AbstractValidator<TEntity> Validator { get; private set; }
 
-        public abstract void IsValid();
+        public abstract void Validate();
     }
 }

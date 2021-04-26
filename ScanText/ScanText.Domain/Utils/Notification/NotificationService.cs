@@ -10,7 +10,7 @@ namespace ScanText.Domain.Utils.Notification
     {
         public bool ValidarEntidade<TEntity>(TEntity entity) where TEntity : Entity<TEntity>
         {
-            entity.IsValid();
+            entity.Validate();
             return true;
         }
     }

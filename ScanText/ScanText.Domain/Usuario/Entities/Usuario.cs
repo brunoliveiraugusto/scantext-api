@@ -13,7 +13,7 @@ namespace ScanText.Domain.Usuario.Entities
         public DateTime DataNascimento { get; set; }
         public string Role { get; set; }
 
-        public override void IsValid()
+        public override void Validate()
         {
             Validator.Include(new UsuarioValidator());
         }

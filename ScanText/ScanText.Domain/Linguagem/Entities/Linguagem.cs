@@ -11,7 +11,7 @@ namespace ScanText.Domain.Linguagem.Entities
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
 
-        public override void IsValid()
+        public override void Validate()
         {
             Validator.Include(new LinguagemValidator());
         }

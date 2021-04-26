@@ -54,6 +54,7 @@ namespace ScanText.Application.Services
                 var passwordEncripty = _encryptData.Encrypt(usuarioViewModel.Password);
                 usuarioViewModel.Password = passwordEncripty;
                 var usuario = UsuarioViewModelToUsuario(usuarioViewModel);
+                usuario.Validate();
                 await _usuarioRepository.InserirAsync(usuario);
             } 
             else

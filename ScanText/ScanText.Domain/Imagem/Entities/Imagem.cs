@@ -18,7 +18,7 @@ namespace ScanText.Domain.Imagem.Entities
         public Entitie.Linguagem Linguagem { get; set; }
         public Guid IdUsuario { get; set; }
 
-        public override void IsValid()
+        public override void Validate()
         {
             Validator.Include(new ImagemValidator());
         }

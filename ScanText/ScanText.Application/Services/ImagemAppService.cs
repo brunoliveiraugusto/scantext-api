@@ -39,6 +39,7 @@ namespace ScanText.Application.Services
         {
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataAtualizacao = DateTime.Now;
+            imagem.Validate();
             await _imagemRepository.AtualizarAsync(imagem, id);
         }
 
@@ -47,6 +48,7 @@ namespace ScanText.Application.Services
             var imagem = ImagemViewModelToImagem(imagemViewModel);
             imagem.DataCadastro = DateTime.Now;
             imagem.IdUsuario = IdUsuario;
+            imagem.Validate();
             await _imagemRepository.InserirAsync(imagem);
             return true;
         }
