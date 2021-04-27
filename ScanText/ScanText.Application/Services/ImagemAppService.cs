@@ -5,6 +5,7 @@ using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Data.Utils;
 using ScanText.Domain.Email.Entities.Interfaces;
 using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Utils.Interfaces;
 using ScanText.Security.Authentication.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,12 @@ namespace ScanText.Application.Services
         private readonly IEmailRepository _emailRepository;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IEmailAddress _emailAddress;
+        private readonly INotificationService _notificationService;
         protected Guid IdUsuario { get; private set; }
 
         public ImagemAppService(IImagemRepository imagemRepository, IMapper mapper, 
             IUsuarioService user, IEmailRepository emailRepository, IUsuarioRepository usuarioRepository,
-            IEmailAddress emailAddress)
+            IEmailAddress emailAddress, INotificationService notificationService)
         {
             _imagemRepository = imagemRepository;
             _mapper = mapper;
@@ -32,25 +34,32 @@ namespace ScanText.Application.Services
             _emailRepository = emailRepository;
             _usuarioRepository = usuarioRepository;
             _emailAddress = emailAddress;
+            _notificationService = notificationService;
             IdUsuario = _user.GetUserId();
         }
 
-        public async Task Atualizar(ImagemViewModel imagemViewModel, Guid id)
+        public async Task<ImagemViewModel> Atualizar(ImagemViewModel imagemViewModel, Guid id)
         {
-            var imagem = ImagemViewModelToImagem(imagemViewModel);
+            var imagem = ConvertModelMapper<Imagem, ImagemViewModel>(imagemViewModel);
             imagem.DataAtualizacao = DateTime.Now;
-            imagem.Validate();
+            
+            if (!_notificationService.ValidEntity(imagem))
+                return null;
+
             await _imagemRepository.AtualizarAsync(imagem, id);
+            return ConvertModelMapper<ImagemViewModel, Imagem>(imagem);
         }
 
-        public async Task<bool> Inserir(ImagemViewModel imagemViewModel)
+        public async Task<ImagemViewModel> Inserir(ImagemViewModel imagemViewModel)
         {
-            var imagem = ImagemViewModelToImagem(imagemViewModel);
+            var imagem = ConvertModelMapper<Imagem, ImagemViewModel>(imagemViewModel);
             imagem.DataCadastro = DateTime.Now;
             imagem.IdUsuario = IdUsuario;
-            imagem.Validate();
+            if (!_notificationService.ValidEntity(imagem))
+                return null;
+
             await _imagemRepository.InserirAsync(imagem);
-            return true;
+            return ConvertModelMapper<ImagemViewModel, Imagem>(imagem);
         }
 
         public async Task<ImagemViewModel> ObterPorId(Guid id)
@@ -70,9 +79,9 @@ namespace ScanText.Application.Services
             await _imagemRepository.RemoverAsync(id);
         }
 
-        public Imagem ImagemViewModelToImagem(ImagemViewModel imagemViewModel)
+        private T ConvertModelMapper<T, M>(M model) where T : class
         {
-            return _mapper.Map<Imagem>(imagemViewModel);
+            return _mapper.Map<T>(model);
         }
 
         public PaginationFilterViewModel<ImagemViewModel> ObterImagensPaginadasPorUsuario(PaginationFilterViewModel<ImagemViewModel> paginationFilterViewModel)
