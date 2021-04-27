@@ -3,11 +3,13 @@ using FluentAssertions;
 using Moq;
 using ScanText.Application.Services;
 using ScanText.Data.Database.Repositories.Interfaces;
-using ScanText.Domain.Linguagem.Entities;
+using ScanText.Domain.Imagem.Entities;
+using ScanText.Domain.Utils.Notification;
 using ScanText.Security.Authentication.Interfaces;
 using ScanText.Test.ApplicationTest.Builders.Domain;
 using ScanText.Test.ApplicationTest.Builders.Mapper;
 using ScanText.Test.ApplicationTest.Builders.Repository;
+using ScanText.Test.ApplicationTest.Builders.Utils.Notification;
 using ScanText.Test.ApplicationTest.Builders.ViewModel;
 using System.Threading.Tasks;
 using Xunit;
@@ -20,10 +22,11 @@ namespace ScanText.Test.ApplicationTest.Services
         private IMapper _mapper = new MapperTestBuilder().Build();
         private Imagem _imagemMock = new ImagemTestBuilder().Default().Build();
         private Mock<IUsuarioService> _userMock = new UsuarioServiceTestBuilder().Build();
+        private NotificationService _notificationService = new NotificationServiceTestBuilder().Build();
 
         private ImagemAppService BuildConstructor()
         {
-            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null);
+            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null, _notificationService);
         }
 
         [Fact(DisplayName = "Teste de inserção de uma imagem")]
@@ -44,7 +47,15 @@ namespace ScanText.Test.ApplicationTest.Services
             #endregion
 
             #region Then
-            resp.Should().BeTrue();
+            resp.Should().NotBeNull();
+            resp.Formato.Should().BeEquivalentTo("png");
+            resp.Nome.Should().BeEquivalentTo("imagem texto");
+            resp.Size.Should().BeGreaterThan(0);
+            resp.Size.Should().Be(123232);
+            resp.Texto.Should().BeEquivalentTo("Texto da imagem de teste");
+            resp.MeanConfidence.Should().BeGreaterThan(0);
+            resp.MeanConfidence.Should().Be(99.5f);
+            resp.Linguagem.Should().NotBeNull();
             #endregion
         }
     }
