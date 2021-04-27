@@ -44,9 +44,10 @@ namespace ScanText.Data.Database.Repositories
             return all.ToList();
         }
 
-        public virtual async Task RemoverAsync(Guid id)
+        public virtual async Task<bool> RemoverAsync(Guid id)
         {
-            await DbSet.DeleteOneAsync(Builders<TEntity>.Filter.Eq("_id", id));
+            var resp = await DbSet.DeleteOneAsync(Builders<TEntity>.Filter.Eq("_id", id));
+            return resp.DeletedCount > 0;
         }
     }
 }
