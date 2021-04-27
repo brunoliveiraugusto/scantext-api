@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using FluentValidation;
+using ScanText.Domain.Utils.Validators.Base;
 
 namespace ScanText.Domain.EntityDomain
 {
@@ -10,10 +11,15 @@ namespace ScanText.Domain.EntityDomain
     {
         public Guid Id { get; set; }
 
-        [BsonIgnore]
         [JsonIgnore]
+        [BsonIgnore]
         [NotMapped]
-        public AbstractValidator<TEntity> Validator { get; private set; }
+        public BaseValidation<TEntity> Validator { get; protected set; }
+
+        public Entity()
+        {
+            Validator = new BaseValidation<TEntity>();
+        }
 
         public abstract void Validate();
     }
