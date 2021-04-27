@@ -16,12 +16,19 @@ namespace ScanText.Application.Services
             _perfilRepository = perfilRepository;
         }
 
-        public Task Atualizar(PerfilViewModel model, Guid id)
+        public Task<PerfilViewModel> Atualizar(PerfilViewModel model, Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Inserir(PerfilViewModel model)
+        public T ConvertModelMapper<T, M>(M model)
+            where T : class
+            where M : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PerfilViewModel> Inserir(PerfilViewModel model)
         {
             throw new NotImplementedException();
         }
@@ -36,7 +43,7 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task Remover(Guid id)
+        public Task<bool> Remover(Guid id)
         {
             throw new NotImplementedException();
         }
