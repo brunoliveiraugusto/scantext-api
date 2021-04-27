@@ -74,9 +74,9 @@ namespace ScanText.Application.Services
             return _mapper.Map<IEnumerable<ImagemViewModel>>(imagens);
         }
 
-        public async Task Remover(Guid id)
+        public async Task<bool> Remover(Guid id)
         {
-            await _imagemRepository.RemoverAsync(id);
+            return await _imagemRepository.RemoverAsync(id);
         }
 
         public T ConvertModelMapper<T, M>(M model) 

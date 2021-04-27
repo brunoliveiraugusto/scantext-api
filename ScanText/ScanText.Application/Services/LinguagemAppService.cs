@@ -3,6 +3,7 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.Linguagem.Entities;
+using ScanText.Domain.Utils.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,26 +14,33 @@ namespace ScanText.Application.Services
     {
         private readonly ILinguagemRepository _linguagemRepository;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public LinguagemAppService(ILinguagemRepository linguagemRepository, IMapper mapper)
+        public LinguagemAppService(ILinguagemRepository linguagemRepository, IMapper mapper, INotificationService notificationService)
         {
             _linguagemRepository = linguagemRepository;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
 
-        public async Task Atualizar(LinguagemViewModel linguagemViewModel, Guid id)
+        public async Task<LinguagemViewModel> Atualizar(LinguagemViewModel linguagemViewModel, Guid id)
         {
-            var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
-            linguagem.Validate();
+            var linguagem = ConvertModelMapper<Linguagem, LinguagemViewModel>(linguagemViewModel);
+            if (!_notificationService.ValidEntity(linguagem))
+                return null;
+            
             await _linguagemRepository.AtualizarAsync(linguagem, id);
+            return ConvertModelMapper<LinguagemViewModel, Linguagem>(linguagem);
         }
 
-        public async Task<bool> Inserir(LinguagemViewModel linguagemViewModel)
+        public async Task<LinguagemViewModel> Inserir(LinguagemViewModel linguagemViewModel)
         {
-            var linguagem = LinguagemViewModelToLinguagem(linguagemViewModel);
-            linguagem.Validate();
+            var linguagem = ConvertModelMapper<Linguagem, LinguagemViewModel>(linguagemViewModel);
+            if (!_notificationService.ValidEntity(linguagem))
+                return null;
+
             await _linguagemRepository.InserirAsync(linguagem);
-            return true;
+            return ConvertModelMapper<LinguagemViewModel, Linguagem>(linguagem);
         }
 
         public async Task<LinguagemViewModel> ObterPorId(Guid id)
@@ -47,14 +55,26 @@ namespace ScanText.Application.Services
             return _mapper.Map<IEnumerable<LinguagemViewModel>>(linguagens);
         }
 
-        public async Task Remover(Guid id)
+        public async Task<bool> Remover(Guid id)
         {
-            await _linguagemRepository.RemoverAsync(id);
+            return await _linguagemRepository.RemoverAsync(id);
         }
 
-        public Linguagem LinguagemViewModelToLinguagem(LinguagemViewModel linguagemViewModel)
+        Task<LinguagemViewModel> IServiceApp<LinguagemViewModel>.Atualizar(LinguagemViewModel model, Guid id)
         {
-            return _mapper.Map<Linguagem>(linguagemViewModel);
+            throw new NotImplementedException();
+        }
+
+        Task<LinguagemViewModel> IServiceApp<LinguagemViewModel>.Inserir(LinguagemViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ConvertModelMapper<T, M>(M model)
+            where T : class
+            where M : class
+        {
+            return _mapper.Map<T>(model);
         }
     }
 }

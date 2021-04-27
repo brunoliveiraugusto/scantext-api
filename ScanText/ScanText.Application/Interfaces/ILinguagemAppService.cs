@@ -8,6 +8,5 @@ namespace ScanText.Application.Interfaces
 {
     public interface ILinguagemAppService : IServiceApp<LinguagemViewModel>
     {
-        Linguagem LinguagemViewModelToLinguagem(LinguagemViewModel linguagemViewModel);
     }
 }
