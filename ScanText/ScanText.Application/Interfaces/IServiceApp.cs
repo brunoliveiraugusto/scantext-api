@@ -7,8 +7,8 @@ namespace ScanText.Application.Interfaces
 {
     public interface IServiceApp<TEntity>
     {
-        Task Atualizar(TEntity model, Guid id);
-        Task<bool> Inserir(TEntity model);
+        Task<TEntity> Atualizar(TEntity model, Guid id);
+        Task<TEntity> Inserir(TEntity model);
         Task<TEntity> ObterPorId(Guid id);
         Task<IEnumerable<TEntity>> ObterTodos();
         Task Remover(Guid id);
