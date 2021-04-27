@@ -79,7 +79,9 @@ namespace ScanText.Application.Services
             await _imagemRepository.RemoverAsync(id);
         }
 
-        private T ConvertModelMapper<T, M>(M model) where T : class
+        public T ConvertModelMapper<T, M>(M model) 
+            where T : class 
+            where M : class
         {
             return _mapper.Map<T>(model);
         }

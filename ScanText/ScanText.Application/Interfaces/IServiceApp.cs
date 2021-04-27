@@ -12,5 +12,8 @@ namespace ScanText.Application.Interfaces
         Task<TEntity> ObterPorId(Guid id);
         Task<IEnumerable<TEntity>> ObterTodos();
         Task Remover(Guid id);
+        T ConvertModelMapper<T, M>(M model)
+            where T : class
+            where M : class;
     }
 }
