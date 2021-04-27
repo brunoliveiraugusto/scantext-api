@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using ScanText.Domain.Utils.Interfaces;
 
 namespace ScanText.Application.Services
 {
@@ -19,16 +20,18 @@ namespace ScanText.Application.Services
         private readonly IEncryptData _encryptData;
         private readonly IMapper _mapper;
         private readonly IUsuarioService _user;
+        private readonly INotificationService _notificationService;
 
-        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper, IUsuarioService user)
+        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper, IUsuarioService user, INotificationService notificationService)
         {
             _usuarioRepository = usuarioRepository;
             _encryptData = encryptData;
             _mapper = mapper;
             _user = user;
+            _notificationService = notificationService;
         }
 
-        public Task Atualizar(UsuarioViewModel usuarioViewModel, Guid id)
+        public Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuarioViewModel, Guid id)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +48,7 @@ namespace ScanText.Application.Services
             return await _usuarioRepository.IndicaUsuarioExistenteAsync(expression);
         }
 
-        public async Task<bool> Inserir(UsuarioViewModel usuarioViewModel)
+        public async Task<UsuarioViewModel> Inserir(UsuarioViewModel usuarioViewModel)
         {
             var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuarioViewModel.Username);
             
@@ -53,16 +56,18 @@ namespace ScanText.Application.Services
             {
                 var passwordEncripty = _encryptData.Encrypt(usuarioViewModel.Password);
                 usuarioViewModel.Password = passwordEncripty;
-                var usuario = UsuarioViewModelToUsuario(usuarioViewModel);
-                usuario.Validate();
+                var usuario = ConvertModelMapper<Usuario, UsuarioViewModel>(usuarioViewModel);
+                if (!_notificationService.ValidEntity(usuario))
+                    return null;
+
                 await _usuarioRepository.InserirAsync(usuario);
+                usuario.Password = null;
+                return ConvertModelMapper<UsuarioViewModel, Usuario>(usuario);
             } 
             else
             {
                 throw new UserAlreadyExistsException();
             }
-
-            return true;
         }
 
         public async Task<string> ObterEmailUsuarioLogado()
@@ -81,14 +86,9 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task Remover(Guid id)
+        public Task<bool> Remover(Guid id)
         {
             throw new NotImplementedException();
-        }
-
-        public Usuario UsuarioViewModelToUsuario(UsuarioViewModel usuarioViewModel)
-        {
-            return _mapper.Map<Usuario>(usuarioViewModel);
         }
 
         public async Task<UsuarioViewModel> CarregarDadosCadastroUsuario()
@@ -104,6 +104,13 @@ namespace ScanText.Application.Services
                 return await _usuarioRepository.AtualizarDadosCadastro(_mapper.Map<Usuario>(usuarioViewModel), idUsuario);
             else
                 throw new UserAlreadyExistsException();
+        }
+
+        public T ConvertModelMapper<T, M>(M model)
+            where T : class
+            where M : class
+        {
+            throw new NotImplementedException();
         }
     }
 }
