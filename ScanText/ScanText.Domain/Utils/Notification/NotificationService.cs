@@ -8,7 +8,7 @@ namespace ScanText.Domain.Utils.Notification
 {
     public class NotificationService : INotificationService
     {
-        public bool ValidarEntidade<TEntity>(TEntity entity) where TEntity : Entity<TEntity>
+        public bool ValidEntity<TEntity>(TEntity entity) where TEntity : Entity<TEntity>
         {
             entity.Validate();
             return true;
