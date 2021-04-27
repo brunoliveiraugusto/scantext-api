@@ -21,13 +21,6 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public T ConvertModelMapper<T, M>(M model)
-            where T : class
-            where M : class
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<PerfilViewModel> Inserir(PerfilViewModel model)
         {
             throw new NotImplementedException();
@@ -44,6 +37,13 @@ namespace ScanText.Application.Services
         }
 
         public Task<bool> Remover(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ConvertModelMapper<T, M>(M model)
+           where T : class
+           where M : class
         {
             throw new NotImplementedException();
         }
