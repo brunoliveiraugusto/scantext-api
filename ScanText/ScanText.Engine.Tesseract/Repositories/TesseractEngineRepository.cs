@@ -1,5 +1,6 @@
 ﻿using ScanText.Engine.Tesseract.Interfaces;
 using ScanText.Engine.Tesseract.Models;
+using ScanText.Engine.Utils.Helper;
 using System;
 using System.IO;
 using System.Reflection;
@@ -11,10 +12,8 @@ namespace ScanText.Engine.Tesseract.Repositories
     {
         public TesseractImage ReadImage(TesseractImage imagem)
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            path = Path.Combine(path, "tessdata").Replace("file:\\", "");
-
-            var bytesImg = ConvertBase64ToByteArray(imagem.Base64);
+            string path = GetDirectoryName();
+            byte[] bytesImg = StringHelper.ConvertBase64ToByteArray(imagem.Base64);
 
             try
             {
@@ -38,15 +37,10 @@ namespace ScanText.Engine.Tesseract.Repositories
             }
         }
 
-        public string RemoveLineBreak(string texto)
+        private string GetDirectoryName()
         {
-            return texto.Replace("\n", "");
-        }
-
-        public byte[] ConvertBase64ToByteArray(string base64)
-        {
-            var newBase64 = base64.Split(",")[1];
-            return Convert.FromBase64String(newBase64);
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+            return Path.Combine(path, "tessdata").Replace("file:\\", "");
         }
     }
 }

@@ -8,5 +8,16 @@ namespace ScanText.Engine.Utils.Helper
         {
             return Convert.ToBase64String(code);
         }
+
+        public static string RemoveLineBreak(string texto)
+        {
+            return texto.Replace("\n", "");
+        }
+
+        public static byte[] ConvertBase64ToByteArray(string base64)
+        {
+            var newBase64 = base64.Split(",")[1];
+            return Convert.FromBase64String(newBase64);
+        }
     }
 }
