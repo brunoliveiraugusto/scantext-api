@@ -18,14 +18,14 @@ namespace ScanText.Data.Database.Repositories
 
         public PaginationFilter<Imagem> ObterImagensPaginadasPorIdUsuario(PaginationFilter<Imagem> pagination, Guid idUsuario)
         {
-            var query = DbSet.AsQueryable().Where(imagem => imagem.IdUsuario == idUsuario);
+            var query = DbSet.AsQueryable().Where(imagem => imagem.IdUsuario == idUsuario) as IQueryable<Imagem>;
             query = OrdenarImagem(pagination, query);
             pagination.Total = query.Count();
             pagination.Pages = query.Skip((pagination.Page - 1) * pagination.Limit).Take(pagination.Limit);
             return pagination;
         }
 
-        public IMongoQueryable<Imagem> OrdenarImagem(PaginationFilter<Imagem> pagination, IMongoQueryable<Imagem> query)
+        public IQueryable<Imagem> OrdenarImagem(PaginationFilter<Imagem> pagination, IQueryable<Imagem> query)
         {
             switch(pagination.Sort)
             {
