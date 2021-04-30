@@ -8,10 +8,19 @@ namespace ScanText.Domain.Utils.Notification
 {
     public class NotificationService : INotificationService
     {
+        public IEnumerable<NotificationItem> Notifications { get; set; }
+
+        public NotificationService()
+        {
+            Notifications = new List<NotificationItem>();
+        }
+
         public bool ValidEntity<TEntity>(TEntity entity) where TEntity : Entity<TEntity>
         {
             entity.Validate();
             return true;
         }
+
+
     }
 }
