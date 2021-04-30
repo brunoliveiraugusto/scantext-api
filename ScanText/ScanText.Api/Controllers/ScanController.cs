@@ -3,16 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
+using ScanText.Domain.Utils.Interfaces;
 
 namespace ScanText.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ScanController : ControllerBase
+    public class ScanController : BaseController
     {
         private readonly IScanAppService _scanAppService;
 
-        public ScanController(IScanAppService scanAppService)
+        public ScanController(IScanAppService scanAppService, INotificationService notificationService) : base(notificationService)
         {
             _scanAppService = scanAppService;
         }

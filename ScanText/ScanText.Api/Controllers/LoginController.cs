@@ -2,17 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
+using ScanText.Domain.Utils.Interfaces;
 using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class LoginController : BaseController
     {
         private readonly ILoginAppService _loginAppService;
 
-        public LoginController(ILoginAppService loginAppService)
+        public LoginController(ILoginAppService loginAppService, INotificationService notificationService) : base(notificationService)
         {
             _loginAppService = loginAppService;
         }

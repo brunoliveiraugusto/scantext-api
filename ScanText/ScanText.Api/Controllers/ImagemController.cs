@@ -3,19 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
+using ScanText.Domain.Utils.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ImagemController : ControllerBase
+    public class ImagemController : BaseController
     {
         private readonly IImagemAppService _imagemAppService;
 
-        public ImagemController(IImagemAppService imagemAppService)
+        public ImagemController(IImagemAppService imagemAppService, INotificationService notificationService) : base(notificationService)
         {
             _imagemAppService = imagemAppService;
         }

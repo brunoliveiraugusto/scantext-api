@@ -3,18 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
+using ScanText.Domain.Utils.Interfaces;
 using System;
 using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsuarioController : ControllerBase
+    public class UsuarioController : BaseController
     {
         private readonly IUsuarioAppService _usuarioAppService;
 
-        public UsuarioController(IUsuarioAppService usuarioAppService)
+        public UsuarioController(IUsuarioAppService usuarioAppService, INotificationService notificationService) : base(notificationService)
         {
             _usuarioAppService = usuarioAppService;
         }

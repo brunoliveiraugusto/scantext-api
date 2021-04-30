@@ -6,16 +6,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using ScanText.Api.Configuration;
+using ScanText.Domain.Utils.Interfaces;
 
 namespace ScanText.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class LinguagemController : ControllerBase
+    public class LinguagemController : BaseController
     {
         private readonly ILinguagemAppService _linguagemAppService;
 
-        public LinguagemController(ILinguagemAppService linguagemAppService)
+        public LinguagemController(ILinguagemAppService linguagemAppService, INotificationService notificationService) : base(notificationService)
         {
             _linguagemAppService = linguagemAppService;
         }
