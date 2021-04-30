@@ -24,7 +24,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Usuário criado com sucesso.</response>
         [HttpPost()]
-        public async Task<bool> Criar([FromBody] UsuarioViewModel usuarioViewModel)
+        public async Task<UsuarioViewModel> Criar([FromBody] UsuarioViewModel usuarioViewModel)
         {
             return await _usuarioAppService.Inserir(usuarioViewModel);
         }
