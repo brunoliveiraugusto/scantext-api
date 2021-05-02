@@ -22,6 +22,22 @@ namespace ScanText.Security.Authentication.Services
             _acessor = acessor;
         }
 
+        public string GenerateSimpleToken()
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_token.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Expires = DateTime.UtcNow.AddHours(24),
+                SigningCredentials =
+                    new SigningCredentials(
+                        new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
         public string GenerateToken(UsuarioAuthentication usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
