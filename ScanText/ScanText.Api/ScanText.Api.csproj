@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ScanText.Application\ScanText.Application.csproj" />
+    <ProjectReference Include="..\ScanText.Infra.CrossCutting\ScanText.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\ScanText.Infra\ScanText.Infra.csproj" />
   </ItemGroup>
 
