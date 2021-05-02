@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8948B085-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanText.Test", "ScanText.Test\ScanText.Test.csproj", "{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanText.Infra.CrossCutting", "ScanText.Infra.CrossCutting\ScanText.Infra.CrossCutting.csproj", "{BD6BDF92-6211-4320-9E2D-6769E87D3456}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6BDF92-6211-4320-9E2D-6769E87D3456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6BDF92-6211-4320-9E2D-6769E87D3456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6BDF92-6211-4320-9E2D-6769E87D3456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6BDF92-6211-4320-9E2D-6769E87D3456}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{9F3AAF27-2019-468E-8120-8FF7C3DCF946} = {E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}
 		{B75B6015-E2DE-43B2-86E1-71D8EA5AA775} = {999F3EB3-718C-4F00-8E81-99ADC72D02BE}
 		{BD1D8878-AAFB-4D98-A53B-9A94BD118D5A} = {8948B085-C35D-47A7-A322-2C10D75294F6}
+		{BD6BDF92-6211-4320-9E2D-6769E87D3456} = {E4369B14-1F2D-45CB-9B11-ECD0D4492FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA919EC8-0E84-4D84-90D7-6AD0D8AEB44F}
