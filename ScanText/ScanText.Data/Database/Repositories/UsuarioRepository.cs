@@ -16,7 +16,7 @@ namespace ScanText.Data.Database.Repositories
 
         }
 
-        public async Task<bool> IndicaUsuarioExistenteAsync(Expression<Func<Usuario, bool>> expression)
+        public async Task<bool> IndicaUsuarioExistente(Expression<Func<Usuario, bool>> expression)
         {
             return await DbSet.AsQueryable().AnyAsync(expression);
         }
@@ -77,6 +77,11 @@ namespace ScanText.Data.Database.Repositories
             {
                 throw;
             }
+        }
+
+        public async Task<string> ObterEmailUsuarioPorUsername(string username)
+        {
+            return await DbSet.AsQueryable().Where(usuario => usuario.Username == username).Select(usuario => usuario.Email).FirstOrDefaultAsync();
         }
     }
 }
