@@ -1,6 +1,6 @@
 ﻿namespace ScanText.Domain.Utils.Notification
 {
-    public struct NotificationItem
+    public class NotificationItem
     {
         public string Chave { get; private set; }
         public string Valor { get; private set; }
@@ -9,6 +9,11 @@
         {
             Chave = chave;
             Valor = valor;
+        }
+
+        public NotificationItem GetNotificationItem()
+        {
+            return this;
         }
     }
 }

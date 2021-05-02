@@ -8,7 +8,7 @@ namespace ScanText.Domain.Utils.Notification
 {
     public class NotificationService : INotificationService
     {
-        public IEnumerable<NotificationItem> Notifications { get; set; }
+        public List<NotificationItem> Notifications { get; set; }
 
         public NotificationService()
         {
@@ -21,6 +21,9 @@ namespace ScanText.Domain.Utils.Notification
             return true;
         }
 
-
+        public void AddNotification(string key, string value)
+        {
+            Notifications.Add(new NotificationItem(key, value).GetNotificationItem());
+        }
     }
 }
