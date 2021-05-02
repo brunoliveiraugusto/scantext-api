@@ -78,5 +78,14 @@ namespace ScanText.Api.Controllers
             var result = await _usuarioAppService.AtualizarDadosCadastroUsuario(usuarioViewModel, idUsuario);
             return Ok(result);
         }
+
+        [HttpGet()]
+        [Route("obter-opcoes-contato-usuario-redefinicao-senha")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ObterContatosUsuario([FromQuery] string username)
+        {
+            var result = await _usuarioAppService.ObterContatosUsuarioParaRedefinirSenha(username);
+            return ResponseRequest(result);
+        }
     }
 }

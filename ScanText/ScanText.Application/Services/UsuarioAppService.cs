@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ScanText.Domain.Utils.Interfaces;
+using ScanText.Domain.Usuario.Helper;
 
 namespace ScanText.Application.Services
 {
@@ -45,7 +46,7 @@ namespace ScanText.Application.Services
             else
                 expression = usuario => usuario.Username == username;
 
-            return await _usuarioRepository.IndicaUsuarioExistenteAsync(expression);
+            return await _usuarioRepository.IndicaUsuarioExistente(expression);
         }
 
         public async Task<UsuarioViewModel> Inserir(UsuarioViewModel usuarioViewModel)
@@ -111,6 +112,19 @@ namespace ScanText.Application.Services
             where M : class
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<string>> ObterContatosUsuarioParaRedefinirSenha(string username)
+        {
+            string email = await _usuarioRepository.ObterEmailUsuarioPorUsername(username);
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return null;
+            }
+
+            string emailMascara = UsuarioHelper.AplicarMascaraEmail(email);
+            return new List<string> { emailMascara };
         }
     }
 }
