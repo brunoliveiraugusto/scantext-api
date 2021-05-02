@@ -12,6 +12,11 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ScanText.Domain.Utils.Interfaces;
 using ScanText.Domain.Usuario.Helper;
+using ScanText.Domain.Email.Resources;
+using System.Web;
+using ScanText.Domain.Email.Entities.Interfaces;
+using Microsoft.Extensions.Options;
+using ScanText.Infra.CrossCutting.Settings;
 
 namespace ScanText.Application.Services
 {
@@ -22,14 +27,24 @@ namespace ScanText.Application.Services
         private readonly IMapper _mapper;
         private readonly IUsuarioService _user;
         private readonly INotificationService _notificationService;
+        private readonly ITokenService _tokenService;
+        private readonly IEmailAddress _emailAddress;
+        private readonly IEmailRepository _emailRepository;
+        private readonly ScanTextClientSettings _clientSettings;
 
-        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper, IUsuarioService user, INotificationService notificationService)
+        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper, 
+            IUsuarioService user, INotificationService notificationService, ITokenService tokenService, IEmailAddress emailAddress,
+            IEmailRepository emailRepository, IOptions<ScanTextClientSettings> optionsClientSettings)
         {
             _usuarioRepository = usuarioRepository;
             _encryptData = encryptData;
             _mapper = mapper;
             _user = user;
             _notificationService = notificationService;
+            _tokenService = tokenService;
+            _emailAddress = emailAddress;
+            _emailRepository = emailRepository;
+            _clientSettings = optionsClientSettings.Value;
         }
 
         public Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuarioViewModel, Guid id)
@@ -125,6 +140,27 @@ namespace ScanText.Application.Services
 
             string emailMascara = UsuarioHelper.AplicarMascaraEmail(email);
             return new List<string> { emailMascara };
+        }
+
+        public async Task<bool> EnviarEmailRedefinicaoSenha(string username)
+        {
+            try
+            {
+                var usuario = await _usuarioRepository.ObterNomeEmailUsuarioPorUsername(username);
+                string token = _tokenService.GenerateSimpleToken();
+                string url = $"{_clientSettings.Url}/atualizar-senha/{HttpUtility.UrlEncode(token)}";
+                var emailHtml = Email.TemplateEmailRedefinicaoSenha
+                                .Replace("{usuario}", usuario.NomeCompleto)
+                                .Replace("{url}", url);
+
+                var email = _emailAddress.GetEmailAddress(usuario.NomeCompleto, usuario.Email, "ScanText - Redefinição de Senha", string.Empty, emailHtml);
+                return await _emailRepository.EnviarEmailAsync(email);
+            }
+            catch(Exception)
+            {
+                _notificationService.AddNotification("Envio do E-mail de Redefinição de Senha", "Falha ao enviar o e-mail para a redefinição de senha, tente novamente.");
+                return false;
+            }
         }
     }
 }

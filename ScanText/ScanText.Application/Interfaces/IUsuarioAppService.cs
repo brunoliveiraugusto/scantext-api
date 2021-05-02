@@ -14,5 +14,6 @@ namespace ScanText.Application.Interfaces
         Task<UsuarioViewModel> CarregarDadosCadastroUsuario();
         Task<bool> AtualizarDadosCadastroUsuario(UsuarioViewModel usuarioViewModel, Guid idUsuario);
         Task<IEnumerable<string>> ObterContatosUsuarioParaRedefinirSenha(string username);
+        Task<bool> EnviarEmailRedefinicaoSenha(string username);
     }
 }
