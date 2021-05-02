@@ -33,8 +33,7 @@ namespace ScanText.Data.Database.Repositories
             }
             catch (Exception ex)
             {
-                //Gravar Log
-                return false;
+                throw ex;
             }
         }
     }
