@@ -16,6 +16,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using ScanText.Data.Settings;
+using ScanText.Infra.CrossCutting.Settings;
 
 namespace ScanText.Api
 {
@@ -92,6 +93,11 @@ namespace ScanText.Api
                     ValidateAudience = false
                 };
             });
+            #endregion
+
+            #region Client
+            services.Configure<ScanTextClientSettings>(
+                Configuration.GetSection(nameof(ScanTextClientSettings)));
             #endregion
 
             services.AddCors(options =>
