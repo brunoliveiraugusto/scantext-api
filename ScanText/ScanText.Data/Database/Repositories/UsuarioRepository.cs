@@ -83,5 +83,16 @@ namespace ScanText.Data.Database.Repositories
         {
             return await DbSet.AsQueryable().Where(usuario => usuario.Username == username).Select(usuario => usuario.Email).FirstOrDefaultAsync();
         }
+
+        public async Task<Usuario> ObterNomeEmailUsuarioPorUsername(string username)
+        {
+            return await DbSet.AsQueryable().Where(usuario => usuario.Username == username)
+                .Select(usuario => new Usuario
+                {
+                    NomeCompleto = usuario.NomeCompleto,
+                    Email = usuario.Email
+                })
+                .FirstOrDefaultAsync();
+        }
     }
 }

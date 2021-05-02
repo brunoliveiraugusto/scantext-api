@@ -14,5 +14,6 @@ namespace ScanText.Data.Database.Repositories.Interfaces
         Task<Usuario> CarregarDadosCadastro(Guid idUsuario);
         Task<bool> AtualizarDadosCadastro(Usuario usuario, Guid idUsuario);
         Task<string> ObterEmailUsuarioPorUsername(string username);
+        Task<Usuario> ObterNomeEmailUsuarioPorUsername(string username);
     }
 }
