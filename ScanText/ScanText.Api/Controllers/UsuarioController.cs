@@ -87,5 +87,14 @@ namespace ScanText.Api.Controllers
             var result = await _usuarioAppService.ObterContatosUsuarioParaRedefinirSenha(username);
             return ResponseRequest(result);
         }
+
+        [HttpPost()]
+        [Route("enviar-email-redefinicao-senha")]
+        [AllowAnonymous]
+        public async Task<IActionResult> EnviarEmailRedefinicaoSenha([FromQuery] string username)
+        {
+            var result = await _usuarioAppService.EnviarEmailRedefinicaoSenha(username);
+            return ResponseRequest(result);
+        }
     }
 }
