@@ -67,5 +67,30 @@ namespace ScanText.Security.Authentication.Services
             GenericPrincipal principal = new GenericPrincipal(identity, roles);
             _acessor.HttpContext.User = principal;
         }
+
+        public bool ValidateSimpleToken(string token)
+        {
+            try
+            {
+                var validationParameters = GetValidationParameters();
+                new JwtSecurityTokenHandler().ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private TokenValidationParameters GetValidationParameters()
+        {
+            return new TokenValidationParameters
+            {
+                ValidateLifetime = true,
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_token.Secret))
+            };
+        }
     }
 }

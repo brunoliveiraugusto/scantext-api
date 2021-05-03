@@ -8,5 +8,6 @@ namespace ScanText.Security.Authentication.Interfaces
         string GenerateToken(UsuarioAuthentication usuario);
         string GenerateSimpleToken();
         void SetIdentityUser(IIdentity identity, string[] roles);
+        bool ValidateSimpleToken(string token);
     }
 }
