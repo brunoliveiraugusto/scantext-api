@@ -94,5 +94,10 @@ namespace ScanText.Data.Database.Repositories
                 })
                 .FirstOrDefaultAsync();
         }
+
+        public async Task<Usuario> ObterUsuarioPorUsername(string username)
+        {
+            return await DbSet.AsQueryable().Where(usuario => usuario.Username == username).FirstOrDefaultAsync();
+        }
     }
 }
