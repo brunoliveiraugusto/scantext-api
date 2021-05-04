@@ -162,5 +162,20 @@ namespace ScanText.Application.Services
                 return false;
             }
         }
+
+        public async Task<bool> AtualizarSenha(AtualizaSenhaViewModel atualizaSenha)
+        {
+            if(string.IsNullOrEmpty(atualizaSenha.Token) || !_tokenService.ValidateSimpleToken(atualizaSenha.Token))
+            {
+                _notificationService.AddNotification("Token Inválido", "O token informado é inválido, acesse o link enviado por e-mail e tente novamente.");
+                return false;
+            }
+
+            var usuario = await _usuarioRepository.ObterUsuarioPorUsername(atualizaSenha.Username);
+            string password = _encryptData.Encrypt(atualizaSenha.Senha);
+            usuario.Password = password;
+            await _usuarioRepository.AtualizarAsync(usuario, usuario.Id);
+            return true;
+        }
     }
 }
