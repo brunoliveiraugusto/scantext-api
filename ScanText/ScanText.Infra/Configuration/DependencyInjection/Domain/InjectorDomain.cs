@@ -11,7 +11,7 @@ namespace ScanText.Infra.Configuration.DependencyInjection.Domain
         public static void InjectDomain(this IServiceCollection services)
         {
             services.AddSingleton<IEmailAddress, EmailAddress>();
-            services.AddSingleton<INotificationService, NotificationService>();
+            services.AddScoped<INotificationService, NotificationService>();
         }
     }
 }
