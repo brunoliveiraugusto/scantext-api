@@ -96,5 +96,14 @@ namespace ScanText.Api.Controllers
             var result = await _usuarioAppService.EnviarEmailRedefinicaoSenha(username);
             return ResponseRequest(result);
         }
+
+        [HttpPost()]
+        [Route("atualizar-senha")]
+        [AllowAnonymous]
+        public async Task<IActionResult> AtualizarSenha([FromBody] AtualizaSenhaViewModel atualizaSenha)
+        {
+            var result = await _usuarioAppService.AtualizarSenha(atualizaSenha);
+            return ResponseRequest(result);
+        }
     }
 }
