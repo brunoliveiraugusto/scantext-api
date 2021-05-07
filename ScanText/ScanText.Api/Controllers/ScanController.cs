@@ -21,6 +21,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Imagem Processada.</response>
         [HttpPost()]
+        [Route("ler-imagem")]
         [Authorize(Roles = AuthorizationService.Todos)]
         public IActionResult LerTextoImagem([FromBody] ImagemTesseractViewModel imagemVM)
         {

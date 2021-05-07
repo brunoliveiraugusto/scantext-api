@@ -66,15 +66,39 @@ namespace ScanText.Domain.Email.Resources {
         ///&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
         ///
         ///&lt;head&gt;
-        ///    &lt;title&gt;ScanText - Segurança&lt;/title&gt;
+        ///    &lt;title&gt;Scan Text&lt;/title&gt;
         ///&lt;/head&gt;
         ///
-        ///&lt;body style=&quot;width: 100%;height: 100%;background-color: #1a568f;margin: 0;padding: 0;&quot;&gt;
+        ///&lt;body style=&quot;width: 100%;height: 100%;background-color: #337ab7 ;margin: 0;padding: 0;&quot;&gt;
         ///    &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; align=&quot;center&quot; class=&quot;full&quot;&gt;
         ///        &lt;tr&gt;
         ///            &lt;td height=&quot;54&quot;&gt;&amp;nbsp;&lt;/td&gt;
         ///        &lt;/tr&gt;
-        ///    &lt;/ta [rest of string was truncated]&quot;;.
+        ///    &lt;/table&gt;
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TemplateEmailEnvioImagemProcessada {
+            get {
+                return ResourceManager.GetString("TemplateEmailEnvioImagemProcessada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+        ///&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        ///
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Scan Text&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body style=&quot;width: 100%;height: 100%;background-color: #337ab7 ;margin: 0;padding: 0;&quot;&gt;
+        ///    &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; align=&quot;center&quot; class=&quot;full&quot;&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td height=&quot;54&quot;&gt;&amp;nbsp;&lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///    &lt;/table&gt;
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string TemplateEmailRedefinicaoSenha {
             get {

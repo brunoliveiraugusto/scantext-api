@@ -4,6 +4,7 @@ using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Data.Utils;
 using ScanText.Domain.Email.Entities.Interfaces;
+using ScanText.Domain.Email.Resources;
 using ScanText.Domain.Imagem.Entities;
 using ScanText.Domain.Utils.Interfaces;
 using ScanText.Security.Authentication.Interfaces;
@@ -102,22 +103,19 @@ namespace ScanText.Application.Services
             var imagem = await imagemTask;
             var emailUsuario = await emailUsuarioTask;
             var nomeUsuario = await nomeUsuarioTask;
-            
-            var email = MontarEstruturaEmail(imagem);
-            var emailSend = _emailAddress.GetEmailAddress(nomeUsuario, emailUsuario, email.subject, string.Empty, email.htmlContent);
+
+            string email = Email.TemplateEmailEnvioImagemProcessada
+                                .Replace("{usuario}", nomeUsuario)
+                                .Replace("{nomeImagem}", imagem.Nome)
+                                .Replace("{assertividade}", (imagem.MeanConfidence * 100).ToString())
+                                .Replace("{formato}", imagem.Formato)
+                                .Replace("{idioma}", imagem.Linguagem.Idioma)
+                                .Replace("{data}", imagem.DataCadastro.ToString("dd/MM/yyyy"))
+                                .Replace("{texto}", imagem.Texto);
+
+            var emailSend = _emailAddress.GetEmailAddress(nomeUsuario, emailUsuario, "ScanText - Imagem", string.Empty, email);
 
             await _emailRepository.EnviarEmailAsync(emailSend);
-        }
-
-        private (string htmlContent, string subject) MontarEstruturaEmail(Imagem imagem)
-        {
-            return ($"<p><b>Nome:</b> {imagem.Nome}</p>" +
-                    $"<p><b>Assertividade Leitura:</b> {imagem.MeanConfidence * 100}%</p>" +
-                    $"<p><b>Formato:</b> {imagem.Formato}</p>" +
-                    $"<p><b>Texto:</b> {imagem.Texto}</p>" +
-                    $"<p><b>Idioma:</b> {imagem.Linguagem.Idioma}</p>" +
-                    $"<p><b>Data Digitalização:</b> {imagem.DataAtualizacao?.ToString("dd/MM/yyyy HH:mm:ss") ?? imagem.DataCadastro.ToString("dd/MM/yyyy HH:mm:ss")}</p>", 
-                    "Imagem Digitalizada: " + imagem.Nome);
         }
     }
 }

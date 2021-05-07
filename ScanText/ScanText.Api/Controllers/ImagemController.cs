@@ -102,7 +102,7 @@ namespace ScanText.Api.Controllers
         public IActionResult EnviarEmailImagemProcessada([FromBody] Guid idImagem)
         {
             _imagemAppService.EnviarEmailImagemProcessada(idImagem);
-            return Ok();
+            return ResponseRequest();
         }
     }
 }
