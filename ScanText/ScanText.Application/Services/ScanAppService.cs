@@ -4,6 +4,7 @@ using ScanText.Application.ViewModels;
 using ScanText.Engine.Tesseract.Models;
 using ScanText.Engine.Tesseract.Interfaces;
 using ScanText.Engine.Interfaces;
+using ScanText.Engine.Models;
 
 namespace ScanText.Application.Services
 {
@@ -20,18 +21,24 @@ namespace ScanText.Application.Services
             _mapper = mapper;
         }
 
-        public ImagemViewModel LerTextoImagem(ImagemViewModel imagemVM)
+        public ImagemTesseractResponseViewModel LerTextoImagem(ImagemTesseractViewModel imagemVM)
         {
-            var imagemOCR = _mapper.Map<TesseractImage>(imagemVM);
+            var imagemOCR = ConvertModelMapper<TesseractImage, ImagemTesseractViewModel>(imagemVM);
             imagemOCR = _tesseractEngineRepository.ReadImage(imagemOCR);
-            imagemVM = _mapper.Map<TesseractImage, ImagemViewModel>(imagemOCR, imagemVM);
-            return imagemVM;
+            return ConvertModelMapper<ImagemTesseractResponseViewModel, TesseractImage>(imagemOCR);
         }
 
-        public QrCodeResponseViewModel ObterQrCodeImagem(string text)
+        public QrCodeResponseViewModel GerarQrCodeImagem(string text)
         {
             var qrCode = _qrCodeGeneratorRepository.GenerateQrCode(text);
-            return _mapper.Map<QrCodeResponseViewModel>(qrCode);
+            return ConvertModelMapper<QrCodeResponseViewModel, QrCode>(qrCode);
+        }
+
+        public T ConvertModelMapper<T, M>(M model)
+            where T : class
+            where M : class
+        {
+            return _mapper.Map<T>(model);
         }
     }
 }

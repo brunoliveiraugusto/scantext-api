@@ -33,11 +33,11 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">QrCode gerado.</response>
         [HttpPost()]
-        [Route("obter-qr-code")]
+        [Route("gerar-qr-code")]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public IActionResult ObterQrCodeImagem([FromBody] QrCodeViewModel qrCode)
+        public IActionResult GerarQrCodeImagem([FromBody] QrCodeViewModel qrCode)
         {
-            var response = _scanAppService.ObterQrCodeImagem(qrCode.Text);
+            var response = _scanAppService.GerarQrCodeImagem(qrCode.Text);
             return Ok(response);
         }
     }

@@ -34,12 +34,9 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
                 .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(x => x.DataCadastro));
 
-            CreateMap<ImagemViewModel, TesseractImage>()
+            CreateMap<ImagemTesseractViewModel, TesseractImage>()
                 .ForMember(dest => dest.Base64, opt => opt.MapFrom(x => x.Base64))
-                .ForMember(dest => dest.SiglaLinguagem, opt => opt.MapFrom(x => x.Linguagem.Sigla))
-                .ForMember(dest => dest.Texto, opt => opt.MapFrom(x => x.Texto))
-                .ForMember(dest => dest.MeanConfidence, opt => opt.MapFrom(x => x.MeanConfidence))
-                .ReverseMap();
+                .ForMember(dest => dest.SiglaLinguagem, opt => opt.MapFrom(x => x.SiglaLinguagem));
 
             CreateMap<PaginationFilterViewModel<ImagemViewModel>, PaginationFilter<Imagem>>()
                 .ForMember(dest => dest.Limit, opt => opt.MapFrom(x => x.Limit))

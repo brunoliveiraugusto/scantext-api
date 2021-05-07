@@ -2,6 +2,7 @@
 using ScanText.Application.ViewModels;
 using ScanText.Domain.Usuario.Entities;
 using ScanText.Engine.Models;
+using ScanText.Engine.Tesseract.Models;
 using ScanText.Engine.Utils.Helper;
 
 namespace ScanText.Application.AutoMapper
@@ -20,6 +21,10 @@ namespace ScanText.Application.AutoMapper
 
             CreateMap<QrCode, QrCodeResponseViewModel>()
                 .ForMember(dest => dest.Code, opt => opt.MapFrom(x => x.Code));
+
+            CreateMap<TesseractImage, ImagemTesseractResponseViewModel>()
+                .ForMember(dest => dest.Texto, opt => opt.MapFrom(x => x.Texto))
+                .ForMember(dest => dest.MeanConfidence, opt => opt.MapFrom(x => x.MeanConfidence));
         }
     }
 }
