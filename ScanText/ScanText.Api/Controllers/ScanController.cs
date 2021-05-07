@@ -22,10 +22,10 @@ namespace ScanText.Api.Controllers
         /// <response code="200">Imagem Processada.</response>
         [HttpPost()]
         [Authorize(Roles = AuthorizationService.Todos)]
-        public IActionResult LerTextoImagem([FromBody] ImagemViewModel imagemVM)
+        public IActionResult LerTextoImagem([FromBody] ImagemTesseractViewModel imagemVM)
         {
             var response = _scanAppService.LerTextoImagem(imagemVM);
-            return Ok(response);
+            return ResponseRequest(response);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace ScanText.Api.Controllers
         public IActionResult GerarQrCodeImagem([FromBody] QrCodeViewModel qrCode)
         {
             var response = _scanAppService.GerarQrCodeImagem(qrCode.Text);
-            return Ok(response);
+            return ResponseRequest(response);
         }
     }
 }
