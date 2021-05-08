@@ -2,10 +2,9 @@
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using FluentValidation;
 using ScanText.Domain.Utils.Validators.Base;
 
-namespace ScanText.Domain.EntityDomain
+namespace ScanText.Domain.BaseDomain
 {
     public abstract class Entity<TEntity> where TEntity : Entity<TEntity>
     {

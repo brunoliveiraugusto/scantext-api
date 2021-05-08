@@ -1,4 +1,4 @@
-﻿using ScanText.Domain.EntityDomain;
+﻿using ScanText.Domain.BaseDomain;
 using ScanText.Domain.Linguagem.Validators;
 using System;
 

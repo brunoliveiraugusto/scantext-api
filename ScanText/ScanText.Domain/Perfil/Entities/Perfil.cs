@@ -1,5 +1,5 @@
 ﻿using System;
-using ScanText.Domain.EntityDomain;
+using ScanText.Domain.BaseDomain;
 using ScanText.Domain.Perfil.Validators;
 
 namespace ScanText.Domain.Perfil.Entities

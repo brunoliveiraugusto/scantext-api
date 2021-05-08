@@ -1,8 +1,6 @@
-﻿using ScanText.Domain.EntityDomain;
+﻿using ScanText.Domain.BaseDomain;
 using ScanText.Domain.Utils.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ScanText.Domain.Utils.Notification
 {

@@ -1,8 +1,7 @@
 ﻿using MongoDB.Driver;
-using ScanText.Domain.EntityDomain;
+using ScanText.Domain.BaseDomain;
 using ScanText.Infra.Configuration.Database.Context;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
