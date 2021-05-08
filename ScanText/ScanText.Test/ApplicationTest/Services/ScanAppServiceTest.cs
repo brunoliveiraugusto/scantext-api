@@ -24,7 +24,7 @@ namespace ScanText.Test.ApplicationTest.Services
         }
 
         [Fact(DisplayName = "Teste de leitura de imagem no idioma português")]
-        public async void LerImagemTest()
+        public void LerImagemTest()
         {
             #region Given
             ScanAppService scanAppService = BuildConstructor();
@@ -47,7 +47,7 @@ namespace ScanText.Test.ApplicationTest.Services
         }
 
         [Fact(DisplayName = "Teste de leitura de imagem no idioma inglês")]
-        public async void LerImagemIdiomaInglesTest()
+        public void LerImagemIdiomaInglesTest()
         {
             #region Given
             ScanAppService scanAppService = BuildConstructor();
