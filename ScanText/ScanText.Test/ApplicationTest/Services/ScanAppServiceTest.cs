@@ -35,16 +35,14 @@ namespace ScanText.Test.ApplicationTest.Services
             #endregion
 
             #region When
-            var imagemVM = new ImagemViewModelTestBuilder().DefaultIdiomaPortugues().Build();
+            var imagemVM = new ImagemTesseractViewModelTestBuilder().DefaultIdiomaPortugues().Build();
             var resp = scanAppService.LerTextoImagem(imagemVM);
             #endregion
 
             #region Then
             resp.Should().NotBeNull();
             resp.Texto.Should().NotBeNullOrEmpty();
-            resp.Linguagem.Idioma.Should().BeEquivalentTo("Português");
             resp.MeanConfidence.Should().BeGreaterOrEqualTo(0.0f);
-            resp.Size.Should().BeGreaterThan(0);
             #endregion
         }
 
@@ -60,16 +58,14 @@ namespace ScanText.Test.ApplicationTest.Services
             #endregion
 
             #region When
-            var imagemVM = new ImagemViewModelTestBuilder().DefaultIdiomaIngles().Build();
+            var imagemVM = new ImagemTesseractViewModelTestBuilder().DefaultIdiomaPortugues().Build();
             var resp = scanAppService.LerTextoImagem(imagemVM);
             #endregion
 
             #region Then
             resp.Should().NotBeNull();
             resp.Texto.Should().NotBeNullOrEmpty();
-            resp.Linguagem.Idioma.Should().BeEquivalentTo("Inglês");
             resp.MeanConfidence.Should().BeGreaterOrEqualTo(0.0f);
-            resp.Size.Should().BeGreaterThan(0);
             #endregion
         }
 
