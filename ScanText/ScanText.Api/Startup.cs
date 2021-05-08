@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using ScanText.Data.Settings;
 using ScanText.Infra.CrossCutting.Settings;
+using ScanText.Data.Database.Settings;
 
 namespace ScanText.Api
 {
@@ -98,6 +99,11 @@ namespace ScanText.Api
             #region Client
             services.Configure<ScanTextClientSettings>(
                 Configuration.GetSection(nameof(ScanTextClientSettings)));
+            #endregion
+
+            #region Storage Azure
+            services.Configure<StorageAzureSettings>(
+                Configuration.GetSection(nameof(StorageAzureSettings)));
             #endregion
 
             services.AddCors(options =>

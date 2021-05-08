@@ -15,7 +15,6 @@ namespace ScanText.Application.AutoMapper
         {
             CreateMap<ImagemViewModel, Imagem>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
-                .ForMember(dest => dest.Base64, opt => opt.MapFrom(x => x.Base64))
                 .ForMember(dest => dest.Texto, opt => opt.MapFrom(x => x.Texto))
                 .ForMember(dest => dest.Formato, opt => opt.MapFrom(x => x.Formato))
                 .ForMember(dest => dest.MeanConfidence, opt => opt.MapFrom(x => x.MeanConfidence))
@@ -25,7 +24,6 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
                 .ForMember(dest => dest.Linguagem, opt => opt.MapFrom(x => x.Linguagem))
                 .ForMember(dest => dest.IdUsuario, opt => opt.MapFrom(x => x.IdUsuario));
-
 
             CreateMap<LinguagemViewModel, Linguagem>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))

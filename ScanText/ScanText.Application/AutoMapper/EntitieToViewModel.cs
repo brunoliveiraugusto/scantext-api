@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ScanText.Application.ViewModels;
+using ScanText.Domain.Imagem.Entities;
 using ScanText.Domain.Usuario.Entities;
 using ScanText.Engine.Models;
 using ScanText.Engine.Tesseract.Models;

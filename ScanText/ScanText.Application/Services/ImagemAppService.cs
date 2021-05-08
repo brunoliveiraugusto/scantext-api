@@ -7,6 +7,7 @@ using ScanText.Domain.Email.Entities.Interfaces;
 using ScanText.Domain.Email.Resources;
 using ScanText.Domain.Imagem.Entities;
 using ScanText.Domain.Shared.Interfaces;
+using ScanText.Infra.CrossCutting.Shared.Helpers;
 using ScanText.Security.Authentication.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,12 @@ namespace ScanText.Application.Services
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IEmailAddress _emailAddress;
         private readonly INotificationService _notificationService;
+        private readonly IFileRepository _fileRepository;
         protected Guid IdUsuario { get; private set; }
 
         public ImagemAppService(IImagemRepository imagemRepository, IMapper mapper, 
             IUsuarioService user, IEmailRepository emailRepository, IUsuarioRepository usuarioRepository,
-            IEmailAddress emailAddress, INotificationService notificationService)
+            IEmailAddress emailAddress, INotificationService notificationService, IFileRepository fileRepository)
         {
             _imagemRepository = imagemRepository;
             _mapper = mapper;
@@ -36,6 +38,7 @@ namespace ScanText.Application.Services
             _usuarioRepository = usuarioRepository;
             _emailAddress = emailAddress;
             _notificationService = notificationService;
+            _fileRepository = fileRepository;
             IdUsuario = _user.GetUserId();
         }
 
@@ -53,14 +56,32 @@ namespace ScanText.Application.Services
 
         public async Task<ImagemViewModel> Inserir(ImagemViewModel imagemViewModel)
         {
-            var imagem = ConvertModelMapper<Imagem, ImagemViewModel>(imagemViewModel);
-            imagem.DataCadastro = DateTime.Now;
-            imagem.IdUsuario = IdUsuario;
-            if (!_notificationService.ValidEntity(imagem))
-                return null;
+            try
+            {
+                var imagem = ConvertModelMapper<Imagem, ImagemViewModel>(imagemViewModel);
 
-            await _imagemRepository.InserirAsync(imagem);
-            return ConvertModelMapper<ImagemViewModel, Imagem>(imagem);
+                imagem.DataCadastro = DateTime.Now;
+                imagem.IdUsuario = IdUsuario;
+
+                string nomeFisicoArquivoBlob = ObterNomeFisicoArquivo(imagem.Formato);
+                byte[] image = StringHelper.Base64ToArrayByte(imagemViewModel.Base64);
+
+                string urlImagem = await _fileRepository.Upload(nomeFisicoArquivoBlob, image);
+
+                imagem.UrlImagemBlob = urlImagem;
+                imagem.NomeImagemBlob = nomeFisicoArquivoBlob;
+
+                if (!_notificationService.ValidEntity(imagem))
+                    return null;
+
+                await _imagemRepository.InserirAsync(imagem);
+                return ConvertModelMapper<ImagemViewModel, Imagem>(imagem);
+            } 
+            catch
+            {
+                _notificationService.AddNotification("Erro tentar inserir a imagem", "Houve uma falha ao tentar inserir a imagem, por favor, tente novamente.");
+                return null;
+            }
         }
 
         public async Task<ImagemViewModel> ObterPorId(Guid id)
@@ -116,6 +137,11 @@ namespace ScanText.Application.Services
             var emailSend = _emailAddress.GetEmailAddress(nomeUsuario, emailUsuario, "ScanText - Imagem", string.Empty, email);
 
             await _emailRepository.EnviarEmailAsync(emailSend);
+        }
+
+        private string ObterNomeFisicoArquivo(string formatoImagem)
+        {
+            return Guid.NewGuid().ToString() + "." + formatoImagem.Split("/")[1];
         }
     }
 }

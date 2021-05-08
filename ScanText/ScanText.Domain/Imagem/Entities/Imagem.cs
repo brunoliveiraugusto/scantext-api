@@ -10,13 +10,14 @@ namespace ScanText.Domain.Imagem.Entities
         public string Nome { get; set; }
         public long Size { get; set; }
         public string Formato { get; set; }
-        public string Base64 { get; set; }
         public string Texto { get; set; }
         public float MeanConfidence { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
         public Entitie.Linguagem Linguagem { get; set; }
         public Guid IdUsuario { get; set; }
+        public string NomeImagemBlob { get; set; }
+        public string UrlImagemBlob { get; set; }
 
         public override void Validate()
         {
