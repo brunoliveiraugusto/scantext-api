@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScanText.Api.Configuration;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
-using ScanText.Domain.Utils.Interfaces;
+using ScanText.Domain.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

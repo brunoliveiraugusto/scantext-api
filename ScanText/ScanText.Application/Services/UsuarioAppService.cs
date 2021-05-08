@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using ScanText.Domain.Utils.Interfaces;
+using ScanText.Domain.Shared.Interfaces;
 using ScanText.Domain.Usuario.Helper;
 using ScanText.Domain.Email.Resources;
 using System.Web;

@@ -4,7 +4,7 @@ using Moq;
 using ScanText.Application.Services;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.Imagem.Entities;
-using ScanText.Domain.Utils.Notification;
+using ScanText.Domain.Shared.Notification;
 using ScanText.Security.Authentication.Interfaces;
 using ScanText.Test.ApplicationTest.Builders.Domain;
 using ScanText.Test.ApplicationTest.Builders.Mapper;

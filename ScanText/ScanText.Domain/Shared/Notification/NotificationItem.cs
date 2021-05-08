@@ -1,4 +1,4 @@
-﻿namespace ScanText.Domain.Utils.Notification
+﻿namespace ScanText.Domain.Shared.Notification
 {
     public class NotificationItem
     {

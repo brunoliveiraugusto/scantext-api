@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
-using ScanText.Domain.Utils.Interfaces;
+using ScanText.Domain.Shared.Interfaces;
 using System.Threading.Tasks;
 
 namespace ScanText.Api.Controllers

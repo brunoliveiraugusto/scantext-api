@@ -6,7 +6,7 @@ using ScanText.Data.Utils;
 using ScanText.Domain.Email.Entities.Interfaces;
 using ScanText.Domain.Email.Resources;
 using ScanText.Domain.Imagem.Entities;
-using ScanText.Domain.Utils.Interfaces;
+using ScanText.Domain.Shared.Interfaces;
 using ScanText.Security.Authentication.Interfaces;
 using System;
 using System.Collections.Generic;

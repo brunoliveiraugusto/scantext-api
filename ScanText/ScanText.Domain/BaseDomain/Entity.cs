@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using ScanText.Domain.Utils.Validators.Base;
+using ScanText.Domain.Shared.Validators.Base;
 
 namespace ScanText.Domain.BaseDomain
 {

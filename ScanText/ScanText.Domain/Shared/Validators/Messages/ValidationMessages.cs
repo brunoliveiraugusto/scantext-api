@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScanText.Domain.Utils.Validators.Messages
+﻿namespace ScanText.Domain.Shared.Validators.Messages
 {
     public static class ValidationMessages
     {

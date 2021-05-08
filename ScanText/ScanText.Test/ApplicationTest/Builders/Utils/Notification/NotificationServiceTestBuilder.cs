@@ -1,6 +1,6 @@
 ﻿using Moq;
-using ScanText.Domain.Utils.Interfaces;
-using ScanText.Domain.Utils.Notification;
+using ScanText.Domain.Shared.Interfaces;
+using ScanText.Domain.Shared.Notification;
 
 namespace ScanText.Test.ApplicationTest.Builders.Utils.Notification
 {

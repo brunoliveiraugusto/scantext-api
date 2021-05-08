@@ -3,7 +3,7 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.Linguagem.Entities;
-using ScanText.Domain.Utils.Interfaces;
+using ScanText.Domain.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

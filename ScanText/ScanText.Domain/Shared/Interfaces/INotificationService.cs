@@ -1,8 +1,8 @@
 ﻿using ScanText.Domain.BaseDomain;
-using ScanText.Domain.Utils.Notification;
+using ScanText.Domain.Shared.Notification;
 using System.Collections.Generic;
 
-namespace ScanText.Domain.Utils.Interfaces
+namespace ScanText.Domain.Shared.Interfaces
 {
     public interface INotificationService
     {

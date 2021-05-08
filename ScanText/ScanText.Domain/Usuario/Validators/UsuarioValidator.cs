@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using ScanText.Domain.Utils.Validators.Messages;
+using ScanText.Domain.Shared.Validators.Messages;
 using Entitie = ScanText.Domain.Usuario.Entities;
 
 namespace ScanText.Domain.Usuario.Validators

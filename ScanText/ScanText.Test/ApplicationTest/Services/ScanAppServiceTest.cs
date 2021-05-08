@@ -8,7 +8,6 @@ using ScanText.Test.ApplicationTest.Builders.Domain;
 using ScanText.Test.ApplicationTest.Builders.Mapper;
 using ScanText.Test.ApplicationTest.Builders.Repository;
 using ScanText.Test.ApplicationTest.Builders.ViewModel;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ScanText.Test.ApplicationTest.Services

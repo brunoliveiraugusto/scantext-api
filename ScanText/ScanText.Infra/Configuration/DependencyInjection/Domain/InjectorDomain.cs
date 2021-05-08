@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ScanText.Domain.Email.Entities;
 using ScanText.Domain.Email.Entities.Interfaces;
-using ScanText.Domain.Utils.Interfaces;
-using ScanText.Domain.Utils.Notification;
+using ScanText.Domain.Shared.Interfaces;
+using ScanText.Domain.Shared.Notification;
 
 namespace ScanText.Infra.Configuration.DependencyInjection.Domain
 {
