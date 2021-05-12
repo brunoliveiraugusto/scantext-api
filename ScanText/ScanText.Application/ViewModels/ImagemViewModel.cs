@@ -15,6 +15,7 @@ namespace ScanText.Application.ViewModels
         public DateTime? DataAtualizacao { get; set; }
         public LinguagemViewModel Linguagem { get; set; }
         public Guid IdUsuario { get; set; }
+        public string NomeImagemBlob { get; set; }
         public string UrlImagemBlob { get; set; }
     }
 }

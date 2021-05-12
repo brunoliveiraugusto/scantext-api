@@ -23,7 +23,10 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(x => x.DataCadastro))
                 .ForMember(dest => dest.DataAtualizacao, opt => opt.MapFrom(x => x.DataAtualizacao))
                 .ForMember(dest => dest.Linguagem, opt => opt.MapFrom(x => x.Linguagem))
-                .ForMember(dest => dest.IdUsuario, opt => opt.MapFrom(x => x.IdUsuario));
+                .ForMember(dest => dest.IdUsuario, opt => opt.MapFrom(x => x.IdUsuario))
+                .ForMember(dest => dest.NomeImagemBlob, opt => opt.Ignore())
+                .ForMember(dest => dest.UrlImagemBlob, opt => opt.Ignore())
+                .ForSourceMember(x => x.Base64, y => y.Ignore());
 
             CreateMap<LinguagemViewModel, Linguagem>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
@@ -44,8 +47,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(x => x.Total))
                 .ForMember(dest => dest.Pages, opt => opt.MapFrom(x => x.Pages))
                 .ForMember(dest => dest.Ascendant, opt => opt.MapFrom(x => x.Ascendant))
-                .ForMember(dest => dest.Sort, opt => opt.MapFrom(x => x.Sort))
-                .ReverseMap();
+                .ForMember(dest => dest.Sort, opt => opt.MapFrom(x => x.Sort));
 
             CreateMap<UsuarioViewModel, Usuario>()
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(x => x.Username))

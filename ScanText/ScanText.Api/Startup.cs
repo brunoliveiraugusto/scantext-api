@@ -54,7 +54,11 @@ namespace ScanText.Api
             #region Auto Mapper
             var mappingConfig = new MapperConfiguration(mc =>
             {
+                mc.AddProfile(new EntitieToViewModel());
                 mc.AddProfile(new ViewModelToEntitie());
+                mc.AllowNullCollections = true;
+                mc.AllowNullDestinationValues = true;
+                mc.ValidateInlineMaps = false;
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

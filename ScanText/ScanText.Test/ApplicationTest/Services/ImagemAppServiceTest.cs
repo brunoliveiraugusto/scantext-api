@@ -26,7 +26,7 @@ namespace ScanText.Test.ApplicationTest.Services
 
         private ImagemAppService BuildConstructor()
         {
-            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null, _notificationService);
+            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null, _notificationService, null);
         }
 
         [Fact(DisplayName = "Teste de inserção de uma imagem")]

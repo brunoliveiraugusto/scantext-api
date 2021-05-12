@@ -13,7 +13,6 @@ namespace ScanText.Test.ApplicationTest.Builders.Domain
 
         public ImagemTestBuilder Default()
         {
-            Model.Base64 = "base64,f0adfasdfjasdhfosaiyf9sa86f";
             Model.DataCadastro = DateTime.Now;
             Model.Formato = "png";
             Model.Id = Guid.NewGuid();
