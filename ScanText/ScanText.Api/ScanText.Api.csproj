@@ -5,18 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ScanText.Application\ScanText.Application.csproj" />
     <ProjectReference Include="..\ScanText.Infra.CrossCutting\ScanText.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\ScanText.Infra\ScanText.Infra.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	<NoWarn>$(NoWarn);1591</NoWarn>
-  </PropertyGroup>
 
 </Project>
