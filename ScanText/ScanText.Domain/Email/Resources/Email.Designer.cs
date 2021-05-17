@@ -36,7 +36,7 @@ namespace ScanText.Domain.Email.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScanText.Domain.Email.Resources.Email", typeof(Email).Assembly);
@@ -51,12 +51,35 @@ namespace ScanText.Domain.Email.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+        ///&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        ///
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Scan Text&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body style=&quot;width: 100%;height: 100%;background-color: #337ab7 ;margin: 0;padding: 0;&quot;&gt;
+        ///    &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; align=&quot;center&quot; class=&quot;full&quot;&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td height=&quot;54&quot;&gt;&amp;nbsp;&lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///    &lt;/table&gt;
+        ///     [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TemplateEmailCriarSenhaNovoUsuario {
+            get {
+                return ResourceManager.GetString("TemplateEmailCriarSenhaNovoUsuario", resourceCulture);
             }
         }
         

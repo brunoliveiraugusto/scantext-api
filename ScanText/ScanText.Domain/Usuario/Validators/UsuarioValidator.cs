@@ -13,11 +13,6 @@ namespace ScanText.Domain.Usuario.Validators
                 .NotNull()
                 .WithMessage(ValidationMessages.CampoObrigatorio("Usuário"));
 
-            RuleFor(x => x.Password)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage(ValidationMessages.CampoObrigatorio("Senha"));
-
             RuleFor(x => x.NomeCompleto)
                 .NotEmpty()
                 .NotNull()

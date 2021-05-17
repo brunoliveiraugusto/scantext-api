@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Email\Resources\Email.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Email.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

@@ -12,10 +12,26 @@ namespace ScanText.Domain.Usuario.Entities
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Role { get; set; }
+        public bool Ativo { get; set; }
 
         public override void Validate()
         {
             Validator.Include(new UsuarioValidator());
+        }
+
+        public void InativarUsuario()
+        {
+            Ativo = false;
+        }
+
+        public void AtivarUsuario()
+        {
+            Ativo = true;
+        }
+
+        public void AtualizarSenha(string password)
+        {
+            Password = password;
         }
     }
 }

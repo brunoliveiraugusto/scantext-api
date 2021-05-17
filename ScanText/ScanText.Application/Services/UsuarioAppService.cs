@@ -32,7 +32,7 @@ namespace ScanText.Application.Services
         private readonly IEmailRepository _emailRepository;
         private readonly ScanTextClientSettings _clientSettings;
 
-        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper, 
+        public UsuarioAppService(IUsuarioRepository usuarioRepository, IEncryptData encryptData, IMapper mapper,
             IUsuarioService user, INotificationService notificationService, ITokenService tokenService, IEmailAddress emailAddress,
             IEmailRepository emailRepository, IOptions<ScanTextClientSettings> optionsClientSettings)
         {
@@ -56,7 +56,7 @@ namespace ScanText.Application.Services
         {
             Expression<Func<Usuario, bool>> expression = null;
 
-            if(idUsuario != null)
+            if (idUsuario != null)
                 expression = usuario => usuario.Username == username && usuario.Id != idUsuario;
             else
                 expression = usuario => usuario.Username == username;
@@ -66,23 +66,32 @@ namespace ScanText.Application.Services
 
         public async Task<UsuarioViewModel> Inserir(UsuarioViewModel usuarioViewModel)
         {
-            var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuarioViewModel.Username);
-            
-            if (!indicaUsuarioCadastrado)
+            try
             {
-                var passwordEncripty = _encryptData.Encrypt(usuarioViewModel.Password);
-                usuarioViewModel.Password = passwordEncripty;
-                var usuario = ConvertModelMapper<Usuario, UsuarioViewModel>(usuarioViewModel);
-                if (!_notificationService.ValidEntity(usuario))
-                    return null;
+                var indicaUsuarioCadastrado = await IndicaUsuarioExistente(usuarioViewModel.Username);
 
-                await _usuarioRepository.InserirAsync(usuario);
-                usuario.Password = null;
-                return ConvertModelMapper<UsuarioViewModel, Usuario>(usuario);
-            } 
-            else
+                if (!indicaUsuarioCadastrado)
+                {
+                    var usuario = ConvertModelMapper<Usuario, UsuarioViewModel>(usuarioViewModel);
+                    if (!_notificationService.ValidEntity(usuario))
+                        return null;
+
+                    usuario.InativarUsuario();
+
+                    await _usuarioRepository.InserirAsync(usuario);
+                    usuario.Password = null;
+                    await EnviarEmailParaCriarSenhaNovoUsuario(usuario);
+
+                    return ConvertModelMapper<UsuarioViewModel, Usuario>(usuario);
+                }
+                else
+                {
+                    throw new UserAlreadyExistsException();
+                }
+            }
+            catch (Exception)
             {
-                throw new UserAlreadyExistsException();
+                throw;
             }
         }
 
@@ -126,7 +135,7 @@ namespace ScanText.Application.Services
             where T : class
             where M : class
         {
-            throw new NotImplementedException();
+            return _mapper.Map<T>(model);
         }
 
         public async Task<IEnumerable<string>> ObterContatosUsuarioParaRedefinirSenha(string username)
@@ -156,7 +165,7 @@ namespace ScanText.Application.Services
                 var email = _emailAddress.GetEmailAddress(usuario.NomeCompleto, usuario.Email, "ScanText - Redefinição de Senha", string.Empty, emailHtml);
                 return await _emailRepository.EnviarEmailAsync(email);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 _notificationService.AddNotification("Envio do E-mail de Redefinição de Senha", "Falha ao enviar o e-mail para a redefinição de senha, tente novamente.");
                 return false;
@@ -165,7 +174,7 @@ namespace ScanText.Application.Services
 
         public async Task<bool> AtualizarSenha(AtualizaSenhaViewModel atualizaSenha)
         {
-            if(string.IsNullOrEmpty(atualizaSenha.Token) || !_tokenService.ValidateSimpleToken(atualizaSenha.Token))
+            if (string.IsNullOrEmpty(atualizaSenha.Token) || !_tokenService.ValidateSimpleToken(atualizaSenha.Token))
             {
                 _notificationService.AddNotification("Token Inválido", "O token informado é inválido, acesse o link enviado por e-mail e tente novamente.");
                 return false;
@@ -173,9 +182,30 @@ namespace ScanText.Application.Services
 
             var usuario = await _usuarioRepository.ObterUsuarioPorUsername(atualizaSenha.Username);
             string password = _encryptData.Encrypt(atualizaSenha.Senha);
-            usuario.Password = password;
+            usuario.AtivarUsuario();
+            usuario.AtualizarSenha(password);
             await _usuarioRepository.AtualizarAsync(usuario, usuario.Id);
             return true;
+        }
+
+        private async Task<bool> EnviarEmailParaCriarSenhaNovoUsuario(Usuario usuario)
+        {
+            try
+            {
+                string token = _tokenService.GenerateSimpleToken();
+                string url = $"{_clientSettings.Url}/atualizar-senha/{HttpUtility.UrlEncode(token)}";
+                var emailHtml = Email.TemplateEmailCriarSenhaNovoUsuario
+                                .Replace("{usuario}", usuario.NomeCompleto)
+                                .Replace("{url}", url);
+
+                var email = _emailAddress.GetEmailAddress(usuario.NomeCompleto, usuario.Email, "ScanText - Criação de Senha Para Novo Usuário", string.Empty, emailHtml);
+                return await _emailRepository.EnviarEmailAsync(email);
+            }
+            catch (Exception)
+            {
+                _notificationService.AddNotification("Envio do E-mail de Criação de Senha", "Falha ao enviar o e-mail para a criação de senha, tente novamente.");
+                return false;
+            }
         }
     }
 }

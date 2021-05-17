@@ -23,7 +23,8 @@ namespace ScanText.Data.Database.Repositories
 
         public async Task<Login> Login(string username, string password)
         {
-            return await DbSet.AsQueryable().Where(usuario => usuario.Username.ToLower() == username.ToLower() && usuario.Password == password)
+            return await DbSet.AsQueryable().Where(usuario => usuario.Username.ToLower() == username.ToLower() && 
+                usuario.Password == password && usuario.Ativo)
                                             .Select(usuario => new Login()
                                             {
                                                 Id = usuario.Id,
