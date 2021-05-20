@@ -12,6 +12,7 @@ namespace ScanText.Test.ApplicationTest.Builders.Mapper
                 x.AddProfile(new ViewModelToEntitie());
                 x.AllowNullCollections = true;
                 x.AllowNullDestinationValues = true;
+                x.ValidateInlineMaps = false;
             });
 
             Model = configuration.CreateMapper();

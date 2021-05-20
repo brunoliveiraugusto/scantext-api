@@ -66,9 +66,7 @@ namespace ScanText.Application.Services
                 string nomeFisicoArquivoBlob = ObterNomeFisicoArquivo(imagem.Formato);
                 byte[] image = StringHelper.Base64ToArrayByte(imagemViewModel.Base64);
 
-                string urlImagem = await _fileRepository.Upload(nomeFisicoArquivoBlob, image);
-
-                imagem.UrlImagemBlob = urlImagem;
+                imagem.UrlImagemBlob = await _fileRepository.Upload(nomeFisicoArquivoBlob, image);
                 imagem.NomeImagemBlob = nomeFisicoArquivoBlob;
 
                 if (!_notificationService.ValidEntity(imagem))
@@ -79,7 +77,7 @@ namespace ScanText.Application.Services
             } 
             catch
             {
-                _notificationService.AddNotification("Erro tentar inserir a imagem", "Houve uma falha ao tentar inserir a imagem, por favor, tente novamente.");
+                _notificationService.AddNotification("Erro ao tentar inserir a imagem", "Houve uma falha ao tentar inserir a imagem, por favor, tente novamente.");
                 return null;
             }
         }

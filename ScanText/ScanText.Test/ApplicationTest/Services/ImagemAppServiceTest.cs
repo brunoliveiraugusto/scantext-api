@@ -22,11 +22,13 @@ namespace ScanText.Test.ApplicationTest.Services
         private IMapper _mapper = new MapperTestBuilder().Build();
         private Imagem _imagemMock = new ImagemTestBuilder().Default().Build();
         private Mock<IUsuarioService> _userMock = new UsuarioServiceTestBuilder().Build();
+        private Mock<IFileRepository> _fileMock = new FileRepositoryTestBuilder().Build();
         private NotificationService _notificationService = new NotificationServiceTestBuilder().Build();
+        private readonly string _urlImageBlobStorage = "https://storagescantext.blob.core.windows.net/containerscantext/e455341a-44b3-4ee0-8e7a-de2263cd3d61.png";
 
         private ImagemAppService BuildConstructor()
         {
-            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null, _notificationService, null);
+            return new ImagemAppService(_imagemRepositoryMock.Object, _mapper, _userMock.Object, null, null, null, _notificationService, _fileMock.Object);
         }
 
         [Fact(DisplayName = "Teste de inserção de uma imagem")]
@@ -38,6 +40,10 @@ namespace ScanText.Test.ApplicationTest.Services
             _imagemRepositoryMock
                 .Setup(s => s.InserirAsync(It.IsAny<Imagem>()))
                 .Returns(Task.FromResult(_imagemMock));
+
+            _fileMock
+                .Setup(s => s.Upload(It.IsAny<string>(), It.IsAny<byte[]>()))
+                .Returns(Task.FromResult(_urlImageBlobStorage));
             #endregion
 
             #region When
@@ -48,7 +54,7 @@ namespace ScanText.Test.ApplicationTest.Services
 
             #region Then
             resp.Should().NotBeNull();
-            resp.Formato.Should().BeEquivalentTo("png");
+            resp.Formato.Should().BeEquivalentTo("imagem/png");
             resp.Nome.Should().BeEquivalentTo("imagem texto");
             resp.Size.Should().BeGreaterThan(0);
             resp.Size.Should().Be(123232);
@@ -56,6 +62,8 @@ namespace ScanText.Test.ApplicationTest.Services
             resp.MeanConfidence.Should().BeGreaterThan(0);
             resp.MeanConfidence.Should().Be(99.5f);
             resp.Linguagem.Should().NotBeNull();
+            resp.UrlImagemBlob.Should().NotBeNullOrWhiteSpace();
+            resp.NomeImagemBlob.Should().NotBeNullOrWhiteSpace();
             #endregion
         }
     }
