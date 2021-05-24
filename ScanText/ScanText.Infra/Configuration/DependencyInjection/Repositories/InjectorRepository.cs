@@ -14,6 +14,7 @@ namespace ScanText.Infra.Configuration.DependencyInjection.Repositories
             services.AddScoped<IEmailRepository, EmailRepository>();
             services.AddScoped<IPerfilRepository, PerfilRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<IArquivoIdiomaRepository, ArquivoIdiomaRepository>();
         }
     }
 }

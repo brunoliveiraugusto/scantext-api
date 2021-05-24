@@ -17,6 +17,7 @@ namespace ScanText.Infra.Configuration.DependencyInjection.Services
             services.AddScoped<ILoginAppService, LoginAppService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IPerfilAppService, PerfilAppService>();
+            services.AddScoped<IArquivoIdiomaAppService, ArquivoIdiomaAppService>();
         }
     }
 }
