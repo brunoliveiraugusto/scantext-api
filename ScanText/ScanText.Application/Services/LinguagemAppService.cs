@@ -7,18 +7,22 @@ using ScanText.Domain.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ScanText.Application.Services
 {
     public class LinguagemAppService : ILinguagemAppService
     {
         private readonly ILinguagemRepository _linguagemRepository;
+        private readonly IArquivoIdiomaRepository _arquivoIdiomaRepository;
         private readonly IMapper _mapper;
         private readonly INotificationService _notificationService;
 
-        public LinguagemAppService(ILinguagemRepository linguagemRepository, IMapper mapper, INotificationService notificationService)
+        public LinguagemAppService(ILinguagemRepository linguagemRepository, IMapper mapper, INotificationService notificationService,
+            IArquivoIdiomaRepository arquivoIdiomaRepository)
         {
             _linguagemRepository = linguagemRepository;
+            _arquivoIdiomaRepository = arquivoIdiomaRepository;
             _mapper = mapper;
             _notificationService = notificationService;
         }
@@ -68,6 +72,17 @@ namespace ScanText.Application.Services
         Task<LinguagemViewModel> IServiceApp<LinguagemViewModel>.Inserir(LinguagemViewModel model)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<LinguagemViewModel>> CarregarLinguagensSemArquivoTraducaoAssociado()
+        {
+            var linguagensTask = _linguagemRepository.ObterTodosAsync();
+            var arquivosIdiomaTask = _arquivoIdiomaRepository.ObterTodosAsync();
+
+            var linguagens = _mapper.Map<IEnumerable<LinguagemViewModel>>(await linguagensTask);
+            var arquivosIdioma = await arquivosIdiomaTask;
+
+            return linguagens.Where(x => !arquivosIdioma.Any(y => y.Id == x.Id));
         }
 
         public T ConvertModelMapper<T, M>(M model)

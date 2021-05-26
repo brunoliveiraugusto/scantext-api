@@ -77,5 +77,18 @@ namespace ScanText.Api.Controllers
             await _linguagemAppService.Remover(id);
             return Ok();
         }
+
+        /// <summary>
+        /// API responsável por buscar uma lista de linguagens sem arquivos de tradução associados.
+        /// </summary>
+        /// <response code="200">Sucesso.</response>
+        [HttpGet()]
+        [Route("carregar-linguagens-sem-arquivos-associados")]
+        [Authorize(Roles = AuthorizationService.Administrador)]
+        public async Task<IActionResult> CarregarLinguagensSemArquivosAssociados()
+        {
+            var linguagens = await _linguagemAppService.CarregarLinguagensSemArquivoTraducaoAssociado();
+            return ResponseRequest(linguagens);
+        }
     }
 }

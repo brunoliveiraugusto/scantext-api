@@ -8,5 +8,6 @@ namespace ScanText.Application.Interfaces
 {
     public interface ILinguagemAppService : IServiceApp<LinguagemViewModel>
     {
+        Task<IEnumerable<LinguagemViewModel>> CarregarLinguagensSemArquivoTraducaoAssociado();
     }
 }
