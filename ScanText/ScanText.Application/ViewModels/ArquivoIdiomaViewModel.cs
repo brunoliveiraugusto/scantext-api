@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace ScanText.Application.ViewModels
 {
     public class ArquivoIdiomaViewModel
     {
-        public byte[] Arquivo { get; set; }
-        public string SiglaIdioma { get; set; }
+        public string Arquivo { get; set; }
         public DateTime DataCadastro { get; set; }
-        public DateTime DataAtualizacao { get; set; }
+        public DateTime? DataAtualizacao { get; set; }
+        public Guid IdIdioma { get; set; }
         public Guid IdUsuario { get; set; }
     }
 }

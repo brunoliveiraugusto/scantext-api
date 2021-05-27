@@ -6,6 +6,7 @@ using ScanText.Domain.Imagem.Entities;
 using ScanText.Domain.Usuario.Entities;
 using ScanText.Engine.Tesseract.Models;
 using ScanText.Security.Authentication.Entities;
+using System;
 
 namespace ScanText.Application.AutoMapper
 {
@@ -68,6 +69,13 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Token, opt => opt.MapFrom(x => x.Token))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(x => x.Role))
                 .ReverseMap();
+
+            CreateMap<ArquivoIdiomaViewModel, ArquivoIdioma>()
+                .ForMember(dest => dest.IdUsuario, sc => sc.MapFrom(x => x.IdUsuario))
+                .ForMember(dest => dest.DataCadastro, sc => sc.MapFrom(x => DateTime.Now))
+                .ForMember(dest => dest.DataAtualizacao, sc => sc.MapFrom(x => x.DataAtualizacao))
+                .ForMember(dest => dest.IdIdioma, sc => sc.MapFrom(x => x.IdIdioma))
+                .ForMember(dest => dest.Arquivo, sc => sc.MapFrom(x => Convert.FromBase64String(x.Arquivo.Split(",", StringSplitOptions.None)[1])));
         }
     }
 }

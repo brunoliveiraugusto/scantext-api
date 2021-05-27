@@ -82,7 +82,7 @@ namespace ScanText.Application.Services
             var linguagens = _mapper.Map<IEnumerable<LinguagemViewModel>>(await linguagensTask);
             var arquivosIdioma = await arquivosIdiomaTask;
 
-            return linguagens.Where(x => !arquivosIdioma.Any(y => y.Id == x.Id));
+            return linguagens.Where(x => !arquivosIdioma.Any(y => y.IdIdioma == x.Id));
         }
 
         public T ConvertModelMapper<T, M>(M model)

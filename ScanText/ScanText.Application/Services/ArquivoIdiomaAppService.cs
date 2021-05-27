@@ -3,6 +3,7 @@ using ScanText.Application.Interfaces;
 using ScanText.Application.ViewModels;
 using ScanText.Data.Database.Repositories;
 using ScanText.Data.Database.Repositories.Interfaces;
+using ScanText.Domain.Linguagem.Entities;
 using ScanText.Domain.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,18 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<ArquivoIdiomaViewModel> Inserir(ArquivoIdiomaViewModel model)
+        public async Task<ArquivoIdiomaViewModel> Inserir(ArquivoIdiomaViewModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var arquivoIdioma = ConvertModelMapper<ArquivoIdioma, ArquivoIdiomaViewModel>(model);
+                return ConvertModelMapper<ArquivoIdiomaViewModel, ArquivoIdioma>(await _arquivoIdiomaRepository.InserirAsync(arquivoIdioma));
+            }
+            catch
+            {
+                _notificationService.AddNotification("Erro ao salvar arquivo de idioma", "Erro ao tentar salvar o Arquivo de Idioma, tente novamente.");
+                return null;
+            }
         }
 
         public Task<ArquivoIdiomaViewModel> ObterPorId(Guid id)
@@ -52,7 +62,7 @@ namespace ScanText.Application.Services
             where T : class
             where M : class
         {
-            throw new NotImplementedException();
+            return _mapper.Map<T>(model);
         }
     }
 }
