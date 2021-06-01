@@ -40,7 +40,7 @@ namespace ScanText.Application.Services
                 var arquivoIdioma = ConvertModelMapper<ArquivoIdioma, ArquivoIdiomaViewModel>(model);
                 
                 arquivoIdioma.NomeArquivoBlob = ObterNomeFisicoArquivo();
-                byte[] arquivo = StringHelper.Base64ToArrayByte(model.Arquivo);
+                byte[] arquivo = StringHelper.Base64ToArrayByte(model.Arquivo.Split(",")[1]);
 
                 if (!_notificationService.ValidEntity(arquivoIdioma))
                     return null;
@@ -49,7 +49,7 @@ namespace ScanText.Application.Services
                 var arquivoResponse = await _arquivoIdiomaRepository.InserirAsync(arquivoIdioma);
                 return ConvertModelMapper<ArquivoIdiomaViewModel, ArquivoIdioma>(arquivoResponse);
             }
-            catch
+            catch(Exception ex)
             {
                 _notificationService.AddNotification("Erro ao salvar arquivo de idioma", "Erro ao tentar salvar o Arquivo de Idioma, tente novamente.");
                 return null;

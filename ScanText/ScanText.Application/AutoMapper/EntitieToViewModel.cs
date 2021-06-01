@@ -62,7 +62,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Sort, opt => opt.MapFrom(x => x.Sort));
 
             CreateMap<ArquivoIdioma, ArquivoIdiomaViewModel>()
-                .ForMember(dest => dest.Arquivo, sc => sc.MapFrom(null));
+                .ForMember(dest => dest.Arquivo, sc => sc.Ignore());
         }
     }
 }

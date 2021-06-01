@@ -1,4 +1,5 @@
 ﻿using ScanText.Domain.BaseDomain;
+using ScanText.Domain.Linguagem.Validators;
 using System;
 
 namespace ScanText.Domain.Linguagem.Entities
@@ -14,7 +15,7 @@ namespace ScanText.Domain.Linguagem.Entities
 
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            Validator.Include(new ArquivoIdiomaValidator());
         }
     }
 }
