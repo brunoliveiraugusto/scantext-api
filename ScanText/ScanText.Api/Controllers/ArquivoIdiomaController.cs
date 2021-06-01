@@ -23,6 +23,7 @@ namespace ScanText.Api.Controllers
         /// </summary>
         /// <response code="200">Sucesso.</response>
         [HttpPost()]
+        [RequestSizeLimit(100_000_000)]
         [Authorize(Roles = AuthorizationService.Administrador)]
         public async Task<IActionResult> Criar([FromBody] ArquivoIdiomaViewModel arquivoIdiomaViewModel)
         {

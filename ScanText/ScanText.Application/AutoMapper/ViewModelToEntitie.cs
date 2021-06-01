@@ -74,8 +74,7 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.IdUsuario, sc => sc.MapFrom(x => x.IdUsuario))
                 .ForMember(dest => dest.DataCadastro, sc => sc.MapFrom(x => DateTime.Now))
                 .ForMember(dest => dest.DataAtualizacao, sc => sc.MapFrom(x => x.DataAtualizacao))
-                .ForMember(dest => dest.IdIdioma, sc => sc.MapFrom(x => x.IdIdioma))
-                .ForMember(dest => dest.Arquivo, sc => sc.MapFrom(x => Convert.FromBase64String(x.Arquivo.Split(",", StringSplitOptions.None)[1])));
+                .ForMember(dest => dest.IdIdioma, sc => sc.MapFrom(x => x.IdIdioma));
         }
     }
 }

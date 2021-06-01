@@ -5,6 +5,7 @@ using ScanText.Data.Database.Repositories;
 using ScanText.Data.Database.Repositories.Interfaces;
 using ScanText.Domain.Linguagem.Entities;
 using ScanText.Domain.Shared.Interfaces;
+using ScanText.Infra.CrossCutting.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,14 +15,17 @@ namespace ScanText.Application.Services
     public class ArquivoIdiomaAppService : IArquivoIdiomaAppService
     {
         private readonly IArquivoIdiomaRepository _arquivoIdiomaRepository;
+        private readonly IFileRepository _fileRepository;
         private readonly IMapper _mapper;
         private readonly INotificationService _notificationService;
 
-        public ArquivoIdiomaAppService(IArquivoIdiomaRepository arquivoIdiomaRepository, IMapper mapper, INotificationService notificationService)
+        public ArquivoIdiomaAppService(IArquivoIdiomaRepository arquivoIdiomaRepository, IMapper mapper, INotificationService notificationService,
+            IFileRepository fileRepository)
         {
             _arquivoIdiomaRepository = arquivoIdiomaRepository;
             _mapper = mapper;
             _notificationService = notificationService;
+            _fileRepository = fileRepository;
         }
 
         public Task<ArquivoIdiomaViewModel> Atualizar(ArquivoIdiomaViewModel model, Guid id)
@@ -34,7 +38,16 @@ namespace ScanText.Application.Services
             try
             {
                 var arquivoIdioma = ConvertModelMapper<ArquivoIdioma, ArquivoIdiomaViewModel>(model);
-                return ConvertModelMapper<ArquivoIdiomaViewModel, ArquivoIdioma>(await _arquivoIdiomaRepository.InserirAsync(arquivoIdioma));
+                
+                arquivoIdioma.NomeArquivoBlob = ObterNomeFisicoArquivo();
+                byte[] arquivo = StringHelper.Base64ToArrayByte(model.Arquivo);
+
+                if (!_notificationService.ValidEntity(arquivoIdioma))
+                    return null;
+
+                arquivoIdioma.UrlArquivoBlob = await _fileRepository.Upload(arquivoIdioma.NomeArquivoBlob, arquivo);
+                var arquivoResponse = await _arquivoIdiomaRepository.InserirAsync(arquivoIdioma);
+                return ConvertModelMapper<ArquivoIdiomaViewModel, ArquivoIdioma>(arquivoResponse);
             }
             catch
             {
@@ -63,6 +76,11 @@ namespace ScanText.Application.Services
             where M : class
         {
             return _mapper.Map<T>(model);
+        }
+
+        private string ObterNomeFisicoArquivo()
+        {
+            return $"{Guid.NewGuid()}.traineddata";
         }
     }
 }

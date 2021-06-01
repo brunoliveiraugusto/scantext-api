@@ -60,6 +60,9 @@ namespace ScanText.Application.AutoMapper
                 .ForMember(dest => dest.Pages, opt => opt.MapFrom(x => x.Pages))
                 .ForMember(dest => dest.Ascendant, opt => opt.MapFrom(x => x.Ascendant))
                 .ForMember(dest => dest.Sort, opt => opt.MapFrom(x => x.Sort));
+
+            CreateMap<ArquivoIdioma, ArquivoIdiomaViewModel>()
+                .ForMember(dest => dest.Arquivo, sc => sc.MapFrom(null));
         }
     }
 }

@@ -66,11 +66,11 @@ namespace ScanText.Application.Services
                 string nomeFisicoArquivoBlob = ObterNomeFisicoArquivo(imagem.Formato);
                 byte[] image = StringHelper.Base64ToArrayByte(imagemViewModel.Base64);
 
-                imagem.UrlImagemBlob = await _fileRepository.Upload(nomeFisicoArquivoBlob, image);
-                imagem.NomeImagemBlob = nomeFisicoArquivoBlob;
-
                 if (!_notificationService.ValidEntity(imagem))
                     return null;
+
+                imagem.UrlImagemBlob = await _fileRepository.Upload(nomeFisicoArquivoBlob, image);
+                imagem.NomeImagemBlob = nomeFisicoArquivoBlob;
 
                 await _imagemRepository.InserirAsync(imagem);
                 return ConvertModelMapper<ImagemViewModel, Imagem>(imagem);
