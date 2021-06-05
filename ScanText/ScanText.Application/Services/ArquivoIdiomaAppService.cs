@@ -8,6 +8,7 @@ using ScanText.Domain.Shared.Interfaces;
 using ScanText.Infra.CrossCutting.Shared.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScanText.Application.Services
@@ -16,16 +17,18 @@ namespace ScanText.Application.Services
     {
         private readonly IArquivoIdiomaRepository _arquivoIdiomaRepository;
         private readonly IFileRepository _fileRepository;
+        private readonly ILinguagemRepository _linguagemRepository;
         private readonly IMapper _mapper;
         private readonly INotificationService _notificationService;
 
         public ArquivoIdiomaAppService(IArquivoIdiomaRepository arquivoIdiomaRepository, IMapper mapper, INotificationService notificationService,
-            IFileRepository fileRepository)
+            IFileRepository fileRepository, ILinguagemRepository linguagemRepository)
         {
             _arquivoIdiomaRepository = arquivoIdiomaRepository;
             _mapper = mapper;
             _notificationService = notificationService;
             _fileRepository = fileRepository;
+            _linguagemRepository = linguagemRepository;
         }
 
         public Task<ArquivoIdiomaViewModel> Atualizar(ArquivoIdiomaViewModel model, Guid id)
@@ -61,9 +64,16 @@ namespace ScanText.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ArquivoIdiomaViewModel>> ObterTodos()
+        public async Task<IEnumerable<ArquivoIdiomaViewModel>> ObterTodos()
         {
-            throw new NotImplementedException();
+            var arquivosIdioma = _mapper.Map<IEnumerable<ArquivoIdiomaViewModel>>(await _arquivoIdiomaRepository.ObterTodosAsync());
+
+            arquivosIdioma.ToList().ForEach(async (arquivoIdioma) =>
+            {
+                arquivoIdioma.Idioma = await _linguagemRepository.ObterNomeIdiomaPorId(arquivoIdioma.IdIdioma);
+            });
+
+            return arquivosIdioma;
         }
 
         public Task<bool> Remover(Guid id)

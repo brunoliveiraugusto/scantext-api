@@ -5,6 +5,7 @@ using ScanText.Domain.Linguagem.Entities;
 using ScanText.Infra.Configuration.Database.Context;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ScanText.Data.Database.Repositories
 {
@@ -13,6 +14,11 @@ namespace ScanText.Data.Database.Repositories
         public LinguagemRepository(ScanTextMongoContext context) : base(context)
         {
 
+        }
+
+        public async Task<string> ObterNomeIdiomaPorId(Guid id)
+        {
+            return await DbSet.AsQueryable().Where(idioma => idioma.Id == id).Select(idioma => idioma.Idioma).FirstOrDefaultAsync();
         }
     }
 }

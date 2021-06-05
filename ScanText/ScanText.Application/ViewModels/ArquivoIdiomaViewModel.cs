@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 
 namespace ScanText.Application.ViewModels
 {
@@ -13,5 +12,6 @@ namespace ScanText.Application.ViewModels
         public Guid IdUsuario { get; set; }
         public string NomeArquivoBlob { get; set; }
         public string UrlArquivoBlob { get; set; }
+        public string Idioma { get; set; }
     }
 }
