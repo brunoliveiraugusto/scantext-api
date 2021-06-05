@@ -96,7 +96,17 @@ namespace ScanText.Application.Services
 
         public async Task<bool> Remover(Guid id)
         {
-            return await _imagemRepository.RemoverAsync(id);
+            try
+            {
+                string fileName = await _imagemRepository.ObterNomeImagemBlobPorId(id);
+                await _fileRepository.Delete(fileName);
+                return await _imagemRepository.RemoverAsync(id);
+            }
+            catch (Exception)
+            {
+                _notificationService.AddNotification("Erro ao excluir", "Erro ao tentar excluir a imagem, por favor, tente novamente.");
+                return false;
+            }
         }
 
         public T ConvertModelMapper<T, M>(M model) 

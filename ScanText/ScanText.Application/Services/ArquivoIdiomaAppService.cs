@@ -86,7 +86,7 @@ namespace ScanText.Application.Services
             }
             catch (Exception)
             {
-                _notificationService.AddNotification("Erro ao excluir", "Erro ao tentar excluir o arquivo de idioma, tente novamente.");
+                _notificationService.AddNotification("Erro ao excluir", "Erro ao tentar excluir o arquivo de idioma, por favor, tente novamente.");
                 return false;
             }
         }

@@ -6,6 +6,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 
 namespace ScanText.Data.Database.Repositories
 {
@@ -60,6 +61,11 @@ namespace ScanText.Data.Database.Repositories
             }
 
             return query;
+        }
+
+        public async Task<string> ObterNomeImagemBlobPorId(Guid id)
+        {
+            return await DbSet.AsQueryable().Where(imagem => imagem.Id == id).Select(imagem => imagem.NomeImagemBlob).FirstOrDefaultAsync();
         }
     }
 }
