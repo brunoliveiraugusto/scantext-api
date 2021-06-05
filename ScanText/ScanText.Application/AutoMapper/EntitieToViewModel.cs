@@ -7,6 +7,7 @@ using ScanText.Domain.Usuario.Entities;
 using ScanText.Engine.Models;
 using ScanText.Engine.Tesseract.Models;
 using ScanText.Engine.Utils.Helper;
+using System.Globalization;
 
 namespace ScanText.Application.AutoMapper
 {

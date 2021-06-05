@@ -68,17 +68,27 @@ namespace ScanText.Application.Services
         {
             var arquivosIdioma = _mapper.Map<IEnumerable<ArquivoIdiomaViewModel>>(await _arquivoIdiomaRepository.ObterTodosAsync());
 
-            arquivosIdioma.ToList().ForEach(async (arquivoIdioma) =>
+            foreach(var arquivoIdioma in arquivosIdioma)
             {
                 arquivoIdioma.Idioma = await _linguagemRepository.ObterNomeIdiomaPorId(arquivoIdioma.IdIdioma);
-            });
+            }
 
             return arquivosIdioma;
         }
 
-        public Task<bool> Remover(Guid id)
+        public async Task<bool> Remover(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string fileName = await _arquivoIdiomaRepository.ObterNomeArquivoIdiomaPorId(id);
+                await _fileRepository.Delete(fileName);
+                return await _arquivoIdiomaRepository.RemoverAsync(id);
+            }
+            catch (Exception)
+            {
+                _notificationService.AddNotification("Erro ao excluir", "Erro ao tentar excluir o arquivo de idioma, tente novamente.");
+                return false;
+            }
         }
 
         public T ConvertModelMapper<T, M>(M model)
